@@ -12,18 +12,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #40404b" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller">
+<BorderPane id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #40404b" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/login.css" />
     </stylesheets>
    <center>
       <GridPane alignment="CENTER" styleClass="loginMenu" vgap="5.0">
          <Label id="usernameLabel" text="Username: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
-          <TextField id="usernameField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+          <TextField fx:id="fldUsername" id="usernameField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
           <Label id="passwordLabel" text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-          <PasswordField id="passwordField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+          <PasswordField fx:id="fldPassword" id="passwordField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
           <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="4">
-              <Button id="loginBtn">Login</Button>
+              <Button fx:id="btnLogin" id="loginBtn">Login</Button>
           </HBox>
       </GridPane>
    </center>

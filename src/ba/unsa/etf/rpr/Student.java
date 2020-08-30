@@ -1,4 +1,4 @@
 package ba.unsa.etf.rpr;
 
-public class Controller {
+public class Student {
 }

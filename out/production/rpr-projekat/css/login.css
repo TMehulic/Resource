@@ -1,0 +1,41 @@
+#border {
+    fx-background-color:yellow;
+}
+
+#topLabel {
+    -fx-label-padding: 50px, 0, 0, 0;
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+}
+
+.loginMenu {
+    -fx-alignment: top-center;
+    -fx-pref-height: 200px;
+    -fx-min-height: 200px;
+    -fx-max-height: 200px;
+    -fx-pref-width: 300px;
+    -fx-min-width: 300px;
+    -fx-max-width: 300px;
+    -fx-background-radius: 15, 15, 15, 15;
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.8),10,0,0,0);
+    -fx-padding:10;
+    -fx-vgap: 5;
+    -fx-background-color: white;
+}
+
+
+#passwordField {
+    -fx-pref-width: 280px;
+}
+
+#usernameField {
+    -fx-pref-width: 280px;
+}
+
+
+#loginBtn {
+    -fx-background-color: #6262ff;
+    -fx-min-width: 80px;
+    -fx-pref-width: 80px;
+    -fx-text-fill: white;
+}
