@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="imePredmeta" prefHeight="66.0" prefWidth="600.0" text="Ime predmeta" textAlignment="CENTER" textFill="#f50606">
+         <font>
+            <Font name="System Italic" size="40.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="10.0" />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="opisPredmeta" prefHeight="85.0" prefWidth="600.0" text="Description" textFill="#f20909" />
+   </children>
+</VBox>

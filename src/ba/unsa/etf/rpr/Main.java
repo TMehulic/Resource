@@ -15,10 +15,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-//        HomeController ctrl = new HomeController();
+        StudentController ctrl = new StudentController();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
-//        loader.setController(ctrl);
+        loader.setController(ctrl);
 
         Parent root = loader.load();
 
