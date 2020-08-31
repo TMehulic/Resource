@@ -19,6 +19,13 @@ public class TestnaListCell extends javafx.scene.control.ListCell<Testna> {
 
     private FXMLLoader mLLoader;
 
+    public TestnaListCell() {
+        {
+            setStyle("-fx-padding: 0 0 0.5 0 ");
+        }
+
+    }
+
     @Override
     protected void updateItem(Testna testna, boolean b) {
         super.updateItem(testna, b);

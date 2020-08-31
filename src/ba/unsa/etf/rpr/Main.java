@@ -15,9 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        StudentController ctrl = new StudentController();
+        CreateStudentController ctrl = new CreateStudentController();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"));
         loader.setController(ctrl);
 
         Parent root = loader.load();
