@@ -15,9 +15,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        CreateStudentController ctrl = new CreateStudentController();
+        StudentController ctrl = new StudentController();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
         loader.setController(ctrl);
 
         Parent root = loader.load();
@@ -27,7 +27,6 @@ public class Main extends Application {
         primaryStage.show();
         primaryStage.setResizable(true);
     }
-
 
     public static void main(String[] args) {
         launch(args);

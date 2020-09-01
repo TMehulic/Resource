@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class TestnaListCell extends javafx.scene.control.ListCell<Testna> {
+public class CourseListCell extends javafx.scene.control.ListCell<Course> {
 
     @FXML
     private Label imePredmeta;
@@ -19,7 +19,7 @@ public class TestnaListCell extends javafx.scene.control.ListCell<Testna> {
 
     private FXMLLoader mLLoader;
 
-    public TestnaListCell() {
+    public CourseListCell() {
         {
             setStyle("-fx-padding: 0 0 0.5 0 ");
         }
@@ -27,10 +27,10 @@ public class TestnaListCell extends javafx.scene.control.ListCell<Testna> {
     }
 
     @Override
-    protected void updateItem(Testna testna, boolean b) {
-        super.updateItem(testna, b);
+    protected void updateItem(Course course, boolean b) {
+        super.updateItem(course, b);
 
-        if(b || testna == null) {
+        if(b || course == null) {
 
             setText(null);
             setGraphic(null);
@@ -48,8 +48,8 @@ public class TestnaListCell extends javafx.scene.control.ListCell<Testna> {
 
             }
 
-            imePredmeta.setText(testna.getImePredmeta());
-            opisPredmeta.setText(testna.getOpisPredmeta());
+            imePredmeta.setText(course.getName());
+            opisPredmeta.setText(course.getDescription());
 
             setText(null);
             setGraphic(vbox);
