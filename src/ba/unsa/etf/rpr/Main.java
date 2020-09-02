@@ -4,20 +4,26 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Main extends Application {
 
+    private static Stage guiStage;
+
+    public static Stage getGuiStage() {
+        return guiStage;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        StudentController ctrl = new StudentController();
+        guiStage=primaryStage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
+        HomeController ctrl = new HomeController();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         loader.setController(ctrl);
 
         Parent root = loader.load();

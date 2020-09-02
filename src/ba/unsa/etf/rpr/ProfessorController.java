@@ -3,22 +3,25 @@ package ba.unsa.etf.rpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-public class StudentController {
+public class ProfessorController {
 
     private ObservableList<Course> courses;
+
     @FXML
     public ListView<Course> listView;
-
     @FXML
     public Circle circle;
+    @FXML
+    public Label labelName;
 
 
-    public StudentController() {
+    public ProfessorController() {
 
         courses= FXCollections.observableArrayList();
 
@@ -30,7 +33,6 @@ public class StudentController {
                 new Course("Logički dizajn","\n" +
                         "Svrha ovog predmeta je uvođenje studenta u principe logičkog dizajna i projektovanja osnovnih komponenti digitalnog računara tradicionalnim i savremenim metodama. U hijerarhiji apstrakcija počinje od logičkih kola i završava sa jednostavnim ali funkcionalnim mikroprogramiranim procesorom (centralnom procesnom jedinicom) i njegovim mašinskim jezikom. Studenti treba da razumiju principe na kojima rade jednostavni računarski sistemi, kao i prednosti i nedostatke hardverskog i softverskog rješavanja problema. Preduslovi za razumjevanje gradiva ovog kursa su poznavanje osnova digitalne (prekidačke) elektronike kao i osnova računarstva. Ovaj kurs predstavlja preduslov za razumjevanje računarskih arhitektura.",5)
         );
-
     }
 
     @FXML
@@ -39,5 +41,6 @@ public class StudentController {
         listView.setCellFactory(testnaListView -> new CourseListCell());
         Image im = new Image("/images/test.png");
         circle.setFill(new ImagePattern(im));
+        labelName.setText(labelName.getText()+"Ime Korisnika");
     }
 }
