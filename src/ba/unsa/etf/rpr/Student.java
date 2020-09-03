@@ -1,28 +1,52 @@
 package ba.unsa.etf.rpr;
 
-public class Student {
+import java.time.LocalDate;
 
-    private String lastName;
-    private String firstName;
-    private String fathersName;
-    private String placeOfBirth;
-    private long jmbg;
-    private String phone;   //as string, to easily handle leading zeros in database
-    private String email;
-    private String image;   //path to image
-    //todo: GENDER I DATUM RODJENJA DODATI
+public class Student extends Person {
 
-    //Prebivaliste
-    private String adress;
-    private String canton;
-    private String county;
-
-    //Fakultet
-
+    //Faculty
     private String smjer;
     private int ciklus;
     private int godina;
     private int index;
 
+    public Student(String lastName, String firstName, String fathersName, String placeOfBirth, long jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, String adress, Canton canton, String county, String smjer, int ciklus, int godina, int index) {
+        super(lastName, firstName, fathersName, placeOfBirth, jmbg, phone, email, image, birthDate, gender, adress, canton, county);
+        this.smjer = smjer;
+        this.ciklus = ciklus;
+        this.godina = godina;
+        this.index = index;
+    }
 
+    public String getSmjer() {
+        return smjer;
+    }
+
+    public void setSmjer(String smjer) {
+        this.smjer = smjer;
+    }
+
+    public int getCiklus() {
+        return ciklus;
+    }
+
+    public void setCiklus(int ciklus) {
+        this.ciklus = ciklus;
+    }
+
+    public int getGodina() {
+        return godina;
+    }
+
+    public void setGodina(int godina) {
+        this.godina = godina;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 }

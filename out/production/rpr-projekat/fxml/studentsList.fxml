@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
@@ -16,13 +17,9 @@
         <URL value="@/css/student.css" />
     </stylesheets>
     <children>
-        <AnchorPane layoutX="705.0" layoutY="129.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="254.0" style="-fx-background-color: #2e3841;">
+        <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" style="-fx-background-color: #2e3841;">
             <children>
-            <Label layoutX="113.0" layoutY="14.0" text="Novosti" />
-            <ListView fx:id="listNews" layoutX="34.0" layoutY="37.0" prefHeight="176.0" prefWidth="200.0" />
-            <Button layoutX="122.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Dodaj obavijest" textAlignment="CENTER" />
-            <Button layoutX="81.0" layoutY="341.0" mnemonicParsing="false" text="Spisak studenata" />
-                <Button id="btnLogout" layoutX="111.0" layoutY="405.0" mnemonicParsing="false">
+                <Button id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -30,24 +27,30 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
+                <Label alignment="CENTER" layoutX="110.0" layoutY="373.0" text="LOGOUT" textAlignment="CENTER" textFill="#782440" />
             </children>
         </AnchorPane>
-        <Pane prefHeight="131.0" prefWidth="960.0" style="-fx-background-color: #172d36;">
+        <Pane prefHeight="161.0" prefWidth="960.0" style="-fx-background-color: #172d36;">
             <children>
-                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="Ime predmeta" textFill="#32a57f">
+                <Label layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="Ime predmeta" textFill="#32a57f">
                     <font>
                         <Font name="System Italic" size="30.0" />
                     </font>
                 </Label>
             </children>
         </Pane>
-        <ListView fx:id="materials" layoutX="37.0" layoutY="338.0" prefHeight="257.0" prefWidth="606.0" style="-fx-background-color: #32a57f;" styleClass="listView" />
-        <Label layoutX="56.0" layoutY="181.0" text="Opis predmeta" textFill="#f8f5f5">
+        <ListView fx:id="listView" layoutX="37.0" layoutY="261.0" prefHeight="272.0" prefWidth="606.0" style="-fx-background-color: #32a57f;" styleClass="listView" />
+        <Label layoutX="58.0" layoutY="203.0" text="Lista studenata" textFill="#f8f5f5">
             <font>
                 <Font name="Times New Roman Italic" size="20.0" />
             </font>
         </Label>
-        <Line endX="588.0" layoutX="122.0" layoutY="131.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
-      <Label layoutX="88.0" layoutY="300.0" text="Materijali" textFill="WHITE" />
+        <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
+      <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Obriši studenta" />
+            <Button mnemonicParsing="false" text="Dodaj studenta" />
+        </buttons>
+      </ButtonBar>
     </children>
 </AnchorPane>
