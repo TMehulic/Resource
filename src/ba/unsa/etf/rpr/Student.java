@@ -10,7 +10,7 @@ public class Student extends Person {
     private int godina;
     private int index;
 
-    public Student(String lastName, String firstName, String fathersName, String placeOfBirth, long jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, String adress, Canton canton, String county, String smjer, int ciklus, int godina, int index) {
+    public Student(String lastName, String firstName, String fathersName, String placeOfBirth, String jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, String adress, Canton canton, String county, String smjer, int ciklus, int godina, int index) {
         super(lastName, firstName, fathersName, placeOfBirth, jmbg, phone, email, image, birthDate, gender, adress, canton, county);
         this.smjer = smjer;
         this.ciklus = ciklus;
