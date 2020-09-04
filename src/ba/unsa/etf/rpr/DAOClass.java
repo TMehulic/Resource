@@ -11,7 +11,14 @@ public class DAOClass {
     private Connection conn;
 
     //TODO : OVDJE STATEMENTI IDU
-    private PreparedStatement getStatement;
+    private PreparedStatement getStudents;
+    private PreparedStatement getStudentById;
+    private PreparedStatement getProfessors;
+    private PreparedStatement getProfessorById;
+    private PreparedStatement getCoursesByProfessorId;
+    private PreparedStatement getCoursesByStudentId;
+    private PreparedStatement getCourseNews;
+    
 
     public Connection getConn(){
         return conn;

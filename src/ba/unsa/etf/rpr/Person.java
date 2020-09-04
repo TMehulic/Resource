@@ -14,14 +14,12 @@ public abstract class Person {
     private String image;   //path to image
     private LocalDate birthDate;
     private Gender gender;
+    private ResidenceInfo residenceInfo;
 
     //Prebivaliste
-    private String adress;
-    private Canton canton;
-    private String county;
 
 
-    public Person(String lastName, String firstName, String fathersName, String placeOfBirth, String jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, String adress, Canton canton, String county) {
+    public Person(String lastName, String firstName, String fathersName, String placeOfBirth, String jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, ResidenceInfo residenceInfo) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.fathersName = fathersName;
@@ -32,9 +30,7 @@ public abstract class Person {
         this.image = image;
         this.birthDate = birthDate;
         this.gender = gender;
-        this.adress = adress;
-        this.canton = canton;
-        this.county = county;
+        this.residenceInfo=residenceInfo;
     }
 
     public String getLastName() {
@@ -117,27 +113,11 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public String getAdress() {
-        return adress;
+    public ResidenceInfo getResidenceInfo() {
+        return residenceInfo;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
-
-    public Canton getCanton() {
-        return canton;
-    }
-
-    public void setCanton(Canton canton) {
-        this.canton = canton;
-    }
-
-    public String getCounty() {
-        return county;
-    }
-
-    public void setCounty(String county) {
-        this.county = county;
+    public void setResidenceInfo(ResidenceInfo residenceInfo) {
+        this.residenceInfo = residenceInfo;
     }
 }
