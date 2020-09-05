@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public abstract class Person {
 
+    private int id;
+
     private String lastName;
     private String firstName;
     private String fathersName;
@@ -19,7 +21,8 @@ public abstract class Person {
     //Prebivaliste
 
 
-    public Person(String lastName, String firstName, String fathersName, String placeOfBirth, String jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, ResidenceInfo residenceInfo) {
+    public Person(int id, String lastName, String firstName, String fathersName, String placeOfBirth, String jmbg, String phone, String email, String image, LocalDate birthDate, Gender gender, ResidenceInfo residenceInfo) {
+        this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.fathersName = fathersName;
@@ -30,7 +33,15 @@ public abstract class Person {
         this.image = image;
         this.birthDate = birthDate;
         this.gender = gender;
-        this.residenceInfo=residenceInfo;
+        this.residenceInfo = residenceInfo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLastName() {

@@ -16,6 +16,7 @@ public class StudentController {
 
     @FXML
     public Circle circle;
+    private DAOClass dao;
 
 
     public StudentController() {
@@ -35,8 +36,10 @@ public class StudentController {
 
     @FXML
     public void initialize(){
-        listView.setItems(courses);
-        listView.setCellFactory(testnaListView -> new CourseListCell());
+        dao = DAOClass.getInstance();
+        Student student = dao.getStudent(1);
+        listView.setItems(dao.getCoursesFromStudent(student.getId()));
+        listView.setCellFactory(courseListView -> new CourseListCell());
         Image im = new Image("/images/test.png");
         circle.setFill(new ImagePattern(im));
     }

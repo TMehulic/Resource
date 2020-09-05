@@ -21,14 +21,14 @@ public class Main extends Application {
 
         guiStage=primaryStage;
 
-        CreateStudentController ctrl = new CreateStudentController();
+        StudentController ctrl = new StudentController();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
         loader.setController(ctrl);
 
         Parent root = loader.load();
 
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
         primaryStage.setResizable(true);

@@ -1,8 +1,14 @@
 package ba.unsa.etf.rpr;
 
+import javafx.collections.ObservableList;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class DAOClass {
@@ -10,7 +16,6 @@ public class DAOClass {
     private static DAOClass instance;
     private Connection conn;
 
-    //TODO : OVDJE STATEMENTI IDU
     private PreparedStatement getStudents;
     private PreparedStatement getStudentById;
     private PreparedStatement getProfessors;
@@ -18,7 +23,10 @@ public class DAOClass {
     private PreparedStatement getCoursesByProfessorId;
     private PreparedStatement getCoursesByStudentId;
     private PreparedStatement getCourseNews;
-    
+    private PreparedStatement getEducationInfo;
+    private PreparedStatement getResidenceInfo;
+    private PreparedStatement getTitleInfo;
+
 
     public Connection getConn(){
         return conn;
@@ -38,21 +46,41 @@ public class DAOClass {
     private DAOClass(){
 
         try {
-            //todo : dodati ime baze
-            conn = DriverManager.getConnection("jdbc:sqlite:bazaaaaaaa");
+            conn = DriverManager.getConnection("jdbc:sqlite:database.db");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+        try {
+            getStudents = conn.prepareStatement("SELECT * FROM person WHERE student IS NOT NULL");
+        } catch (SQLException throwables) {
+            regenerateDB();
+            try {
+                getStudents = conn.prepareStatement("SELECT * FROM person WHERE student IS NOT NULL");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
-
+        try {
+            getProfessors=conn.prepareStatement("SELECT * FROM person WHERE professor IS NOT NULL");
+            getStudentById=conn.prepareStatement("SELECT * FROM person WHERE student IS NOT NULL AND person.id=?");
+            getProfessorById=conn.prepareStatement("SELECT * FROM person WHERE profssor IS NOT NULL AND person.id=?");
+            getCoursesByStudentId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseStudent c1 WHERE c1.personId=? )");
+            getCoursesByProfessorId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseProfessor c1 WHERE c1.personId=? )");
+            getCourseNews=conn.prepareStatement("SELECT c.news FROM courseNews c WHERE c.courseId=?");
+            getEducationInfo=conn.prepareStatement("SELECT * FROM educationInfo WHERE personId=?");
+            getResidenceInfo=conn.prepareStatement("SELECT * FROM residenceInfo WHERE personId=?");
+            getTitleInfo=conn.prepareStatement("SELECT * FROM titleInfo WHERE personId=?");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
-    private void regenerisiBazu() {
+    private void regenerateDB() {
         Scanner input= null;
         try {
-            //todo : i ovo popraviti
-            input = new Scanner(new FileInputStream("baza.db.sql"));
+            input = new Scanner(new FileInputStream("database.db.sql"));
             String sqlQuery="";
             while (input.hasNext()){
                 sqlQuery+=input.nextLine();
@@ -72,4 +100,130 @@ public class DAOClass {
         }
     }
 
+    public EducationInfo getEducationInfo(int id){
+        try {
+            getEducationInfo.setInt(1,id);
+            ResultSet rs=getEducationInfo.executeQuery();
+            if(!rs.next()) return null;
+            return new EducationInfo(rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public ResidenceInfo getResidenceInfo(int id){
+        try {
+            getResidenceInfo.setInt(1,id);
+            ResultSet rs=getResidenceInfo.executeQuery();
+            if(!rs.next()) return null;
+            return new ResidenceInfo(rs.getString(1),Canton.valueOf(rs.getString(2)),rs.getString(3));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public TitleInfo getTitleInfo(int id){
+        try {
+            getTitleInfo.setInt(1,id);
+            ResultSet rs = getTitleInfo.executeQuery();
+            if(!rs.next()) return null;
+            return new TitleInfo(rs.getString(2));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public Student getStudent(int id){
+        try {
+            getStudentById.setInt(1,id);
+            ResultSet rs=getStudentById.executeQuery();
+            if(!rs.next()) return null;
+            EducationInfo eduInfo = getEducationInfo(id);
+            ResidenceInfo resInfo = getResidenceInfo(id);
+            Gender gender = Gender.valueOf(rs.getString(11));
+            LocalDate birthDate = LocalDate.parse(rs.getString(10));
+            return new Student(id,rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),
+                    rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),birthDate,gender,resInfo,eduInfo);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public Professor getProfessor(int id){
+        try {
+            getProfessorById.setInt(1,id);
+            ResultSet rs= getProfessorById.executeQuery();
+            if(!rs.next()) return null;
+            ResidenceInfo resInfo = getResidenceInfo(id);
+            TitleInfo titInfo = getTitleInfo(id);
+            Gender gender = Gender.valueOf(rs.getString(11));
+            LocalDate birthDate = LocalDate.parse(rs.getString(10));
+            return new Professor(id,rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),
+                    rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),birthDate,gender,resInfo,titInfo);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public ObservableList<Course> getCoursesFromProfessor(int id){
+        ObservableList<Course> courses=null;
+        try {
+            getCoursesByProfessorId.setInt(1,id);
+            ResultSet rs= getCoursesByProfessorId.executeQuery();
+            while (rs.next()){
+                courses.add(new Course(rs.getString(2),rs.getString(3),rs.getInt(4)));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return courses;
+    }
+
+    public ObservableList<Course> getCoursesFromStudent(int id){
+        ObservableList<Course> courses=null;
+        try {
+            getCoursesByStudentId.setInt(1,id);
+            ResultSet rs= getCoursesByStudentId.executeQuery();
+            while (rs.next()){
+                courses.add(new Course(rs.getString(2),rs.getString(3),rs.getInt(4)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return courses;
+    }
+
+    public Map<String,LocalDate> getCourseNews(int id){
+        Map<String,LocalDate> news = null;
+        try {
+            getCourseNews.setInt(1,id);
+            ResultSet rs = getCourseNews.executeQuery();
+            while (rs.next()){
+                LocalDate newsDate = LocalDate.parse(rs.getString(3));
+                news.put(rs.getString(2),newsDate);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return news;
+    }
+
+    public ArrayList<Student> getStudents(){
+        ArrayList<Student> students=new ArrayList<>();
+        try {
+            ResultSet rs=getStudents.executeQuery();
+            while (rs.next()){
+                students.add(getStudent(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return students;
+    }
 }

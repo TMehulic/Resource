@@ -78,10 +78,6 @@ public class CreateStudentController {
         int cycle = cbCycle.getValue();
         int year = cbYear.getValue();
 
-        Student stud = new Student(lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,"",date,gender,adress,
-                canton,county,degree,cycle,year,index);
-
-        ispisi(stud);
     }
 
     private void ispisi(Student person){
@@ -94,12 +90,7 @@ public class CreateStudentController {
         System.out.println(person.getPhone());
         System.out.println(person.getEmail());
         System.out.println(person.getGender());
-        System.out.println(person.getAdress());
-        System.out.println(person.getCanton());
-        System.out.println(person.getCounty());
-        System.out.println(person.getSmjer());
-        System.out.println(person.getCiklus());
-        System.out.println(person.getGodina());
+
     }
 
 }
