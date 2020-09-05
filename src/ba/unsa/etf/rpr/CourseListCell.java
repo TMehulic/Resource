@@ -11,9 +11,9 @@ import java.io.IOException;
 public class CourseListCell extends javafx.scene.control.ListCell<Course> {
 
     @FXML
-    private Label imePredmeta;
+    private Label courseName;
     @FXML
-    private Label opisPredmeta;
+    private Label courseDesc;
     @FXML
     private VBox vbox;
 
@@ -45,11 +45,10 @@ public class CourseListCell extends javafx.scene.control.ListCell<Course> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
 
-            imePredmeta.setText(course.getName());
-            opisPredmeta.setText(course.getDescription());
+            courseName.setText(course.getName());
+            courseDesc.setText(course.getDescription());
 
             setText(null);
             setGraphic(vbox);

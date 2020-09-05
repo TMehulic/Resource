@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.scene.Node.getClassCssMetaData;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
@@ -81,22 +82,37 @@ public class HomeController {
 //
 //
 //        //Ako je profesor
-        ProfessorController ctrl = new ProfessorController();
+//        ProfessorController ctrl = new ProfessorController();
+//
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/professor.fxml"));
+//        loader.setController(ctrl);
+//
+//        Parent root = null;
+//        try {
+//            root = loader.load();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/professor.fxml"));
-        loader.setController(ctrl);
+        System.out.println(fldUsername.textProperty().getValue());
+        System.out.println(fldPassword.textProperty().getValue());
+        if(fldUsername.textProperty().getValue().equals("Adis") && fldPassword.textProperty().getValue().equals("123")){
+            StudentController studentController= new StudentController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
 
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+            loader.setController(studentController);
+
+            Parent root = null;
+            try {
+                root=loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Main.getGuiStage().setTitle("Student");
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(true);
         }
-
-        Main.getGuiStage().setTitle("Home");
-        Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        Main.getGuiStage().show();
-        Main.getGuiStage().setResizable(true);
     };
 
 }

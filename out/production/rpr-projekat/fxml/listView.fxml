@@ -7,7 +7,7 @@
 
 <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="597.0" style="-fx-background-color: #2e3841; -fx-padding: 0px" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="imePredmeta" prefHeight="66.0" prefWidth="600.0" text="Ime predmeta" textAlignment="CENTER" textFill="#32a57f">
+      <Label fx:id="courseName" prefHeight="66.0" prefWidth="600.0" text="Ime predmeta" textAlignment="CENTER" textFill="#32a57f">
          <font>
             <Font name="System Italic" size="40.0" />
          </font>
@@ -15,7 +15,7 @@
             <Insets left="10.0" />
          </VBox.margin>
       </Label>
-      <Label fx:id="opisPredmeta" prefHeight="85.0" prefWidth="600.0" text="Description" textFill="#59cda6">
+      <Label fx:id="courseDesc" prefHeight="85.0" prefWidth="600.0" text="Description" textFill="#59cda6">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>

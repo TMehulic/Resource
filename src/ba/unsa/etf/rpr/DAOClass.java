@@ -26,6 +26,7 @@ public class DAOClass {
     private PreparedStatement getEducationInfo;
     private PreparedStatement getResidenceInfo;
     private PreparedStatement getTitleInfo;
+    private PreparedStatement getUserId;
 
 
     public Connection getConn(){
@@ -65,13 +66,14 @@ public class DAOClass {
         try {
             getProfessors=conn.prepareStatement("SELECT * FROM person WHERE professor IS NOT NULL");
             getStudentById=conn.prepareStatement("SELECT * FROM person WHERE student IS NOT NULL AND person.id=?");
-            getProfessorById=conn.prepareStatement("SELECT * FROM person WHERE profssor IS NOT NULL AND person.id=?");
+            getProfessorById=conn.prepareStatement("SELECT * FROM person WHERE professor IS NOT NULL AND person.id=?");
             getCoursesByStudentId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseStudent c1 WHERE c1.personId=? )");
             getCoursesByProfessorId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseProfessor c1 WHERE c1.personId=? )");
             getCourseNews=conn.prepareStatement("SELECT c.news FROM courseNews c WHERE c.courseId=?");
             getEducationInfo=conn.prepareStatement("SELECT * FROM educationInfo WHERE personId=?");
             getResidenceInfo=conn.prepareStatement("SELECT * FROM residenceInfo WHERE personId=?");
             getTitleInfo=conn.prepareStatement("SELECT * FROM titleInfo WHERE personId=?");
+            getUserId=conn.prepareStatement("SELECT personId FROM user WHERE email=? AND password=?");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -117,7 +119,7 @@ public class DAOClass {
             getResidenceInfo.setInt(1,id);
             ResultSet rs=getResidenceInfo.executeQuery();
             if(!rs.next()) return null;
-            return new ResidenceInfo(rs.getString(1),Canton.valueOf(rs.getString(2)),rs.getString(3));
+            return new ResidenceInfo(rs.getString(2),Canton.valueOf(rs.getString(3)),rs.getString(4));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -185,8 +187,8 @@ public class DAOClass {
         return courses;
     }
 
-    public ObservableList<Course> getCoursesFromStudent(int id){
-        ObservableList<Course> courses=null;
+    public ArrayList<Course> getCoursesFromStudent(int id){
+        ArrayList<Course> courses=new ArrayList<>();
         try {
             getCoursesByStudentId.setInt(1,id);
             ResultSet rs= getCoursesByStudentId.executeQuery();
@@ -225,5 +227,23 @@ public class DAOClass {
             throwables.printStackTrace();
         }
         return students;
+    }
+
+    public Person getUser(String email, String password){
+        Person person=null;
+        try {
+            getUserId.setString(1,email);
+            getUserId.setString(2,password);
+            ResultSet rs= getUserId.executeQuery();
+            if(!rs.next()) return null;
+            person=getStudent(rs.getInt(2));
+            if(person==null){
+                person=getProfessor(rs.getInt(2));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return person;
+
     }
 }

@@ -20,10 +20,10 @@
       <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" style="-fx-background-color: #2e3841;">
          <children>
             <Label layoutX="114.0" layoutY="119.0" text="Smjer" textFill="#5b8198" />
-            <Label layoutX="62.0" layoutY="152.0" text="Računarstvo i informatika" textFill="#5b8198" />
+            <Label fx:id="labelDegree" alignment="CENTER" layoutX="62.0" layoutY="152.0" text="Računarstvo i informatika" textAlignment="CENTER" textFill="#5b8198" />
             <Label layoutX="89.0" layoutY="191.0" text="Godina studija" textFill="#5b8198" />
-            <Label layoutX="123.0" layoutY="220.0" text="III" textFill="#5b8198" />
-            <Button id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
+            <Label fx:id="labelYearOfStudy" layoutX="123.0" layoutY="220.0" text="III" textFill="#5b8198" />
+            <Button fx:id="btnLogout" id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -36,7 +36,7 @@
       </AnchorPane>
       <Pane prefHeight="161.0" prefWidth="960.0" style="-fx-background-color: #172d36;">
          <children>
-            <Label layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="Welcome, Tarik Mehulić" textFill="#32a57f">
+            <Label fx:id="labelWelcome" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" textFill="#32a57f">
                <font>
                   <Font name="System Italic" size="30.0" />
                </font>
