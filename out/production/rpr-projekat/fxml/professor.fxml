@@ -19,7 +19,7 @@
     <children>
         <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" style="-fx-background-color: #2e3841;">
             <children>
-                <Button id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
+                <Button fx:id="btnLogout" id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                             <image>

@@ -18,13 +18,28 @@
     </stylesheets>
    <center>
       <GridPane alignment="CENTER" styleClass="loginMenu" vgap="5.0">
-         <Label id="usernameLabel" text="Username: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
-          <TextField fx:id="fldUsername" id="usernameField" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Label id="emailLabel" text="Email: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+          <TextField id="emailField" fx:id="fldEmail" GridPane.columnIndex="0" GridPane.rowIndex="1" />
           <Label id="passwordLabel" text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
-          <PasswordField fx:id="fldPassword" id="passwordField" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-          <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="4">
-              <Button fx:id="btnLogin" id="loginBtn">Login</Button>
+          <PasswordField id="passwordField" fx:id="fldPassword" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+          <HBox alignment="BASELINE_RIGHT" prefHeight="25.0" prefWidth="190.0" GridPane.rowIndex="4">
+            <Label fx:id="exceptionLabel" style="-fx-text-fill: red;">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+              <Button id="loginBtn" fx:id="btnLogin">Login</Button>
           </HBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
       </GridPane>
    </center>
    <top>

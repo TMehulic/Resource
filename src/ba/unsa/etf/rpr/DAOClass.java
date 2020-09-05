@@ -172,8 +172,8 @@ public class DAOClass {
         return null;
     }
 
-    public ObservableList<Course> getCoursesFromProfessor(int id){
-        ObservableList<Course> courses=null;
+    public ArrayList<Course> getCoursesFromProfessor(int id){
+        ArrayList<Course> courses=new ArrayList<>();
         try {
             getCoursesByProfessorId.setInt(1,id);
             ResultSet rs= getCoursesByProfessorId.executeQuery();
@@ -236,9 +236,9 @@ public class DAOClass {
             getUserId.setString(2,password);
             ResultSet rs= getUserId.executeQuery();
             if(!rs.next()) return null;
-            person=getStudent(rs.getInt(2));
+            person=getStudent(rs.getInt(1));
             if(person==null){
-                person=getProfessor(rs.getInt(2));
+                person=getProfessor(rs.getInt(1));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

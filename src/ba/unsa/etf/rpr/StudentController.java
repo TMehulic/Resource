@@ -46,7 +46,7 @@ public class StudentController {
     public void initialize(){
 
         dao = DAOClass.getInstance();
-        Student student = dao.getStudent(1);
+        Student student = dao.getStudent(HomeController.userID);
 
         listView.setItems(FXCollections.observableArrayList(dao.getCoursesFromStudent(student.getId())));
         listView.setCellFactory(courseListView -> new CourseListCell());
@@ -68,23 +68,6 @@ public class StudentController {
         }
     };
 
-    private EventHandler<ActionEvent> logoutAction = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            //todo : setUser to null
-            HomeController homeCtrl = new HomeController();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-            loader.setController(homeCtrl);
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Main.getGuiStage().setTitle("Login");
-            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            Main.getGuiStage().show();
-            Main.getGuiStage().setResizable(true);        }
-    } ;
+    private EventHandler<ActionEvent> logoutAction = actionEvent -> Main.returnHome();
 
 }

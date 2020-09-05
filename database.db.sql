@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS "courseProfessor" (
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id")
+	FOREIGN KEY("courseId") REFERENCES "course"("id"),
+	FOREIGN KEY("personId") REFERENCES "person"("id")
 );
 CREATE TABLE IF NOT EXISTS "courseStudent" (
 	"id"	INTEGER,
@@ -72,6 +72,14 @@ CREATE TABLE IF NOT EXISTS "courseNews" (
 	PRIMARY KEY("id"),
 	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
+CREATE TABLE IF NOT EXISTS "user" (
+	"id"	INTEGER,
+	"personId"	INTEGER,
+	"email"	TEXT UNIQUE,
+	"password"	TEXT,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("personId") REFERENCES "person"("id")
+);
 INSERT INTO "course" VALUES (1,'Numerički algoritmi','Cilj ovog kursa je upoznavanje sa problemima vezanim za implementaciju računanja sa realnim brojevima na računaru, te dizajn brzih, tačnih i pouzdanih algoritama za rješavanje tipičnih problema numeričke prirode (računanja sa matricama, rješavanje jednačina i sistema jednačina, interpolacija, aproksimacija, numeričko diferenciranje i integriranje, numeričko rješavanje diferencijalnih jednačina, brza Fourierova transformacija).',5);
 INSERT INTO "course" VALUES (2,'Algoritmi i strukture podataka','Cilj kursa je sticanja koherentnog znanja o tehnikama za implementiranje algoritama i strukturama podataka. U isto vrijeme kurs pruža studentima mogućnost da unaprijede svoje programersko znanje prilikom razvoja i primjene raznih algoritama u okviru konkretnih programskih rješenja.',5);
 INSERT INTO "course" VALUES (3,'Diskretna matematika','Cilj kursa je da obezbijedi studentima solidne teorijske osnove kako bi na sistematičan način mogli rješavati matematske probleme informatičkog karaktera, a koji su vezani za elementarnu teoriju brojeva, kombinatoriku, elementarnu teoriju vjerovatnoće, teoriju informacija, teoriju grafova i teoriju diskretnih sistema.',5);
@@ -94,4 +102,7 @@ INSERT INTO "residenceInfo" VALUES (1,'Derviš ef. Korkuta 60/a','SBK','Travnik'
 INSERT INTO "residenceInfo" VALUES (2,'Bjelave','KS','Sarajevo',2);
 INSERT INTO "residenceInfo" VALUES (3,'Bosanska','ZDK','Zenica',3);
 INSERT INTO "courseNews" VALUES (1,'Neka testna vijest, please work','2020-09-05',1);
+INSERT INTO "user" VALUES (1,1,'tmehulic1@etf.unsa.ba','tarik123');
+INSERT INTO "user" VALUES (2,2,'test1@etf.unsa.ba','test123');
+INSERT INTO "user" VALUES (3,3,'prof@etf.unsa.ba','prof123');
 COMMIT;
