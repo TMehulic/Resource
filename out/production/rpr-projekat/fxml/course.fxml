@@ -41,13 +41,14 @@
                 </Label>
             </children>
         </Pane>
-        <ListView fx:id="materials" layoutX="37.0" layoutY="338.0" prefHeight="257.0" prefWidth="606.0" style="-fx-background-color: #32a57f;" styleClass="listView" />
-        <Label fx:id="labelDesc" layoutX="56.0" layoutY="181.0" prefHeight="89.0" prefWidth="595.0" text="Opis predmeta" textFill="#f8f5f5">
+        <ListView fx:id="materials" layoutX="36.0" layoutY="300.0" prefHeight="257.0" prefWidth="606.0" style="-fx-background-color: #32a57f;" styleClass="listView" />
+        <Label fx:id="labelDesc" layoutX="59.0" layoutY="153.0" prefHeight="89.0" prefWidth="595.0" text="Opis predmeta" textFill="#f8f5f5">
             <font>
                 <Font name="Times New Roman Italic" size="16.0" />
             </font>
         </Label>
         <Line endX="588.0" layoutX="122.0" layoutY="131.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
-      <Label layoutX="88.0" layoutY="300.0" text="Materijali" textFill="WHITE" />
+      <Label layoutX="87.0" layoutY="264.0" text="Materijali" textFill="WHITE" />
+      <Button fx:id="btnUpload" layoutX="519.0" layoutY="561.0" mnemonicParsing="false" text="Dodaj materijal" />
     </children>
 </AnchorPane>

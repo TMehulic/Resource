@@ -18,16 +18,16 @@ CREATE TABLE IF NOT EXISTS "courseProfessor" (
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "courseStudent" (
 	"id"	INTEGER,
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "person" (
 	"id"	INTEGER,
@@ -79,6 +79,14 @@ CREATE TABLE IF NOT EXISTS "user" (
 	"password"	TEXT,
 	PRIMARY KEY("id"),
 	FOREIGN KEY("personId") REFERENCES "person"("id")
+);
+CREATE TABLE IF NOT EXISTS "courseMaterials" (
+	"id"	INTEGER,
+	"title"	TEXT,
+	"path"	TEXT,
+	"courseId"	INTEGER,
+	PRIMARY KEY("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 INSERT INTO "course" VALUES (1,'Numerički algoritmi','Cilj ovog kursa je upoznavanje sa problemima vezanim za implementaciju računanja sa realnim brojevima na računaru, te dizajn brzih, tačnih i pouzdanih algoritama za rješavanje tipičnih problema numeričke prirode (računanja sa matricama, rješavanje jednačina i sistema jednačina, interpolacija, aproksimacija, numeričko diferenciranje i integriranje, numeričko rješavanje diferencijalnih jednačina, brza Fourierova transformacija).',5);
 INSERT INTO "course" VALUES (2,'Algoritmi i strukture podataka','Cilj kursa je sticanja koherentnog znanja o tehnikama za implementiranje algoritama i strukturama podataka. U isto vrijeme kurs pruža studentima mogućnost da unaprijede svoje programersko znanje prilikom razvoja i primjene raznih algoritama u okviru konkretnih programskih rješenja.',5);

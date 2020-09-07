@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import javafx.collections.ObservableList;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -25,6 +23,10 @@ public class DAOClass {
     private PreparedStatement getTitleInfo;
     private PreparedStatement getUserId;
     private PreparedStatement getCourseById;
+    private PreparedStatement getCourseMaterials;
+    private PreparedStatement getCourseId;
+
+    private PreparedStatement addCourseMaterial;
 
 
     public Connection getConn(){
@@ -73,6 +75,9 @@ public class DAOClass {
             getTitleInfo=conn.prepareStatement("SELECT * FROM titleInfo WHERE personId=?");
             getUserId=conn.prepareStatement("SELECT personId FROM user WHERE email=? AND password=?");
             getCourseById = conn.prepareStatement("SELECT * FROM course WHERE id=?");
+            getCourseMaterials = conn.prepareStatement("SELECT * FROM courseMaterials WHERE courseId=?");
+            addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
+            getCourseId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -261,4 +266,33 @@ public class DAOClass {
         return course;
     }
 
+    public ArrayList<CourseMaterial> getCourseMaterials(int id){
+        ArrayList<CourseMaterial> materials = new ArrayList<>();
+        try {
+            getCourseMaterials.setInt(1,id);
+            ResultSet rs = getCourseById.executeQuery();
+            if(!rs.next()) return null;
+            while (rs.next()){
+                materials.add(new CourseMaterial(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return materials;
+    }
+
+    public void addCourseMaterial(CourseMaterial material){
+        try {
+            ResultSet rs = getCourseId.executeQuery();
+            int id = 1;
+            if(rs.next()) id = rs.getInt(1);
+            addCourseMaterial.setInt(1,id);
+            addCourseMaterial.setString(2,material.getTitle());
+            addCourseMaterial.setString(3,material.getPath());
+            addCourseMaterial.setInt(4,material.getCourseId());
+            addCourseMaterial.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
