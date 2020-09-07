@@ -6,10 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class DAOClass {
 
@@ -27,6 +24,7 @@ public class DAOClass {
     private PreparedStatement getResidenceInfo;
     private PreparedStatement getTitleInfo;
     private PreparedStatement getUserId;
+    private PreparedStatement getCourseById;
 
 
     public Connection getConn(){
@@ -69,11 +67,12 @@ public class DAOClass {
             getProfessorById=conn.prepareStatement("SELECT * FROM person WHERE professor IS NOT NULL AND person.id=?");
             getCoursesByStudentId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseStudent c1 WHERE c1.personId=? )");
             getCoursesByProfessorId=conn.prepareStatement("SELECT * FROM course c WHERE c.id IN ( SELECT c1.courseId FROM courseProfessor c1 WHERE c1.personId=? )");
-            getCourseNews=conn.prepareStatement("SELECT c.news FROM courseNews c WHERE c.courseId=?");
+            getCourseNews=conn.prepareStatement("SELECT * FROM courseNews c WHERE c.courseId=?");
             getEducationInfo=conn.prepareStatement("SELECT * FROM educationInfo WHERE personId=?");
             getResidenceInfo=conn.prepareStatement("SELECT * FROM residenceInfo WHERE personId=?");
             getTitleInfo=conn.prepareStatement("SELECT * FROM titleInfo WHERE personId=?");
             getUserId=conn.prepareStatement("SELECT personId FROM user WHERE email=? AND password=?");
+            getCourseById = conn.prepareStatement("SELECT * FROM course WHERE id=?");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -178,7 +177,7 @@ public class DAOClass {
             getCoursesByProfessorId.setInt(1,id);
             ResultSet rs= getCoursesByProfessorId.executeQuery();
             while (rs.next()){
-                courses.add(new Course(rs.getString(2),rs.getString(3),rs.getInt(4)));
+                courses.add(new Course(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4)));
             }
 
         } catch (SQLException throwables) {
@@ -193,7 +192,7 @@ public class DAOClass {
             getCoursesByStudentId.setInt(1,id);
             ResultSet rs= getCoursesByStudentId.executeQuery();
             while (rs.next()){
-                courses.add(new Course(rs.getString(2),rs.getString(3),rs.getInt(4)));
+                courses.add(new Course(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4)));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -201,14 +200,17 @@ public class DAOClass {
         return courses;
     }
 
-    public Map<String,LocalDate> getCourseNews(int id){
-        Map<String,LocalDate> news = null;
+    public TreeMap<LocalDate,ArrayList<String>> getCourseNews(int id){
+        TreeMap<LocalDate,ArrayList<String>> news = new TreeMap<>();
         try {
             getCourseNews.setInt(1,id);
             ResultSet rs = getCourseNews.executeQuery();
             while (rs.next()){
                 LocalDate newsDate = LocalDate.parse(rs.getString(3));
-                news.put(rs.getString(2),newsDate);
+                if (!news.containsKey(newsDate)) {
+                    news.put(newsDate, new ArrayList<String>());
+                }
+                news.get(newsDate).add(rs.getString(2));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -244,6 +246,19 @@ public class DAOClass {
             throwables.printStackTrace();
         }
         return person;
-
     }
+
+    public Course getCourse(int id){
+        Course course = null;
+        try {
+            getCourseById.setInt(1,id);
+            ResultSet rs = getCourseById.executeQuery();
+            if(!rs.next()) return null;
+            course=new Course(id,rs.getString(2),rs.getString(3),rs.getInt(4));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return course;
+    }
+
 }

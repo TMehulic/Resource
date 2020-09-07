@@ -3,7 +3,6 @@ package ba.unsa.etf.rpr;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -37,7 +36,7 @@ public class CourseListCell extends javafx.scene.control.ListCell<Course> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/listView.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/courseLV.fxml"));
                 mLLoader.setController(this);
 
                 try {
@@ -48,6 +47,7 @@ public class CourseListCell extends javafx.scene.control.ListCell<Course> {
             }
 
             courseName.setText(course.getName());
+            courseDesc.setWrapText(true);
             courseDesc.setText(course.getDescription());
 
             setText(null);

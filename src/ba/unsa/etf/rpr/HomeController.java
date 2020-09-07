@@ -42,6 +42,14 @@ public class HomeController {
 
     public EventHandler<ActionEvent> loginAction = actionEvent -> {
 
+        if(fldEmail.textProperty().getValue().equals("admin") && fldPassword.textProperty().getValue().equals("admin")){
+            AdminController ctrl = new AdminController();
+            loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
+            loader.setController(ctrl);
+            Main.getGuiStage().setTitle("Admin");
+            redirectToDashboard();
+        }
+
         Person user = DAOClass.getInstance().getUser(fldEmail.textProperty().getValue(),fldPassword.textProperty().getValue());
         if(user==null){
             try {

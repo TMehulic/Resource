@@ -64,7 +64,19 @@ public class StudentController {
     private EventHandler<? super MouseEvent> courseClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
-            // todo : otvoriti novi panel sa course stuffom
+            CourseController ctrl = new CourseController(listView.getSelectionModel().getSelectedItem().getId());
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"));
+            loader.setController(ctrl);
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Main.getGuiStage().setTitle("Course");
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(true);
         }
     };
 

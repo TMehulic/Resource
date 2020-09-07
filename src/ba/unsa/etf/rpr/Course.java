@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr;
 
 public class Course {
 
+    public int id;
     public String name;
     public String description;
     public int ects;
@@ -9,10 +10,19 @@ public class Course {
     //myb profesor
 
 
-    public Course(String name,String desc, int ects) {
+    public Course(int id,String name,String desc, int ects) {
+        this.id=id;
         this.name = name;
         this.ects = ects;
         this.description=desc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
