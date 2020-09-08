@@ -8,8 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
+import java.awt.*;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public class CourseController {
         labelDesc.setWrapText(true);
         labelDesc.setText(course.getDescription());
         btnUpload.setOnAction(uploadFile);
+        materials.setOnMouseClicked(materialClicked);
         setNews();
         setMaterials();
     }
@@ -65,7 +68,9 @@ public class CourseController {
         }
         listNews.setItems(FXCollections.observableArrayList(newsList));
         listNews.setCellFactory(courseNewsListView->new CourseNewsListCell());
+    }
 
+    private void setMaterials(){
         materials.setItems(FXCollections.observableArrayList(dao.getCourseMaterials(getCourseId())));
         materials.setCellFactory(courseMaterialListView -> new CourseMaterialsListCell());
     }
@@ -93,19 +98,26 @@ public class CourseController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            dao.addCourseMaterial(new CourseMaterial("resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),uploadedFile.getName(),getCourseId()));
+            dao.addCourseMaterial(new CourseMaterial(uploadedFile.getName(),"resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),getCourseId()));
         }
     };
 
-    private void setMaterials(){
+    EventHandler<? super MouseEvent> materialClicked = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop desktop = Desktop.getDesktop();
+                    File myFile = new File(materials.getSelectionModel().getSelectedItem().getPath());
+                    desktop.open(myFile);
+                } catch (IOException ignored) {
 
-    }
-
-    private String getExtension(String fileName){
-        int lastIndexOf = fileName.lastIndexOf(".");
-        if (lastIndexOf == -1) {
-            return ""; // empty extension
+                }
+            }
         }
-        return fileName.substring(lastIndexOf);
-    }
+    };
+
+
+
+
 }

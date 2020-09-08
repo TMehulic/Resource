@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import com.sun.prism.Image;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -13,6 +14,7 @@ public class CourseNewsListCell extends ListCell<CourseNews> {
 
     public Label courseNewsData;
     public HBox hbox;
+    public Image materialImage;
 
     public CourseNewsListCell() {
         {

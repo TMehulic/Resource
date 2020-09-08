@@ -270,14 +270,15 @@ public class DAOClass {
         ArrayList<CourseMaterial> materials = new ArrayList<>();
         try {
             getCourseMaterials.setInt(1,id);
-            ResultSet rs = getCourseById.executeQuery();
-            if(!rs.next()) return null;
+            ResultSet rs = getCourseMaterials.executeQuery();
             while (rs.next()){
                 materials.add(new CourseMaterial(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4)));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        System.out.println(id);
+        System.out.println(materials.size());
         return materials;
     }
 
