@@ -20,7 +20,7 @@
             <children>
             <Label layoutX="113.0" layoutY="14.0" text="Novosti" />
             <ListView fx:id="listNews" layoutX="34.0" layoutY="37.0" prefHeight="176.0" prefWidth="200.0" style="-fx-background-color: #32a57f;" styleClass="listView" />
-            <Button layoutX="122.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Dodaj obavijest" textAlignment="CENTER" />
+            <Button fx:id="btnAddNews" layoutX="122.0" layoutY="220.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Dodaj obavijest" textAlignment="CENTER" />
             <Button layoutX="81.0" layoutY="341.0" mnemonicParsing="false" text="Spisak studenata" />
                 <Button id="btnLogout" layoutX="111.0" layoutY="405.0" mnemonicParsing="false">
                     <graphic>

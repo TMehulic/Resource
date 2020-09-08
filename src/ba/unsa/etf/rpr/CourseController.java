@@ -8,16 +8,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class CourseController {
 
@@ -31,6 +34,7 @@ public class CourseController {
     public Label labelName;
     public Label labelDesc;
     public Button btnUpload;
+    public Button btnAddNews;
 
 
     public CourseController(int courseId) {
@@ -41,10 +45,6 @@ public class CourseController {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
     @FXML
     public void initialize(){
         dao = DAOClass.getInstance();
@@ -53,6 +53,7 @@ public class CourseController {
         labelDesc.setWrapText(true);
         labelDesc.setText(course.getDescription());
         btnUpload.setOnAction(uploadFile);
+        btnAddNews.setOnAction(addNews);
         materials.setOnMouseClicked(materialClicked);
         setNews();
         setMaterials();
@@ -75,7 +76,7 @@ public class CourseController {
         materials.setCellFactory(courseMaterialListView -> new CourseMaterialsListCell());
     }
 
-    EventHandler<ActionEvent> uploadFile = new EventHandler<ActionEvent>() {
+    private EventHandler<ActionEvent> uploadFile = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
             FileChooser fileChooser = new FileChooser();
@@ -102,7 +103,7 @@ public class CourseController {
         }
     };
 
-    EventHandler<? super MouseEvent> materialClicked = new EventHandler<MouseEvent>() {
+    private EventHandler<? super MouseEvent> materialClicked = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
             if (Desktop.isDesktopSupported()) {
@@ -117,7 +118,25 @@ public class CourseController {
         }
     };
 
-
-
+    private EventHandler<ActionEvent> addNews = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Nova obavijest");
+            dialog.setHeaderText("Unesite obavijest ");
+            dialog.setContentText("Obavijest : ");
+            ImageView iv = new ImageView(new Image("images/icons/bell.png"));
+            iv.setFitHeight(35);
+            iv.setFitWidth(35);
+            dialog.setGraphic(iv);
+            dialog.getDialogPane().setMinWidth(600);
+            Optional<String> result = dialog.showAndWait();
+            if(result.isPresent()){
+                CourseNews news=new CourseNews(LocalDate.now(),result.get());
+                dao.addCourseNews(news,getCourseId());
+                listNews.getItems().add(news);
+            }
+        }
+    };
 
 }

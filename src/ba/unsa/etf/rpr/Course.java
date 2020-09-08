@@ -7,8 +7,6 @@ public class Course {
     public String description;
     public int ects;
 
-    //myb profesor
-
 
     public Course(int id,String name,String desc, int ects) {
         this.id=id;

@@ -24,9 +24,11 @@ public class DAOClass {
     private PreparedStatement getUserId;
     private PreparedStatement getCourseById;
     private PreparedStatement getCourseMaterials;
-    private PreparedStatement getCourseId;
+    private PreparedStatement getCourseMaterialsId;
+    private PreparedStatement getCourseNewsId;
 
     private PreparedStatement addCourseMaterial;
+    private PreparedStatement addCourseNews;
 
 
     public Connection getConn(){
@@ -76,8 +78,11 @@ public class DAOClass {
             getUserId=conn.prepareStatement("SELECT personId FROM user WHERE email=? AND password=?");
             getCourseById = conn.prepareStatement("SELECT * FROM course WHERE id=?");
             getCourseMaterials = conn.prepareStatement("SELECT * FROM courseMaterials WHERE courseId=?");
+            getCourseMaterialsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
+            getCourseNewsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseNews");
+
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
-            getCourseId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
+            addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -284,7 +289,7 @@ public class DAOClass {
 
     public void addCourseMaterial(CourseMaterial material){
         try {
-            ResultSet rs = getCourseId.executeQuery();
+            ResultSet rs = getCourseMaterialsId.executeQuery();
             int id = 1;
             if(rs.next()) id = rs.getInt(1);
             addCourseMaterial.setInt(1,id);
@@ -295,5 +300,21 @@ public class DAOClass {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void addCourseNews(CourseNews news,int courseId){
+        try {
+            ResultSet rs = getCourseNewsId.executeQuery();
+            int id = 1;
+            if(rs.next()) id = rs.getInt(1);
+            addCourseNews.setInt(1,id);
+            addCourseNews.setString(2,news.getNews());
+            addCourseNews.setString(3,news.getDate().toString());
+            addCourseNews.setInt(4,courseId);
+            addCourseNews.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
