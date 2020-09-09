@@ -11,8 +11,15 @@ public class Student extends Person {
         this.educationInfo = educationInfo;
     }
 
+
+    // Getters needed to fill listViews
+
     public int getIndex(){
         return educationInfo.getIndex();
+    }
+
+    public String getDegree(){
+        return educationInfo.getDegree();
     }
 
     public EducationInfo getEducationInfo() {

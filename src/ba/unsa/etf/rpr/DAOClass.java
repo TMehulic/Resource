@@ -30,10 +30,13 @@ public class DAOClass {
     private PreparedStatement getCourseMaterials;
     private PreparedStatement getCourseMaterialsId;
     private PreparedStatement getCourseNewsId;
+    private PreparedStatement getCourseStudentId;
     private PreparedStatement getStudentsOnCourse;
+    private PreparedStatement getStudentsNotOnCourse;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
+    private PreparedStatement addStudentToCourse;
 
     private PreparedStatement removeStudentFromCourse;
 
@@ -90,10 +93,13 @@ public class DAOClass {
             getCourseMaterials = conn.prepareStatement("SELECT * FROM courseMaterials WHERE courseId=?");
             getCourseMaterialsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
             getCourseNewsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseNews");
+            getCourseStudentId = conn.prepareStatement("SELECT MAX(ID)+1 FROM courseStudent");
             getStudentsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseStudent WHERE courseId=? )");
+            getStudentsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseStudent WHERE courseId=?)");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
+            addStudentToCourse = conn.prepareStatement("INSERT INTO courseSTUDENT VALUES(?,?,?)");
 
             removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
 
@@ -369,11 +375,39 @@ public class DAOClass {
         return FXCollections.observableArrayList(students);
     }
 
+    public ObservableList<Student> getStudentsNotOnCourse(int courseId){
+        ArrayList<Student> students=new ArrayList<>();
+        try {
+            getStudentsNotOnCourse.setInt(1,courseId);
+            ResultSet rs = getStudentsNotOnCourse.executeQuery();
+            while (rs.next()){
+                students.add(getStudent(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(students);
+    };
+
     public void removeStudentFromCourse(Student student, int courseId){
         try {
             removeStudentFromCourse.setInt(1,student.getId());
             removeStudentFromCourse.setInt(2,courseId);
             removeStudentFromCourse.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void addStudentToCourse(int studentId, int courseId){
+        try {
+            ResultSet rs = getCourseStudentId.executeQuery();
+            int id = 1;
+            if(rs.next()) id = rs.getInt(1);
+            addStudentToCourse.setInt(1,id);
+            addStudentToCourse.setInt(2,studentId);
+            addStudentToCourse.setInt(3,courseId);
+            addStudentToCourse.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
