@@ -1,10 +1,12 @@
 package ba.unsa.etf.rpr;
 
-import com.sun.source.tree.Tree;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,8 +14,6 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 
 import java.awt.*;
@@ -22,10 +22,15 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
+
 public class CourseController {
 
     private int courseId;
     private DAOClass dao;
+    private FXMLLoader loader;
+
+    private boolean isProfessor=false;
 
     @FXML
     public ListView<CourseNews> listNews;
@@ -35,6 +40,9 @@ public class CourseController {
     public Label labelDesc;
     public Button btnUpload;
     public Button btnAddNews;
+    public Button btnDashboard;
+    public Button btnStudents;
+
 
 
     public CourseController(int courseId) {
@@ -49,12 +57,22 @@ public class CourseController {
     public void initialize(){
         dao = DAOClass.getInstance();
         Course course = dao.getCourse(getCourseId());
+        isProfessor=dao.isProfessor(HomeController.userID);
+
         labelName.setText(course.getName());
         labelDesc.setWrapText(true);
         labelDesc.setText(course.getDescription());
-        btnUpload.setOnAction(uploadFile);
-        btnAddNews.setOnAction(addNews);
+        btnDashboard.setOnAction(returnToDashboard);
         materials.setOnMouseClicked(materialClicked);
+
+        if(isProfessor){
+            setProfessorOptions();
+        }else{
+            btnUpload.setVisible(false);
+            btnAddNews.setVisible(false);
+            btnStudents.setVisible(false);
+        }
+
         setNews();
         setMaterials();
     }
@@ -75,6 +93,13 @@ public class CourseController {
         materials.setItems(FXCollections.observableArrayList(dao.getCourseMaterials(getCourseId())));
         materials.setCellFactory(courseMaterialListView -> new CourseMaterialsListCell());
     }
+
+    private void setProfessorOptions(){
+        btnUpload.setOnAction(uploadFile);
+        btnAddNews.setOnAction(addNews);
+        btnStudents.setOnAction(showStudents);
+    }
+
 
     private EventHandler<ActionEvent> uploadFile = new EventHandler<ActionEvent>() {
         @Override
@@ -138,5 +163,56 @@ public class CourseController {
             }
         }
     };
+
+    private EventHandler<ActionEvent> returnToDashboard = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            if(dao.isProfessor(HomeController.userID)){
+                ProfessorController ctrl = new ProfessorController();
+                loader=new FXMLLoader(getClass().getResource("/fxml/professor.fxml"));
+                loader.setController(ctrl);
+                Main.getGuiStage().setTitle("Professor");
+                redirectToDashboard();
+            }else if(dao.isStudent(HomeController.userID)){
+                StudentController ctrl = new StudentController();
+                loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
+                loader.setController(ctrl);
+                Main.getGuiStage().setTitle("Student");
+                redirectToDashboard();
+            }
+        }
+    };
+
+    private EventHandler<ActionEvent> showStudents = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            StudentsListController ctrl = new StudentsListController(courseId);
+            loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"));
+            loader.setController(ctrl);
+            Main.getGuiStage().setTitle("Students");
+            try {
+                Parent root = loader.load();
+                Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().show();
+                Main.getGuiStage().setResizable(false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+    public void redirectToDashboard(){
+        try {
+            Parent root;
+            root = loader.load();
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

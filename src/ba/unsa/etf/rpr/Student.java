@@ -11,6 +11,10 @@ public class Student extends Person {
         this.educationInfo = educationInfo;
     }
 
+    public int getIndex(){
+        return educationInfo.getIndex();
+    }
+
     public EducationInfo getEducationInfo() {
         return educationInfo;
     }

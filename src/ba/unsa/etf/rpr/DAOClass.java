@@ -1,5 +1,9 @@
 package ba.unsa.etf.rpr;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -26,9 +30,15 @@ public class DAOClass {
     private PreparedStatement getCourseMaterials;
     private PreparedStatement getCourseMaterialsId;
     private PreparedStatement getCourseNewsId;
+    private PreparedStatement getStudentsOnCourse;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
+
+    private PreparedStatement removeStudentFromCourse;
+
+    private PreparedStatement checkIfStudent ;
+    private PreparedStatement checkIfProfessor;
 
 
     public Connection getConn(){
@@ -80,9 +90,15 @@ public class DAOClass {
             getCourseMaterials = conn.prepareStatement("SELECT * FROM courseMaterials WHERE courseId=?");
             getCourseMaterialsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
             getCourseNewsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseNews");
+            getStudentsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseStudent WHERE courseId=? )");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
+
+            removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
+
+            checkIfStudent = conn.prepareStatement("SELECT * FROM person WHERE id=? AND student IS NOT NULL");
+            checkIfProfessor = conn.prepareStatement("SELECT * FROM person WHERE id=? AND professor IS NOT NULL");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -315,6 +331,51 @@ public class DAOClass {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
 
+    public boolean isProfessor(int id){
+        try {
+            checkIfProfessor.setInt(1,id);
+            ResultSet rs = checkIfProfessor.executeQuery();
+            return rs.next();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    };
+
+    public boolean isStudent(int id){
+        try {
+            checkIfStudent.setInt(1,id);
+            ResultSet rs = checkIfStudent.executeQuery();
+            return rs.next();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public ObservableList<Student> getStudentsOnCourse(int courseId){
+        ArrayList<Student> students=new ArrayList<>();
+        try {
+            getStudentsOnCourse.setInt(1,courseId);
+            ResultSet rs = getStudentsOnCourse.executeQuery();
+            while (rs.next()){
+                students.add(getStudent(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(students);
+    }
+
+    public void removeStudentFromCourse(Student student, int courseId){
+        try {
+            removeStudentFromCourse.setInt(1,student.getId());
+            removeStudentFromCourse.setInt(2,courseId);
+            removeStudentFromCourse.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

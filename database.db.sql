@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS "courseStudent" (
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "person" (
 	"id"	INTEGER,
@@ -113,5 +113,4 @@ INSERT INTO "courseNews" VALUES (1,'Neka testna vijest, please work','2020-09-05
 INSERT INTO "user" VALUES (1,1,'tmehulic1@etf.unsa.ba','tarik123');
 INSERT INTO "user" VALUES (2,2,'test1@etf.unsa.ba','test123');
 INSERT INTO "user" VALUES (3,3,'prof@etf.unsa.ba','prof123');
-INSERT INTO "courseMaterials" VALUES (1,'test.txt','test',1);
 COMMIT;
