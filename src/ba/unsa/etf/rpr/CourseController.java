@@ -112,19 +112,21 @@ public class CourseController {
                     new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac")
             );
             File uploadedFile = fileChooser.showOpenDialog(Main.getGuiStage());
-            try {
-                FileInputStream inputStream = new FileInputStream(uploadedFile);
-                FileOutputStream outputStream =new FileOutputStream(new File("resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName()));
-                int b;
-                while ((b=inputStream.read())!=-1){
-                    outputStream.write(b);
+            if(uploadedFile!=null){
+                try {
+                    FileInputStream inputStream = new FileInputStream(uploadedFile);
+                    FileOutputStream outputStream =new FileOutputStream(new File("resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName()));
+                    int b;
+                    while ((b=inputStream.read())!=-1){
+                        outputStream.write(b);
+                    }
+                    inputStream.close();
+                    outputStream.close();
+                    dao.addCourseMaterial(new CourseMaterial(uploadedFile.getName(),"resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),getCourseId()));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                inputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            dao.addCourseMaterial(new CourseMaterial(uploadedFile.getName(),"resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),getCourseId()));
         }
     };
 

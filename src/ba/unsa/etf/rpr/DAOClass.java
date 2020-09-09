@@ -31,12 +31,21 @@ public class DAOClass {
     private PreparedStatement getCourseMaterialsId;
     private PreparedStatement getCourseNewsId;
     private PreparedStatement getCourseStudentId;
+    private PreparedStatement getPersonId;
+    private PreparedStatement getEducationInfoId;
+    private PreparedStatement getResidenceInfoId;
+    private PreparedStatement getTitleInfoId;
     private PreparedStatement getStudentsOnCourse;
     private PreparedStatement getStudentsNotOnCourse;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
     private PreparedStatement addStudentToCourse;
+    private PreparedStatement addStudent;
+    private PreparedStatement addProfessor;
+    private PreparedStatement addEducationInfo;
+    private PreparedStatement addResidenceInfo;
+    private PreparedStatement addTitleInfo;
 
     private PreparedStatement removeStudentFromCourse;
 
@@ -93,13 +102,22 @@ public class DAOClass {
             getCourseMaterials = conn.prepareStatement("SELECT * FROM courseMaterials WHERE courseId=?");
             getCourseMaterialsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
             getCourseNewsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseNews");
-            getCourseStudentId = conn.prepareStatement("SELECT MAX(ID)+1 FROM courseStudent");
+            getCourseStudentId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseStudent");
             getStudentsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseStudent WHERE courseId=? )");
-            getStudentsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseStudent WHERE courseId=?)");
+            getStudentsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseStudent WHERE courseId=?) AND professor IS NULL");
+            getPersonId = conn.prepareStatement("SELECT MAX(id)+1 FROM person");
+            getEducationInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM educationInfo");
+            getResidenceInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM residenceInfo");
+            getTitleInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM titleInfo");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
-            addStudentToCourse = conn.prepareStatement("INSERT INTO courseSTUDENT VALUES(?,?,?)");
+            addStudentToCourse = conn.prepareStatement("INSERT INTO courseStudent VALUES(?,?,?)");
+            addStudent = conn.prepareStatement("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            addProfessor = conn.prepareStatement("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            addEducationInfo = conn.prepareStatement("INSERT INTO educationInfo VALUES (?,?,?,?,?,?)");
+            addResidenceInfo = conn.prepareStatement("INSERT INTO residenceInfo VALUES (?,?,?,?,?)");
+            addTitleInfo = conn.prepareStatement("INSERT INTO titleInfo VALUES (?,?,?)");
 
             removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
 
@@ -304,8 +322,6 @@ public class DAOClass {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        System.out.println(id);
-        System.out.println(materials.size());
         return materials;
     }
 
@@ -405,11 +421,82 @@ public class DAOClass {
             int id = 1;
             if(rs.next()) id = rs.getInt(1);
             addStudentToCourse.setInt(1,id);
-            addStudentToCourse.setInt(2,studentId);
-            addStudentToCourse.setInt(3,courseId);
+            addStudentToCourse.setInt(2,courseId);
+            addStudentToCourse.setInt(3,studentId);
             addStudentToCourse.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void createStudent(Student student){
+        try {
+            ResultSet rs = getPersonId.executeQuery();
+            int studentId = 1;
+            if(rs.next()) studentId = rs.getInt(1);
+            rs = getEducationInfoId.executeQuery();
+            int eduInfoId = 1;
+            if(rs.next()) eduInfoId = rs.getInt(1);
+            rs = getResidenceInfoId.executeQuery();
+            int resInfoId = 1;
+            if(rs.next()) resInfoId=rs.getInt(1);
+            addStudent.setInt(1,studentId);
+            addStudent.setString(2,student.getLastName());
+            addStudent.setString(3,student.getFirstName());
+            addStudent.setString(4,student.getFathersName());
+            addStudent.setString(5,student.getPlaceOfBirth());
+            addStudent.setString(6,student.getJmbg());
+            addStudent.setString(7,student.getPhone());
+            addStudent.setString(8,student.getEmail());
+            addStudent.setString(9,student.getImage());
+            addStudent.setString(10,student.getBirthDate().toString());
+            addStudent.setString(11,student.getGender().toString());
+            addStudent.setInt(12,1);
+            addStudent.setNull(13,Types.NULL);
+            addStudent.executeUpdate();
+            createResidenceInfo(student.getResidenceInfo(),studentId);
+            createEducationInfo(student.getEducationInfo(),studentId);
+            student.setId(studentId);
+            createUser(student);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createResidenceInfo(ResidenceInfo resInfo,int personId){
+        try {
+            int resInfoId = 1;
+            ResultSet rs = getResidenceInfoId.executeQuery();
+            if(rs.next()) resInfoId=rs.getInt(1);
+            addResidenceInfo.setInt(1,resInfoId);
+            addResidenceInfo.setString(2,resInfo.getAdress());
+            addResidenceInfo.setString(3,resInfo.getCanton().toString());
+            addResidenceInfo.setString(4, resInfo.getCounty());
+            addResidenceInfo.setInt(5,personId);
+            addResidenceInfo.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createEducationInfo(EducationInfo eduInfo, int personId){
+        try{
+            int eduInfoId=1;
+            ResultSet rs = getEducationInfoId.executeQuery();
+            if(rs.next()) eduInfoId=rs.getInt(1);
+            addEducationInfo.setInt(1,eduInfoId);
+            addEducationInfo.setString(2,eduInfo.getDegree());
+            addEducationInfo.setInt(3,eduInfo.getCycle());
+            addEducationInfo.setInt(4,eduInfo.getYear());
+            addEducationInfo.setInt(5,eduInfo.getIndex());
+            addEducationInfo.setInt(6,personId);
+            addEducationInfo.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createUser(Person user){
+        //todo : do later
     }
 }

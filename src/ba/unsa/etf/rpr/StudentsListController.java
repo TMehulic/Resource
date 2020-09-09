@@ -52,7 +52,19 @@ public class StudentsListController {
     private EventHandler<ActionEvent> addStudent = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-
+            AddCourseStudentController ctrl = new AddCourseStudentController(courseId);
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/addCourseStudent.fxml"));
+            loader.setController(ctrl);
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Main.getGuiStage().setTitle("Add student");
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(true);
         }
     };
 
