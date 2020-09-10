@@ -37,6 +37,7 @@ public class DAOClass {
     private PreparedStatement getTitleInfoId;
     private PreparedStatement getStudentsOnCourse;
     private PreparedStatement getStudentsNotOnCourse;
+    private PreparedStatement getNextUserId;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
@@ -46,6 +47,7 @@ public class DAOClass {
     private PreparedStatement addEducationInfo;
     private PreparedStatement addResidenceInfo;
     private PreparedStatement addTitleInfo;
+    private PreparedStatement addUser;
 
     private PreparedStatement removeStudentFromCourse;
 
@@ -109,6 +111,7 @@ public class DAOClass {
             getEducationInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM educationInfo");
             getResidenceInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM residenceInfo");
             getTitleInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM titleInfo");
+            getNextUserId = conn.prepareStatement("SELECT MAX(id)+1 FROM user");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
@@ -118,6 +121,7 @@ public class DAOClass {
             addEducationInfo = conn.prepareStatement("INSERT INTO educationInfo VALUES (?,?,?,?,?,?)");
             addResidenceInfo = conn.prepareStatement("INSERT INTO residenceInfo VALUES (?,?,?,?,?)");
             addTitleInfo = conn.prepareStatement("INSERT INTO titleInfo VALUES (?,?,?)");
+            addUser = conn.prepareStatement("INSERT INTO user VALUES(?,?,?,?)");
 
             removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
 
@@ -434,12 +438,6 @@ public class DAOClass {
             ResultSet rs = getPersonId.executeQuery();
             int studentId = 1;
             if(rs.next()) studentId = rs.getInt(1);
-            rs = getEducationInfoId.executeQuery();
-            int eduInfoId = 1;
-            if(rs.next()) eduInfoId = rs.getInt(1);
-            rs = getResidenceInfoId.executeQuery();
-            int resInfoId = 1;
-            if(rs.next()) resInfoId=rs.getInt(1);
             addStudent.setInt(1,studentId);
             addStudent.setString(2,student.getLastName());
             addStudent.setString(3,student.getFirstName());
@@ -497,6 +495,24 @@ public class DAOClass {
     }
 
     public void createUser(Person user){
-        //todo : do later
+        try {
+            int userId = 1;
+            ResultSet rs = getNextUserId.executeQuery();
+            if(rs.next()) userId=rs.getInt(1);
+            addUser.setInt(1,userId);
+            addUser.setInt(2,user.getId());
+            addUser.setString(3,user.getEmail());
+            addUser.setString(4,createPassword(user));
+            addUser.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private String createPassword(Person user){
+        String pass = "";
+        int lastIndex = user.getEmail().lastIndexOf('@');
+        pass = user.getEmail().substring(0,lastIndex)+"123";
+        return pass;
     }
 }

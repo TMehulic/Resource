@@ -13,9 +13,9 @@
             <Font name="System Bold Italic" size="32.0" />
          </font>
       </Label>
-      <Button layoutX="727.0" layoutY="104.0" mnemonicParsing="false" text="Add new student" />
-      <Button layoutX="727.0" layoutY="154.0" mnemonicParsing="false" text="Add new professor" />
-      <Button layoutX="727.0" layoutY="200.0" mnemonicParsing="false" text="Add predmet" />
+      <Button fx:id="btnAddStudent" layoutX="727.0" layoutY="104.0" mnemonicParsing="false" text="Add new student" />
+      <Button fx:id="btnAddProfessor" layoutX="727.0" layoutY="154.0" mnemonicParsing="false" text="Add new professor" />
+      <Button fx:id="btnAddCourse" layoutX="727.0" layoutY="200.0" mnemonicParsing="false" text="Add predmet" />
       <Button layoutX="727.0" layoutY="252.0" mnemonicParsing="false" text="asd" />
    </children>
 </AnchorPane>

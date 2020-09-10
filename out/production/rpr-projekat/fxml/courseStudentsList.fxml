@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #294f5f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/student.css" />
+    </stylesheets>
+    <children>
+        <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" style="-fx-background-color: #2e3841;">
+            <children>
+                <Button fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Return to course" />
+            </children>
+        </AnchorPane>
+        <Pane prefHeight="161.0" prefWidth="960.0" style="-fx-background-color: #172d36;">
+            <children>
+                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="Ime predmeta" textFill="#32a57f">
+                    <font>
+                        <Font name="System Italic" size="30.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Label layoutX="58.0" layoutY="203.0" text="Studenti na kursu " textFill="#f8f5f5">
+            <font>
+                <Font name="Times New Roman Italic" size="20.0" />
+            </font>
+        </Label>
+        <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
+      <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0">
+        <buttons>
+          <Button fx:id="btnRemoveStudent" mnemonicParsing="false" text="Obriši studenta" />
+            <Button fx:id="btnAddStudent" mnemonicParsing="false" text="Dodaj studenta" />
+        </buttons>
+      </ButtonBar>
+      <TableView fx:id="tableViewStudents" layoutX="80.0" layoutY="245.0" prefHeight="282.0" prefWidth="587.0">
+        <columns>
+          <TableColumn fx:id="colIndex" prefWidth="117.0" text="Index" />
+            <TableColumn fx:id="colName" prefWidth="218.0" text="Ime" />
+            <TableColumn fx:id="colLastName" prefWidth="251.0" text="Prezime" />
+        </columns>
+      </TableView>
+    </children>
+</AnchorPane>
