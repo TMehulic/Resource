@@ -11,29 +11,30 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #294f5f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/student.css" />
+        <URL value="@/css/panes.css" />
+        <URL value="@/css/buttons.css" />
+        <URL value="@/css/listView.css" />
+        <URL value="@/css/labels.css" />
     </stylesheets>
     <children>
-        <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" style="-fx-background-color: #2e3841;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
+        <AnchorPane styleClass="rightPane" layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
             <children>
-                <Button fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Return to dashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" />
+                <Button styleClass="dashboardBtn" fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Return to dashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" />
             </children>
         </AnchorPane>
-        <Pane prefHeight="161.0" prefWidth="960.0" style="-fx-background-color: #172d36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane styleClass="leftPane" prefHeight="161.0" prefWidth="960.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="All professors" textFill="#32a57f">
-                    <font>
-                        <Font name="System Italic" size="30.0" />
-                    </font>
+                <Label styleClass="topLabel" fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="All professors" >
                 </Label>
             </children>
         </Pane>
         <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
         <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="329.0">
             <buttons>
-                <Button fx:id="btnRemoveProfessor" mnemonicParsing="false" text="Obriši profesora" />
+                <Button styleClass="cancelBtn" fx:id="btnRemoveProfessor" mnemonicParsing="false" text="Obriši profesora" />
             </buttons>
         </ButtonBar>
         <TableView fx:id="tableViewProfessors" layoutX="92.0" layoutY="245.0" prefHeight="282.0" prefWidth="513.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="245.0">
