@@ -60,6 +60,7 @@ public class DAOClass {
     private PreparedStatement removeTitInfo;
     private PreparedStatement removeUser;
     private PreparedStatement removeStudentFromCourses;
+    private PreparedStatement removeProfessorFromCourses;
 
     private PreparedStatement checkIfStudent ;
     private PreparedStatement checkIfProfessor;
@@ -143,6 +144,7 @@ public class DAOClass {
             removeTitInfo = conn.prepareStatement("DELETE FROM titleInfo WHERE personId=?");
             removeUser = conn.prepareStatement("DELETE FROM user WHERE personId=?");
             removeStudentFromCourses = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=?");
+            removeProfessorFromCourses = conn.prepareStatement("DELETE FROM courseProfessor WHERE personId=?");
 
 
             checkIfStudent = conn.prepareStatement("SELECT * FROM person WHERE id=? AND student IS NOT NULL");
@@ -303,6 +305,19 @@ public class DAOClass {
             throwables.printStackTrace();
         }
         return FXCollections.observableArrayList(students);
+    }
+
+    public ObservableList<Professor> getProfessors(){
+        ArrayList<Professor> professors = new ArrayList<>();
+        try{
+            ResultSet rs = getProfessors.executeQuery();
+            while (rs.next()){
+                professors.add(getProfessor(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(professors);
     }
 
     public Person getUser(String email, String password){
@@ -605,6 +620,23 @@ public class DAOClass {
             removeResInfo.executeUpdate();
             removeUser.executeUpdate();
             removeStudentFromCourses.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void removeProfessor(Professor professor){
+        try{
+            removeProfessor.setInt(1,professor.getId());
+            removeResInfo.setInt(1,professor.getId());
+            removeTitInfo.setInt(1,professor.getId());
+            removeUser.setInt(1,professor.getId());
+            removeProfessorFromCourses.setInt(1,professor.getId());
+            removeProfessor.executeUpdate();
+            removeResInfo.executeUpdate();
+            removeTitInfo.executeUpdate();
+            removeUser.executeUpdate();
+            removeProfessorFromCourses.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

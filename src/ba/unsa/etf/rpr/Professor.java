@@ -18,4 +18,8 @@ public class Professor extends Person {
     public void setTitleInfo(TitleInfo titleInfo) {
         this.titleInfo = titleInfo;
     }
+
+    public String getTitle(){
+        return titleInfo.getTitle();
+    }
 }
