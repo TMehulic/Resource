@@ -33,6 +33,8 @@ public class StudentController {
     @FXML
     public Button btnLogout;
 
+    public Label labelIndex;
+
     @FXML
     public Circle circle;
     private DAOClass dao;
@@ -57,6 +59,7 @@ public class StudentController {
         btnLogout.setOnAction(logoutAction);
         labelDegree.setText(student.getEducationInfo().getDegree());
         labelYearOfStudy.setText(String.valueOf(student.getEducationInfo().getYear()));
+        labelIndex.setText(String.valueOf(student.getEducationInfo().getIndex()));
         labelWelcome.setText("Welcome, "+student.getLastName()+" "+student.getFirstName());
 
     }
