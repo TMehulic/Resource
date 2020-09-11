@@ -15,43 +15,42 @@ import java.io.IOException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class AddCourseStudentController {
+public class AddCourseProfessorController {
 
     private int courseId;
     private DAOClass dao;
 
-    public TableView<Student> tableViewStudents;
-    public TableColumn<Student,Integer> colIndex;
-    public TableColumn<Student,String> colFirstName;
-    public TableColumn<Student,String> colLastName;
-    public TableColumn<Student,String> colDegree;
-    public Button btnAddStudent;
+    public TableView<Professor> tableViewProfessors;
+    public TableColumn<Professor,String> colTitle;
+    public TableColumn<Professor,String> colFirstName;
+    public TableColumn<Professor,String> colLastName;
 
-    public AddCourseStudentController(int courseId) {
+    public Button btnAddProfessor;
+
+    public AddCourseProfessorController(int courseId) {
         this.courseId = courseId;
     }
 
     @FXML
     public void initialize(){
         dao=DAOClass.getInstance();
-        colIndex.setCellValueFactory(new PropertyValueFactory<>("index"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        colDegree.setCellValueFactory(new PropertyValueFactory<>("degree"));
-        tableViewStudents.setItems(dao.getStudentsNotOnCourse(courseId));
+        tableViewProfessors.setItems(dao.getProfessorsNotOnCourse(courseId));
 
-        btnAddStudent.setOnAction(addStudent);
 
+        btnAddProfessor.setOnAction(addProfessor);
     }
 
-    private EventHandler<ActionEvent> addStudent = new EventHandler<ActionEvent>() {
+    private EventHandler<ActionEvent> addProfessor = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            if(!tableViewStudents.getSelectionModel().isEmpty()){
-                int studentId = tableViewStudents.getSelectionModel().getSelectedItem().getId();
-                dao.addStudentToCourse(studentId,courseId);
-                ListCourseProfessorsController ctrl = new ListCourseProfessorsController(courseId);
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"));
+            if(!tableViewProfessors.getSelectionModel().isEmpty()){
+                int profId = tableViewProfessors.getSelectionModel().getSelectedItem().getId();
+                dao.addProfessorToCourse(profId,courseId);
+                CourseController ctrl = new CourseController(courseId);
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
                 loader.setController(ctrl);
                 Parent root = null;
                 try {
@@ -59,12 +58,11 @@ public class AddCourseStudentController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Main.getGuiStage().setTitle("Course");
+                Main.getGuiStage().setTitle("Professors");
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             }
         }
     };
-
 }

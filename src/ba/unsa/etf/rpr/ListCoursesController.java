@@ -89,7 +89,21 @@ public class ListCoursesController {
     private EventHandler<ActionEvent> viewCourseProfessors = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-
+            if(!tableViewCourses.getSelectionModel().isEmpty()){
+                ListCourseProfessorsController ctrl = new ListCourseProfessorsController(tableViewCourses.getSelectionModel().getSelectedItem().getId());
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
+                loader.setController(ctrl);
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Main.getGuiStage().setTitle("Professors");
+                Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().show();
+                Main.getGuiStage().setResizable(false);
+            }
         }
     };
 

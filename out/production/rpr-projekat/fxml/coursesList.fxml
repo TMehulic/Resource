@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
@@ -22,25 +23,26 @@
         </AnchorPane>
         <Pane prefHeight="161.0" prefWidth="960.0" style="-fx-background-color: #172d36;">
             <children>
-                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="Ime predmeta" textFill="#32a57f">
+                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="All courses" textFill="#32a57f">
                     <font>
                         <Font name="System Italic" size="30.0" />
                     </font>
                 </Label>
             </children>
         </Pane>
-        <Label layoutX="58.0" layoutY="203.0" text="Profesori na kursu" textFill="#f8f5f5">
-            <font>
-                <Font name="Times New Roman Italic" size="20.0" />
-            </font>
-        </Label>
         <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
-        <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0">
+        <ButtonBar layoutX="369.0" layoutY="540.0" prefHeight="40.0" prefWidth="262.0">
             <buttons>
-                <Button fx:id="btnRemoveProfessor" mnemonicParsing="false" text="Ukloni profesora" />
-                <Button fx:id="btnAddProfessor" mnemonicParsing="false" text="Dodaj profesora" />
+            <Button fx:id="btnCourseProfessors" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Profesori na kursu" />
+                <Button fx:id="btnRemoveCourse" mnemonicParsing="false" text="Obriši kurs" />
             </buttons>
         </ButtonBar>
-      <ListView fx:id="listViewProfessors" layoutX="70.0" layoutY="281.0" prefHeight="200.0" prefWidth="550.0" AnchorPane.leftAnchor="70.0" />
+        <TableView fx:id="tableViewCourses" layoutX="42.0" layoutY="245.0" prefHeight="282.0" prefWidth="625.0">
+            <columns>
+                <TableColumn fx:id="colName" prefWidth="125.0" text="Naziv" />
+                <TableColumn fx:id="colDesc" prefWidth="441.0" text="Opis" />
+                <TableColumn fx:id="colEcts" prefWidth="58.0" text="ECTS" />
+            </columns>
+        </TableView>
     </children>
 </AnchorPane>

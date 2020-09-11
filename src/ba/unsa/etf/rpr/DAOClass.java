@@ -33,18 +33,22 @@ public class DAOClass {
     private PreparedStatement getCourseMaterialsId;
     private PreparedStatement getCourseNewsId;
     private PreparedStatement getCourseStudentId;
+    private PreparedStatement getCourseProfessorId;
     private PreparedStatement getPersonId;
     private PreparedStatement getEducationInfoId;
     private PreparedStatement getResidenceInfoId;
     private PreparedStatement getTitleInfoId;
     private PreparedStatement getStudentsOnCourse;
     private PreparedStatement getStudentsNotOnCourse;
+    private PreparedStatement getProfessorsOnCourse;
+    private PreparedStatement getProfessorsNotOnCourse;
     private PreparedStatement getNextUserId;
     private PreparedStatement getCourseId;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
     private PreparedStatement addStudentToCourse;
+    private PreparedStatement addProfessorToCourse;
     private PreparedStatement addStudent;
     private PreparedStatement addProfessor;
     private PreparedStatement addEducationInfo;
@@ -54,6 +58,7 @@ public class DAOClass {
     private PreparedStatement addCourse;
 
     private PreparedStatement removeStudentFromCourse;
+    private PreparedStatement removeProfessorFromCourse;
     private PreparedStatement removeStudent;
     private PreparedStatement removeProfessor;
     private PreparedStatement removeEduInfo;
@@ -122,8 +127,11 @@ public class DAOClass {
             getCourseMaterialsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseMaterials");
             getCourseNewsId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseNews");
             getCourseStudentId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseStudent");
+            getCourseProfessorId = conn.prepareStatement("SELECT MAX(id)+1 FROM courseProfessor");
             getStudentsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseStudent WHERE courseId=? )");
             getStudentsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseStudent WHERE courseId=?) AND professor IS NULL");
+            getProfessorsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseProfessor WHERE courseId=?)");
+            getProfessorsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseProfessor WHERE courseId=?)");
             getPersonId = conn.prepareStatement("SELECT MAX(id)+1 FROM person");
             getEducationInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM educationInfo");
             getResidenceInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM residenceInfo");
@@ -135,6 +143,7 @@ public class DAOClass {
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
             addStudentToCourse = conn.prepareStatement("INSERT INTO courseStudent VALUES(?,?,?)");
+            addProfessorToCourse = conn.prepareStatement("INSERT INTO courseProfessor VALUES(?,?,?)");
             addStudent = conn.prepareStatement("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             addProfessor = conn.prepareStatement("INSERT INTO person VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             addEducationInfo = conn.prepareStatement("INSERT INTO educationInfo VALUES (?,?,?,?,?,?)");
@@ -144,6 +153,7 @@ public class DAOClass {
             addCourse = conn.prepareStatement("INSERT INTO course VALUES(?,?,?,?)");
 
             removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
+            removeProfessorFromCourse = conn.prepareStatement("DELETE FROM courseProfessor WHERE personId=? AND courseId=?");
             removeStudent = conn.prepareStatement("DELETE FROM person WHERE id=?");
             removeProfessor = conn.prepareStatement("DELETE FROM person WHERE id=?");
             removeEduInfo = conn.prepareStatement("DELETE FROM educationInfo WHERE personId=?");
@@ -470,11 +480,50 @@ public class DAOClass {
         return FXCollections.observableArrayList(students);
     };
 
+    public ObservableList<Professor> getProfessorsOnCourse(int courseId){
+        ArrayList<Professor> professors = new ArrayList<>();
+        try{
+            getProfessorsOnCourse.setInt(1,courseId);
+            ResultSet rs = getProfessorsOnCourse.executeQuery();
+            while (rs.next()){
+                professors.add(getProfessor(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(professors);
+    }
+
+    public ObservableList<Professor> getProfessorsNotOnCourse(int courseId){
+        ArrayList<Professor> professors=new ArrayList<>();
+        try {
+            getProfessorsNotOnCourse.setInt(1,courseId);
+            ResultSet rs = getProfessorsNotOnCourse.executeQuery();
+            while (rs.next()){
+                professors.add(getProfessor(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(professors);
+    };
+
+
     public void removeStudentFromCourse(Student student, int courseId){
         try {
             removeStudentFromCourse.setInt(1,student.getId());
             removeStudentFromCourse.setInt(2,courseId);
             removeStudentFromCourse.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void removeProfessorFromCourse(Professor professor, int courseId){
+        try {
+            removeProfessorFromCourse.setInt(1,professor.getId());
+            removeProfessorFromCourse.setInt(2,courseId);
+            removeProfessorFromCourse.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -489,6 +538,20 @@ public class DAOClass {
             addStudentToCourse.setInt(2,courseId);
             addStudentToCourse.setInt(3,studentId);
             addStudentToCourse.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void addProfessorToCourse(int professorId, int courseId){
+        try{
+            ResultSet rs = getCourseProfessorId.executeQuery();
+            int id = 1;
+            if(rs.next()) id = rs.getInt(1);
+            addProfessorToCourse.setInt(1,id);
+            addProfessorToCourse.setInt(2,courseId);
+            addProfessorToCourse.setInt(3,professorId);
+            addProfessorToCourse.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
