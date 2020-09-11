@@ -126,7 +126,18 @@ public class AdminController {
     private EventHandler<ActionEvent> viewCourses = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-
+            ListCoursesController ctrl = new ListCoursesController();
+            loader = new FXMLLoader(getClass().getResource("/fxml/coursesList.fxml"));
+            loader.setController(ctrl);
+            Main.getGuiStage().setTitle("Courses");
+            try {
+                Parent root = loader.load();
+                Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().show();
+                Main.getGuiStage().setResizable(true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     };
 

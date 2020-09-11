@@ -20,6 +20,7 @@ public class DAOClass {
     private PreparedStatement getStudentById;
     private PreparedStatement getProfessors;
     private PreparedStatement getProfessorById;
+    private PreparedStatement getCourses;
     private PreparedStatement getCoursesByProfessorId;
     private PreparedStatement getCoursesByStudentId;
     private PreparedStatement getCourseNews;
@@ -61,6 +62,11 @@ public class DAOClass {
     private PreparedStatement removeUser;
     private PreparedStatement removeStudentFromCourses;
     private PreparedStatement removeProfessorFromCourses;
+    private PreparedStatement removeCourse;
+    private PreparedStatement removeCourseFromCourseMaterials;
+    private PreparedStatement removeCourseFromCourseNews;
+    private PreparedStatement removeCourseFromCourseProfessor;
+    private PreparedStatement removeCourseFromCourseStudent;
 
     private PreparedStatement checkIfStudent ;
     private PreparedStatement checkIfProfessor;
@@ -124,6 +130,7 @@ public class DAOClass {
             getTitleInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM titleInfo");
             getNextUserId = conn.prepareStatement("SELECT MAX(id)+1 FROM user");
             getCourseId = conn.prepareStatement("SELECT MAX(id)+1 FROM course");
+            getCourses = conn.prepareStatement("SELECT * FROM course");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
@@ -145,6 +152,12 @@ public class DAOClass {
             removeUser = conn.prepareStatement("DELETE FROM user WHERE personId=?");
             removeStudentFromCourses = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=?");
             removeProfessorFromCourses = conn.prepareStatement("DELETE FROM courseProfessor WHERE personId=?");
+            removeCourse = conn.prepareStatement("DELETE FROM course WHERE id=?");
+            removeCourseFromCourseMaterials = conn.prepareStatement("DELETE FROM courseMaterials WHERE courseId=?");
+            removeCourseFromCourseNews = conn.prepareStatement("DELETE FROM courseNews WHERE courseId=?");
+            removeCourseFromCourseProfessor = conn.prepareStatement("DELETE FROM courseProfessor WHERE courseId=?");
+            removeCourseFromCourseStudent = conn.prepareStatement("DELETE FROM courseStudent WHERE courseId=?");
+
 
 
             checkIfStudent = conn.prepareStatement("SELECT * FROM person WHERE id=? AND student IS NOT NULL");
@@ -318,6 +331,19 @@ public class DAOClass {
             throwables.printStackTrace();
         }
         return FXCollections.observableArrayList(professors);
+    }
+
+    public ObservableList<Course> getCourses(){
+        ArrayList<Course> courses = new ArrayList<>();
+        try {
+            ResultSet rs = getCourses.executeQuery();
+            while (rs.next()){
+                courses.add(getCourse(rs.getInt(1)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return FXCollections.observableArrayList(courses);
     }
 
     public Person getUser(String email, String password){
@@ -637,6 +663,23 @@ public class DAOClass {
             removeTitInfo.executeUpdate();
             removeUser.executeUpdate();
             removeProfessorFromCourses.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void removeCourse(Course course){
+        try{
+            removeCourse.setInt(1,course.getId());
+            removeCourseFromCourseStudent.setInt(1,course.getId());
+            removeCourseFromCourseProfessor.setInt(1,course.getId());
+            removeCourseFromCourseNews.setInt(1,course.getId());
+            removeCourseFromCourseMaterials.setInt(1,course.getId());
+            removeCourse.executeUpdate();
+            removeCourseFromCourseStudent.executeUpdate();
+            removeCourseFromCourseProfessor.executeUpdate();
+            removeCourseFromCourseNews.executeUpdate();
+            removeCourseFromCourseMaterials.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

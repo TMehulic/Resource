@@ -39,7 +39,6 @@ public class AddCourseStudentController {
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         colDegree.setCellValueFactory(new PropertyValueFactory<>("degree"));
         tableViewStudents.setItems(dao.getStudentsNotOnCourse(courseId));
-        System.out.println("Broj studenata koji nisu na kursu : "+dao.getStudentsNotOnCourse(courseId).size());
 
         btnAddStudent.setOnAction(addStudent);
 
