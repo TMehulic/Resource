@@ -19,6 +19,7 @@ public class AddCourseStudentController {
 
     private int courseId;
     private DAOClass dao;
+    private FXMLLoader loader;
 
     public TableView<Student> tableViewStudents;
     public TableColumn<Student,Integer> colIndex;
@@ -26,6 +27,7 @@ public class AddCourseStudentController {
     public TableColumn<Student,String> colLastName;
     public TableColumn<Student,String> colDegree;
     public Button btnAddStudent;
+    public Button btnCancel;
 
     public AddCourseStudentController(int courseId) {
         this.courseId = courseId;
@@ -41,8 +43,27 @@ public class AddCourseStudentController {
         tableViewStudents.setItems(dao.getStudentsNotOnCourse(courseId));
 
         btnAddStudent.setOnAction(addStudent);
+        btnCancel.setOnAction(backToList);
 
     }
+
+    private EventHandler<ActionEvent> backToList = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            ListCourseStudentsController ctrl = new ListCourseStudentsController(courseId);
+            loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"));
+            loader.setController(ctrl);
+            Main.getGuiStage().setTitle("Students");
+            try {
+                Parent root = loader.load();
+                Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().show();
+                Main.getGuiStage().setResizable(false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     private EventHandler<ActionEvent> addStudent = new EventHandler<ActionEvent>() {
         @Override
@@ -66,5 +87,7 @@ public class AddCourseStudentController {
             }
         }
     };
+
+
 
 }

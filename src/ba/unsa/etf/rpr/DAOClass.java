@@ -131,7 +131,7 @@ public class DAOClass {
             getStudentsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseStudent WHERE courseId=? )");
             getStudentsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseStudent WHERE courseId=?) AND professor IS NULL");
             getProfessorsOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id IN ( SELECT personId FROM courseProfessor WHERE courseId=?)");
-            getProfessorsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseProfessor WHERE courseId=?)");
+            getProfessorsNotOnCourse = conn.prepareStatement("SELECT id FROM person WHERE id NOT IN ( SELECT personId FROM courseProfessor WHERE courseId=?) AND professor IS NOT NULL");
             getPersonId = conn.prepareStatement("SELECT MAX(id)+1 FROM person");
             getEducationInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM educationInfo");
             getResidenceInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM residenceInfo");

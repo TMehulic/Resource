@@ -231,4 +231,5 @@
         </GridPane>
     </children>
     <Button fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #32a57f;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
+    <Button fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
 </AnchorPane>

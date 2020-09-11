@@ -26,6 +26,7 @@ public class AddCourseProfessorController {
     public TableColumn<Professor,String> colLastName;
 
     public Button btnAddProfessor;
+    public Button btnCancel;
 
     public AddCourseProfessorController(int courseId) {
         this.courseId = courseId;
@@ -41,6 +42,7 @@ public class AddCourseProfessorController {
 
 
         btnAddProfessor.setOnAction(addProfessor);
+        btnCancel.setOnAction(backToList);
     }
 
     private EventHandler<ActionEvent> addProfessor = new EventHandler<ActionEvent>() {
@@ -63,6 +65,25 @@ public class AddCourseProfessorController {
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             }
+        }
+    };
+
+    private EventHandler<ActionEvent> backToList = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            ListCourseProfessorsController ctrl = new ListCourseProfessorsController(courseId);
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
+            loader.setController(ctrl);
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Main.getGuiStage().setTitle("Professors");
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(true);
         }
     };
 }

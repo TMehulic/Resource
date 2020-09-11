@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import com.mysql.cj.xdevapi.DatabaseObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,6 +48,7 @@ public class CreateStudentController {
     public ChoiceBox<Integer> cbYear;
 
     public Button btnConfirm;
+    public Button btnCancel;
 
 
 
@@ -67,8 +67,18 @@ public class CreateStudentController {
         tgGender=new ToggleGroup();
         tgGender.getToggles().addAll(btnMale,btnFemale);
         btnUpload.setOnAction(uploadImage);
+        btnCancel.setOnAction(cancelAction);
+
 
     }
+
+    private EventHandler<ActionEvent> cancelAction = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            AdminController.returnToDashboard();
+        }
+    };
+
 
     public void createStudent(ActionEvent actionEvent){
 
@@ -109,21 +119,9 @@ public class CreateStudentController {
 
         EducationInfo eduInfo = new EducationInfo(degree,cycle,year,index);
 
-//        AdminController ctrl = new AdminController();
-//        loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
-//        loader.setController(ctrl);
-//        Main.getGuiStage().setTitle("Admin");
-//        try {
-//            Parent root = loader.load();
-//            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//            Main.getGuiStage().show();
-//            Main.getGuiStage().setResizable(false);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         Student student=new Student(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,eduInfo);
         dao.createStudent(student);
+        AdminController.returnToDashboard();
 
     }
 

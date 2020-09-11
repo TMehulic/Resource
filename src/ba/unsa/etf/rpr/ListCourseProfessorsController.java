@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.io.IOException;
@@ -23,6 +24,9 @@ public class ListCourseProfessorsController {
     public ListView<Professor> listViewProfessors;
     public Button btnRemoveProfessor;
     public Button btnAddProfessor;
+    public Button btnDashboard;
+
+    public Label labelName;
 
     public ListCourseProfessorsController(int courseId) {
         this.courseId = courseId;
@@ -35,6 +39,10 @@ public class ListCourseProfessorsController {
 
         btnAddProfessor.setOnAction(addProfessor);
         btnRemoveProfessor.setOnAction(removeProfessor);
+        btnDashboard.setOnAction(returnToCourses);
+
+        Course course = dao.getCourse(courseId);
+        labelName.setText(course.getName());
 
         listViewProfessors.setItems(FXCollections.observableArrayList(dao.getProfessorsOnCourse(courseId)));
         listViewProfessors.setCellFactory(courseProfessorsListView -> new CourseProfessorListCell());
@@ -67,6 +75,24 @@ public class ListCourseProfessorsController {
                 dao.removeProfessorFromCourse(listViewProfessors.getSelectionModel().getSelectedItem(),courseId);
                 listViewProfessors.getItems().remove(professor);
                 listViewProfessors.getSelectionModel().selectFirst();
+            }
+        }
+    };
+
+    private EventHandler<ActionEvent> returnToCourses = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            ListCoursesController ctrl = new ListCoursesController();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/coursesList.fxml"));
+            loader.setController(ctrl);
+            Main.getGuiStage().setTitle("Courses");
+            try {
+                Parent root = loader.load();
+                Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().show();
+                Main.getGuiStage().setResizable(true);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     };

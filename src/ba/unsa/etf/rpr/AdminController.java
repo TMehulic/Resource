@@ -14,7 +14,7 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class AdminController {
 
-    private FXMLLoader loader;
+    private static FXMLLoader loader;
 
     public Button btnAddStudent;
     public Button btnAddProfessor;
@@ -140,6 +140,21 @@ public class AdminController {
             }
         }
     };
+
+    public static void returnToDashboard(){
+        AdminController ctrl = new AdminController();
+        loader=new FXMLLoader(AdminController.class.getResource("/fxml/admin.fxml"));
+        loader.setController(ctrl);
+        Main.getGuiStage().setTitle("Admin");
+        try {
+            Parent root = loader.load();
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

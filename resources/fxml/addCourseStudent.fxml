@@ -17,5 +17,6 @@
         </columns>
       </TableView>
       <Button fx:id="btnAddStudent" layoutX="445.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Upiši studenta" />
+       <Button fx:id="btnCancel" layoutX="306.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" />
    </children>
 </AnchorPane>

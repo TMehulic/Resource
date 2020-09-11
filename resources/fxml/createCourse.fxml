@@ -69,5 +69,6 @@
             </TextArea>
          </children>
       </VBox>
+      <Button fx:id="btnCancel" layoutX="272.0" layoutY="436.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" />
     </children>
 </AnchorPane>

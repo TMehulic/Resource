@@ -15,6 +15,7 @@ public class CreateCourseController {
     public TextArea fldDesc;
 
     public Button btnConfirm;
+    public Button btnCancel;
 
 
     public CreateCourseController() {
@@ -23,6 +24,7 @@ public class CreateCourseController {
     @FXML
     public void initialize(){
         btnConfirm.setOnAction(addCourse);
+        btnCancel.setOnAction(cancelAction);
         fldDesc.setWrapText(true);
     }
 
@@ -35,6 +37,13 @@ public class CreateCourseController {
             int ects = Integer.parseInt(fldEcts.getText());
             Course course = new Course(name,desc,ects);
             DAOClass.getInstance().createCourse(course);
+        }
+    };
+
+    private EventHandler<ActionEvent> cancelAction = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            AdminController.returnToDashboard();
         }
     };
 
