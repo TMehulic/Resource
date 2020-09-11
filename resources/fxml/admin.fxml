@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -8,27 +9,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #294f5f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@/css/buttons.css" />
+      <URL value="@/css/panes.css" />
+   </stylesheets>
    <children>
-      <Label layoutX="307.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="Admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="307.0" AnchorPane.topAnchor="255.0">
+      <Label layoutX="307.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="Admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="255.0">
          <font>
             <Font name="System Bold Italic" size="62.0" />
          </font>
       </Label>
-      <Pane layoutX="695.0" layoutY="1.0" prefHeight="600.0" prefWidth="299.0" style="-fx-background-color: #2e3841;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="695.0" layoutY="1.0" prefHeight="600.0" prefWidth="299.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutX="73.0" layoutY="68.0" prefHeight="465.0" prefWidth="153.0" spacing="40.0">
                <children>
-                  <Button fx:id="btnAddStudent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Add new student">
+                  <Button fx:id="btnAddStudent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="confirmBtn" text="Add new student">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnAddProfessor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add new professor" />
-                  <Button fx:id="btnAddCourse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add predmet" />
-                  <Button fx:id="btnStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Svi studenti" />
-                  <Button fx:id="btnProfessors" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Svi profesori" />
-                  <Button fx:id="btnCourses" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Svi kursevi" />
+                  <Button fx:id="btnAddProfessor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Add new professor" />
+                  <Button fx:id="btnAddCourse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Add predmet" />
+                  <Button fx:id="btnStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Svi studenti" />
+                  <Button fx:id="btnProfessors" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Svi profesori" />
+                  <Button fx:id="btnCourses" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="confirmBtn" text="Svi kursevi" />
                </children>
             </VBox>
          </children>

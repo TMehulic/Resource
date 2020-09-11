@@ -1,0 +1,29 @@
+.confirmBtn {
+    -fx-background-color: #32a57f;
+    -fx-text-fill: white;
+}
+
+.cancelBtn {
+    -fx-background-color: #a53258;
+    -fx-text-fill: white;
+}
+
+.uploadBtn {
+    -fx-background-color: #32a57f;
+    -fx-text-fill: white;
+}
+
+.dashboardBtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right top, #32a57a, #11a18b, #009c97, #1696a0, #3390a3);
+}
+
+.listBtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right, #172d36, #0f3840, #054446, #084f47, #1c5a44);
+}
+
+.notifBtn {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to right, #172d36, #0f3840, #054446, #084f47, #1c5a44);
+}

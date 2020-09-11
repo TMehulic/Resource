@@ -1,0 +1,11 @@
+.mainPane {
+    -fx-background-color:  #294f5f;
+}
+
+.rightPane {
+    -fx-background-color: #2e3841;
+}
+
+.leftPane {
+    -fx-background-color: #172d36;
+}

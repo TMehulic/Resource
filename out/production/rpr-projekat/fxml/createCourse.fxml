@@ -27,7 +27,7 @@
             </children>
         </Pane>
         <Button fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #32a57f;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
-      <VBox layoutX="142.0" layoutY="187.0" minWidth="-Infinity" prefHeight="236.0" prefWidth="317.0" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0">
+      <VBox layoutX="126.0" layoutY="152.0" minWidth="-Infinity" prefHeight="236.0" prefWidth="349.0" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="152.0">
          <children>
             <HBox prefHeight="25.0" prefWidth="317.0">
                <children>
@@ -69,6 +69,6 @@
             </TextArea>
          </children>
       </VBox>
-      <Button fx:id="btnCancel" layoutX="272.0" layoutY="436.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" />
+      <Button fx:id="btnCancel" layoutX="272.0" layoutY="436.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="220.0" />
     </children>
 </AnchorPane>

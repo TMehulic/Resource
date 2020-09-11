@@ -1,0 +1,45 @@
+.listView .scroll-bar:vertical .thumb,
+.listView .scroll-bar:horizontal .thumb{
+    -fx-background-color: #24785c;
+}
+
+.listView .scroll-bar:vertical .track,
+.listView .scroll-bar:horizontal .track {
+    -fx-background-color: #32a57f;
+}
+
+.listView .scroll-bar:vertical .increment-button ,
+.listView .scroll-bar:vertical .decrement-button ,
+.listView .scroll-bar:horizontal .decrement-button,
+.listView .scroll-bar:horizontal .increment-button{
+    -fx-background-color: #32a57f;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 0 0;
+    -fx-border-color: #32a57f;
+}
+
+.listView .scroll-bar:vertical .increment-arrow,
+.listView .scroll-bar:horizontal .increment-arrow{
+    -fx-opacity: 0;
+    -fx-background-color: #32a57f;
+    -fx-border-color: #32a57f;
+    -fx-padding: 0 3 0 3;
+}
+
+.listView .scroll-bar:vertical .decrement-arrow,
+.listView .scroll-bar:horizontal .decrement-arrow{
+    -fx-opacity: 0;
+    -fx-background-color: #32a57f;
+    -fx-border-color: #32a57f;
+    -fx-padding: 0 3 0 3;
+}
+
+.list-cell:empty {
+    -fx-background-color: #2e3841;
+}
+
+
+.listView {
+    -fx-border-radius: 50;
+    -fx-background-color: #32a57f;
+}

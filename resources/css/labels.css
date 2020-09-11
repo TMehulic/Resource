@@ -1,0 +1,16 @@
+.topLabel {
+    -fx-text-fill: #32a57f;
+    -fx-font-style: italic;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 42;
+}
+
+#labelDesc {
+    -fx-text-fill:#f8f5f5 ;
+    -fx-font-size: 16;
+    -fx-font-family: "Times New Roman";
+}
+
+#labelMaterials {
+    -fx-text-fill: white;
+}

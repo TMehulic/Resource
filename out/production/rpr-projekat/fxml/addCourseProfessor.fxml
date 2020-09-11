@@ -5,7 +5,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import java.net.URL?>
+<AnchorPane styleClass="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/buttons.css"/>
+        <URL value="@/css/panes.css"/>
+    </stylesheets>
     <children>
         <TableView fx:id="tableViewProfessors" layoutX="44.0" layoutY="45.0" prefHeight="314.0" prefWidth="510.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="41.0">
             <columns>
@@ -14,7 +19,7 @@
                 <TableColumn fx:id="colFirstName" prefWidth="190.0" text="Ime" />
             </columns>
         </TableView>
-        <Button fx:id="btnAddProfessor" layoutX="420.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Dodaj profesora " />
-      <Button fx:id="btnCancel" layoutX="306.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" />
+        <Button styleClass="confirmBtn" fx:id="btnAddProfessor" layoutX="420.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Dodaj profesora " />
+      <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="306.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" />
     </children>
 </AnchorPane>
