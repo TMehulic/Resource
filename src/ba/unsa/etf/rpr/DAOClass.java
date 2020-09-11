@@ -461,6 +461,34 @@ public class DAOClass {
         }
     }
 
+    public void createProfessor(Professor professor){
+        try {
+            ResultSet rs = getPersonId.executeQuery();
+            int profId = 1;
+            if(rs.next()) profId = rs.getInt(1);
+            addProfessor.setInt(1,profId);
+            addProfessor.setString(2,professor.getLastName());
+            addProfessor.setString(3,professor.getFirstName());
+            addProfessor.setString(4,professor.getFathersName());
+            addProfessor.setString(5,professor.getPlaceOfBirth());
+            addProfessor.setString(6,professor.getJmbg());
+            addProfessor.setString(7,professor.getPhone());
+            addProfessor.setString(8,professor.getEmail());
+            addProfessor.setString(9,professor.getImage());
+            addProfessor.setString(10,professor.getBirthDate().toString());
+            addProfessor.setString(11,professor.getGender().toString());
+            addProfessor.setNull(12,Types.NULL);
+            addProfessor.setInt(13,1);
+            addProfessor.executeUpdate();
+            createResidenceInfo(professor.getResidenceInfo(),profId);
+            createTitleInfo(professor.getTitleInfo(),profId);
+            professor.setId(profId);
+            createUser(professor);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void createResidenceInfo(ResidenceInfo resInfo,int personId){
         try {
             int resInfoId = 1;
@@ -489,6 +517,20 @@ public class DAOClass {
             addEducationInfo.setInt(5,eduInfo.getIndex());
             addEducationInfo.setInt(6,personId);
             addEducationInfo.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void createTitleInfo(TitleInfo titleInfo, int personId){
+        try{
+            int titleInfoId=1;
+            ResultSet rs = getTitleInfoId.executeQuery();
+            if(rs.next()) titleInfoId=rs.getInt(1);
+            addTitleInfo.setInt(1,titleInfoId);
+            addTitleInfo.setString(2,titleInfo.getTitle());
+            addTitleInfo.setInt(3,personId);
+            addTitleInfo.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
