@@ -22,6 +22,16 @@ public class Student extends Person {
         return educationInfo.getDegree();
     }
 
+    public int getYear(){
+        return educationInfo.getYear();
+    }
+
+    public int getCycle(){
+        return educationInfo.getCycle();
+    }
+
+
+
     public EducationInfo getEducationInfo() {
         return educationInfo;
     }

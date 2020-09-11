@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" style="-fx-background-color: #294f5f;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="143.0" layoutY="277.0" text="Admin" textFill="#33a37e">
@@ -16,6 +15,8 @@
       <Button fx:id="btnAddStudent" layoutX="727.0" layoutY="104.0" mnemonicParsing="false" text="Add new student" />
       <Button fx:id="btnAddProfessor" layoutX="727.0" layoutY="154.0" mnemonicParsing="false" text="Add new professor" />
       <Button fx:id="btnAddCourse" layoutX="727.0" layoutY="200.0" mnemonicParsing="false" text="Add predmet" />
-      <Button layoutX="727.0" layoutY="252.0" mnemonicParsing="false" text="asd" />
+      <Button fx:id="btnStudents" layoutX="727.0" layoutY="244.0" mnemonicParsing="false" text="Svi studenti" />
+      <Button fx:id="btnProfessors" layoutX="730.0" layoutY="288.0" mnemonicParsing="false" text="Svi profesori" />
+      <Button fx:id="btnCourses" layoutX="725.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Svi kursevi" />
    </children>
 </AnchorPane>

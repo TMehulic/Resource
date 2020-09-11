@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
@@ -12,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class CreateProfessorController {
 
@@ -89,21 +93,23 @@ public class CreateProfessorController {
         saveImage(lastName,firstName);
 
         TitleInfo titleInfo = new TitleInfo(title);
-//        AdminController ctrl = new AdminController();
-//        loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
-//        loader.setController(ctrl);
-//        Main.getGuiStage().setTitle("Admin");
-//        try {
-//            Parent root = loader.load();
-//            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//            Main.getGuiStage().show();
-//            Main.getGuiStage().setResizable(false);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
 
         Professor professor=new Professor(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,titleInfo);
         dao.createProfessor(professor);
+
+        AdminController ctrl = new AdminController();
+        loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
+        loader.setController(ctrl);
+        Main.getGuiStage().setTitle("Admin");
+        try {
+            Parent root = loader.load();
+            Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().show();
+            Main.getGuiStage().setResizable(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

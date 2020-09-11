@@ -15,6 +15,12 @@ public class Course {
         this.description=desc;
     }
 
+    public Course(String name, String description, int ects) {
+        this.name = name;
+        this.description = description;
+        this.ects = ects;
+    }
+
     public int getId() {
         return id;
     }

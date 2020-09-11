@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,6 +39,7 @@ public class DAOClass {
     private PreparedStatement getStudentsOnCourse;
     private PreparedStatement getStudentsNotOnCourse;
     private PreparedStatement getNextUserId;
+    private PreparedStatement getCourseId;
 
     private PreparedStatement addCourseMaterial;
     private PreparedStatement addCourseNews;
@@ -48,8 +50,16 @@ public class DAOClass {
     private PreparedStatement addResidenceInfo;
     private PreparedStatement addTitleInfo;
     private PreparedStatement addUser;
+    private PreparedStatement addCourse;
 
     private PreparedStatement removeStudentFromCourse;
+    private PreparedStatement removeStudent;
+    private PreparedStatement removeProfessor;
+    private PreparedStatement removeEduInfo;
+    private PreparedStatement removeResInfo;
+    private PreparedStatement removeTitInfo;
+    private PreparedStatement removeUser;
+    private PreparedStatement removeStudentFromCourses;
 
     private PreparedStatement checkIfStudent ;
     private PreparedStatement checkIfProfessor;
@@ -112,6 +122,7 @@ public class DAOClass {
             getResidenceInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM residenceInfo");
             getTitleInfoId = conn.prepareStatement("SELECT MAX(id)+1 FROM titleInfo");
             getNextUserId = conn.prepareStatement("SELECT MAX(id)+1 FROM user");
+            getCourseId = conn.prepareStatement("SELECT MAX(id)+1 FROM course");
 
             addCourseMaterial = conn.prepareStatement("INSERT INTO courseMaterials VALUES (?,?,?,?)");
             addCourseNews = conn.prepareStatement("INSERT INTO courseNews VALUES (?,?,?,?)");
@@ -122,8 +133,17 @@ public class DAOClass {
             addResidenceInfo = conn.prepareStatement("INSERT INTO residenceInfo VALUES (?,?,?,?,?)");
             addTitleInfo = conn.prepareStatement("INSERT INTO titleInfo VALUES (?,?,?)");
             addUser = conn.prepareStatement("INSERT INTO user VALUES(?,?,?,?)");
+            addCourse = conn.prepareStatement("INSERT INTO course VALUES(?,?,?,?)");
 
             removeStudentFromCourse = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=? AND courseId=?");
+            removeStudent = conn.prepareStatement("DELETE FROM person WHERE id=?");
+            removeProfessor = conn.prepareStatement("DELETE FROM person WHERE id=?");
+            removeEduInfo = conn.prepareStatement("DELETE FROM educationInfo WHERE personId=?");
+            removeResInfo = conn.prepareStatement("DELETE FROM residenceInfo WHERE personId=?");
+            removeTitInfo = conn.prepareStatement("DELETE FROM titleInfo WHERE personId=?");
+            removeUser = conn.prepareStatement("DELETE FROM user WHERE personId=?");
+            removeStudentFromCourses = conn.prepareStatement("DELETE FROM courseStudent WHERE personId=?");
+
 
             checkIfStudent = conn.prepareStatement("SELECT * FROM person WHERE id=? AND student IS NOT NULL");
             checkIfProfessor = conn.prepareStatement("SELECT * FROM person WHERE id=? AND professor IS NOT NULL");
@@ -272,7 +292,7 @@ public class DAOClass {
         return news;
     }
 
-    public ArrayList<Student> getStudents(){
+    public ObservableList<Student> getStudents(){
         ArrayList<Student> students=new ArrayList<>();
         try {
             ResultSet rs=getStudents.executeQuery();
@@ -282,7 +302,7 @@ public class DAOClass {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return students;
+        return FXCollections.observableArrayList(students);
     }
 
     public Person getUser(String email, String password){
@@ -557,4 +577,39 @@ public class DAOClass {
         pass = user.getEmail().substring(0,lastIndex)+"123";
         return pass;
     }
+
+    public void createCourse(Course course){
+        try {
+            int courseId=1;
+            ResultSet rs = getCourseId.executeQuery();
+            if(rs.next()) courseId = rs.getInt(1);
+            addCourse.setInt(1,courseId);
+            addCourse.setString(2,course.getName());
+            addCourse.setString(3,course.getDescription());
+            addCourse.setInt(4,course.getEcts());
+            addCourse.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void removeStudent(Student student){
+        try {
+            removeStudent.setInt(1,student.getId());
+            removeEduInfo.setInt(1,student.getId());
+            removeResInfo.setInt(1,student.getId());
+            removeUser.setInt(1,student.getId());
+            removeStudentFromCourses.setInt(1,student.getId());
+            removeStudent.executeUpdate();
+            removeEduInfo.executeUpdate();
+            removeResInfo.executeUpdate();
+            removeUser.executeUpdate();
+            removeStudentFromCourses.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+
 }

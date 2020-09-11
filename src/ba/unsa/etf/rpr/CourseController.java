@@ -188,7 +188,7 @@ public class CourseController {
     private EventHandler<ActionEvent> showStudents = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
-            StudentsListController ctrl = new StudentsListController(courseId);
+            ListCourseStudentsController ctrl = new ListCourseStudentsController(courseId);
             loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"));
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Students");
