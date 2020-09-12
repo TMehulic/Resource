@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="539.0" prefWidth="600.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="539.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/create.css" />
+        <URL value="@/css/validations.css" />
+        <URL value="@/css/labels.css" />
+        <URL value="@/css/buttons.css"/>
+        <URL value="@/css/panes.css"/>
     </stylesheets>
     <children>
-        <Pane prefHeight="90.0" prefWidth="963.0" style="-fx-background-color: #172d36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane styleClass="mainPane" prefHeight="90.0" prefWidth="963.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="45.0" layoutY="36.0" text="Create new course" textFill="#32a57f">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
+                <Label styleClass="topLabel" layoutX="45.0" layoutY="36.0" text="Create new course">
                 </Label>
             </children>
         </Pane>
-        <Button fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #32a57f;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
+        <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Confirm"  AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
       <VBox layoutX="126.0" layoutY="152.0" minWidth="-Infinity" prefHeight="236.0" prefWidth="349.0" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="152.0">
          <children>
             <HBox prefHeight="25.0" prefWidth="317.0">
@@ -69,6 +69,7 @@
             </TextArea>
          </children>
       </VBox>
-      <Button fx:id="btnCancel" layoutX="272.0" layoutY="436.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="220.0" />
+      <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="272.0" layoutY="436.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="220.0" />
+      <Label id="errorLabel" fx:id="errorLabel" layoutX="140.0" layoutY="388.0" prefHeight="17.0" prefWidth="322.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="140.0" />
     </children>
 </AnchorPane>

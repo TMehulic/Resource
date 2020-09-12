@@ -38,4 +38,21 @@ public class InputValidator {
     public boolean isCorrectTitle(String title){
         return title.length()>0;
     }
+
+    public boolean isCorrectEcts(String ects){
+        try{
+            int value = Integer.parseInt(ects);
+            return value>0;
+        }catch (NumberFormatException e){
+            return false;
+        }
+    }
+
+    public boolean isCorrectDegree(String degree){
+        return degree.length()>0;
+    }
+
+    public boolean isCorrectIndex(String index){
+        return index.length()==5 && Pattern.compile("^\\d{13}$").matcher(index).find();
+    }
 }

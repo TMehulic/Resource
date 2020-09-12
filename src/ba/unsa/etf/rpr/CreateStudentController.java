@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 
-public class CreateStudentController {
+public class CreateStudentController implements IValidateInputs {
 
     private FXMLLoader loader;
     private DAOClass dao;
@@ -50,10 +50,14 @@ public class CreateStudentController {
     public Button btnConfirm;
     public Button btnCancel;
 
+    public Label errorLabel;
+
+    private InputValidator validator;
 
 
 
     public CreateStudentController() {
+        validator=new InputValidator();
     }
 
     @FXML
@@ -69,6 +73,143 @@ public class CreateStudentController {
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
 
+        setListeners();
+
+    }
+
+    @Override
+    public void setListeners() {
+        fldName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldName.getStyleClass().removeAll("invalid");
+                fldName.getStyleClass().add("valid");
+            }else{
+                fldName.getStyleClass().removeAll("valid");
+                fldName.getStyleClass().add("invalid");
+            }
+        });
+
+        fldFathersName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldFathersName.getStyleClass().removeAll("invalid");
+                fldFathersName.getStyleClass().add("valid");
+            }else{
+                fldFathersName.getStyleClass().removeAll("valid");
+                fldFathersName.getStyleClass().add("invalid");
+            }
+        });
+
+        fldLastName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldLastName.getStyleClass().removeAll("invalid");
+                fldLastName.getStyleClass().add("valid");
+            }else{
+                fldLastName.getStyleClass().removeAll("valid");
+                fldLastName.getStyleClass().add("invalid");
+            }
+        });
+
+        fldBirthPlace.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectBirthPlace(newValue)){
+                fldBirthPlace.getStyleClass().removeAll("invalid");
+                fldBirthPlace.getStyleClass().add("valid");
+            }else{
+                fldBirthPlace.getStyleClass().removeAll("valid");
+                fldBirthPlace.getStyleClass().add("invalid");
+            }
+        });
+
+        fldJmbg.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectJMBG(newValue)){
+                fldJmbg.getStyleClass().removeAll("invalid");
+                fldJmbg.getStyleClass().add("valid");
+            }else{
+                fldJmbg.getStyleClass().removeAll("valid");
+                fldJmbg.getStyleClass().add("invalid");
+            }
+        });
+
+
+        fldPhone.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectPhone(newValue)){
+                fldPhone.getStyleClass().removeAll("invalid");
+                fldPhone.getStyleClass().add("valid");
+            }else{
+                fldPhone.getStyleClass().removeAll("valid");
+                fldPhone.getStyleClass().add("invalid");
+            }
+        });
+
+        fldEmail.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectEmail(newValue)){
+                fldEmail.getStyleClass().removeAll("invalid");
+                fldEmail.getStyleClass().add("valid");
+            }else{
+                fldEmail.getStyleClass().removeAll("valid");
+                fldEmail.getStyleClass().add("invalid");
+            }
+        });
+
+
+        fldAdress.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectAdress(newValue)){
+                fldAdress.getStyleClass().removeAll("invalid");
+                fldAdress.getStyleClass().add("valid");
+            }else{
+                fldAdress.getStyleClass().removeAll("valid");
+                fldAdress.getStyleClass().add("invalid");
+            }
+        });
+
+        fldCounty.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectCounty(newValue)){
+                fldCounty.getStyleClass().removeAll("invalid");
+                fldCounty.getStyleClass().add("valid");
+            }else{
+                fldCounty.getStyleClass().removeAll("valid");
+                fldCounty.getStyleClass().add("invalid");
+            }
+        });
+
+        fldDegree.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectDegree(newValue)){
+                fldDegree.getStyleClass().removeAll("invalid");
+                fldDegree.getStyleClass().add("valid");
+            }else{
+                fldDegree.getStyleClass().removeAll("valid");
+                fldDegree.getStyleClass().add("invalid");
+            }
+        });
+
+        fldIndex.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectIndex(newValue)){
+                fldIndex.getStyleClass().removeAll("invalid");
+                fldIndex.getStyleClass().add("valid");
+            }else{
+                fldIndex.getStyleClass().removeAll("valid");
+                fldIndex.getStyleClass().add("invalid");
+            }
+        });
+
+    }
+
+    @Override
+    public void checkInputs() throws InvalidInputException {
+        if(!validator.isCorrectName(fldName.getText())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fldLastName.getText())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fldFathersName.getText())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectAdress(fldAdress.getText())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
+        if(!validator.isCorrectCounty(fldCounty.getText())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
+        if(!validator.isCorrectBirthPlace(fldBirthPlace.getText())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
+        if(!validator.isCorrectEmail(fldEmail.getText())) throw new InvalidInputException("Molimo unesite validan email.");
+        if(!validator.isCorrectPhone(fldPhone.getText())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
+        if(!validator.isCorrectJMBG(fldJmbg.getText())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
+        if(!validator.isCorrectIndex(fldIndex.getText())) throw new InvalidInputException("Molimo unesite ispravan index.");
+        if(!validator.isCorrectDegree(fldDegree.getText())) throw new InvalidInputException("Molimo unesite smjer.");
+        if(pickerDate.getValue()==null) throw new InvalidInputException("Molimo unesite datum rođenja");
+        if(cbCanton.getSelectionModel().isEmpty()) throw new InvalidInputException("Molimo izaberite kanton.");
+        if(!tgGender.getSelectedToggle().isSelected()) throw new InvalidInputException("Molimo izaberite spol.");
+        if(image==null) throw new InvalidInputException("Molimo izaberite sliku.");
 
     }
 
@@ -82,46 +223,50 @@ public class CreateStudentController {
 
     public void createStudent(ActionEvent actionEvent){
 
-        //Guess da je input good
-        String lastName = fldLastName.getText();
-        String fathersName = fldFathersName.getText();
-        String firstName = fldName.getText();
-        String birthPlace = fldBirthPlace.getText();
-        String jmbg = fldJmbg.getText();
-        LocalDate date = pickerDate.getValue();
-        String phone = fldPhone.getText();
-        String mail = fldEmail.getText();
-        Gender gender=Gender.MALE;
-        if(tgGender.getSelectedToggle()!=null){
-            RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
-            if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
-                gender=Gender.MALE;
-            }else{
-                gender=Gender.FEMALE;
+        try{
+            checkInputs();
+
+            String lastName = fldLastName.getText();
+            String fathersName = fldFathersName.getText();
+            String firstName = fldName.getText();
+            String birthPlace = fldBirthPlace.getText();
+            String jmbg = fldJmbg.getText();
+            LocalDate date = pickerDate.getValue();
+            String phone = fldPhone.getText();
+            String mail = fldEmail.getText();
+            Gender gender=Gender.MALE;
+            if(tgGender.getSelectedToggle()!=null){
+                RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
+                if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
+                    gender=Gender.MALE;
+                }else{
+                    gender=Gender.FEMALE;
+                }
             }
+
+
+            String adress = fldAdress.getText();
+            String county = fldCounty.getText();
+            Canton canton = cbCanton.getValue();
+
+            ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
+
+
+            String degree = fldDegree.getText();
+            int index = Integer.parseInt(fldIndex.getText());
+            int cycle = cbCycle.getValue();
+            int year = cbYear.getValue();
+
+            saveImage(lastName,firstName);
+
+            EducationInfo eduInfo = new EducationInfo(degree,cycle,year,index);
+
+            Student student=new Student(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,eduInfo);
+            dao.createStudent(student);
+            AdminController.returnToDashboard();
+        }catch (Exception e){
+            errorLabel.setText(e.getMessage());
         }
-
-
-        String adress = fldAdress.getText();
-        String county = fldCounty.getText();
-        Canton canton = cbCanton.getValue();
-
-        ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
-
-
-        String degree = fldDegree.getText();
-        int index = Integer.parseInt(fldIndex.getText());
-        int cycle = cbCycle.getValue();
-        int year = cbYear.getValue();
-
-        //todo : ako je proslo sve provjere
-        saveImage(lastName,firstName);
-
-        EducationInfo eduInfo = new EducationInfo(degree,cycle,year,index);
-
-        Student student=new Student(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,eduInfo);
-        dao.createStudent(student);
-        AdminController.returnToDashboard();
 
     }
 

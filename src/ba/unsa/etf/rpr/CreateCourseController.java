@@ -20,8 +20,11 @@ public class CreateCourseController implements IValidateInputs {
 
     public Label errorLabel;
 
+    private InputValidator validator;
+
 
     public CreateCourseController() {
+        validator=new InputValidator();
     }
 
     @FXML
@@ -34,7 +37,7 @@ public class CreateCourseController implements IValidateInputs {
 
     public void setListeners(){
         fldCourseName.textProperty().addListener((obs,oldValue,newValue)->{
-            if(isCorrectName(newValue)){
+            if(validator.isCorrectName(newValue)){
                 fldCourseName.getStyleClass().removeAll("invalid");
                 fldCourseName.getStyleClass().add("valid");
             }else{
@@ -44,7 +47,7 @@ public class CreateCourseController implements IValidateInputs {
         });
 
         fldEcts.textProperty().addListener((obs,oldValue,newValue)->{
-            if(isCorrectEcts(newValue)){
+            if(validator.isCorrectEcts(newValue)){
                 fldEcts.getStyleClass().removeAll("invalid");
                 fldEcts.getStyleClass().add("valid");
             }else{
@@ -64,18 +67,6 @@ public class CreateCourseController implements IValidateInputs {
         });
     }
 
-    private boolean isCorrectName(String newValue) {
-        return newValue.length() >= 3;
-    }
-
-    private boolean isCorrectEcts(String ects){
-        try{
-            int value = Integer.parseInt(ects);
-            return value>0;
-        }catch (NumberFormatException e){
-            return false;
-        }
-    }
 
     private EventHandler<ActionEvent> addCourse = new EventHandler<ActionEvent>() {
         @Override
@@ -95,8 +86,8 @@ public class CreateCourseController implements IValidateInputs {
     };
 
     public void checkInputs() throws InvalidInputException{
-        if(!isCorrectName(fldCourseName.getText())) throw new InvalidInputException("Naziv kursa mora imati barem 3 znaka.");
-        if(!isCorrectEcts(fldEcts.getText())) throw new InvalidInputException("ECTS mora biti pozitivan broj.");
+        if(!validator.isCorrectName(fldCourseName.getText())) throw new InvalidInputException("Naziv kursa mora imati barem 3 znaka.");
+        if(!validator.isCorrectEcts(fldEcts.getText())) throw new InvalidInputException("ECTS mora biti pozitivan broj.");
     }
 
     private EventHandler<ActionEvent> cancelAction = new EventHandler<ActionEvent>() {

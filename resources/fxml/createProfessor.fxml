@@ -203,7 +203,7 @@
                 </VBox>
             </children>
         </GridPane>
-        <GridPane layoutX="519.0" layoutY="372.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
+        <GridPane layoutX="519.0" layoutY="355.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
@@ -233,4 +233,5 @@
     </children>
     <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0"  text="Confirm"  AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
     <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
+    <Label id="errorLabel" fx:id="errorLabel" layoutX="538.0" layoutY="501.0" prefHeight="18.0" prefWidth="298.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="127.0" />
 </AnchorPane>

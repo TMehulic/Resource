@@ -17,17 +17,18 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.DatePicker?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="935.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="935.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/create.css" />
+        <URL value="@/css/validations.css" />
+        <URL value="@/css/labels.css" />
+        <URL value="@/css/buttons.css"/>
+        <URL value="@/css/panes.css"/>
     </stylesheets>
     <children>
-        <Pane prefHeight="72.0" prefWidth="935.0" style="-fx-background-color: #172d36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane styleClass="mainPane" prefHeight="90.0" prefWidth="935.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="45.0" layoutY="36.0" text="Create new professor" textFill="#32a57f">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
+                <Label styleClass="topLabel" layoutX="45.0" layoutY="36.0" text="Create new professor">
                 </Label>
             </children>
         </Pane>
@@ -202,7 +203,7 @@
                 </VBox>
             </children>
         </GridPane>
-        <GridPane layoutX="519.0" layoutY="372.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
+        <GridPane layoutX="519.0" layoutY="360.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
@@ -230,6 +231,7 @@
             </children>
         </GridPane>
     </children>
-    <Button fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #32a57f;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
-    <Button fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
+    <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0"  text="Confirm"  AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
+    <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
+    <Label id="errorLabel" fx:id="errorLabel" layoutX="538.0" layoutY="501.0" prefHeight="18.0" prefWidth="298.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="127.0" />
 </AnchorPane>

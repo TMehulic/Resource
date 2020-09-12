@@ -15,255 +15,256 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="935.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets>
-      <URL value="@/css/create.css" />
-   </stylesheets>
-   <children>
-      <Pane prefHeight="90.0" prefWidth="963.0" style="-fx-background-color: #172d36;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label layoutX="45.0" layoutY="36.0" text="Create new student" textFill="#32a57f">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <GridPane layoutX="72.0" layoutY="183.0" prefHeight="378.0" prefWidth="356.0" styleClass="personalInfo" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="507.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="191.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
-               <children>
-                  <Label text="Prezime">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldLastName">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Ime oca">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldFathersName">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label layoutX="20.0" layoutY="82.0" text="Ime">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldName" layoutX="20.0" layoutY="109.0">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Mjesto rođenja">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldBirthPlace">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Spol">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ButtonBar fx:id="rbtnGender" prefHeight="40.0" prefWidth="200.0">
-                    <buttons>
-                        <RadioButton fx:id="btnMale" mnemonicParsing="false" text="Muško" />
-                        <RadioButton fx:id="btnFemale" mnemonicParsing="false" text="Žensko" />
-                    </buttons>
-                  </ButtonBar>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
-               <children>
-                  <Label text="JMBG">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldJmbg">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Datum rođenja">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <DatePicker fx:id="pickerDate">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </DatePicker>
-                  <Label layoutX="20.0" layoutY="82.0" text="Mobitel">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldPhone" layoutX="20.0" layoutY="109.0">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Email">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldEmail">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Button fx:id="btnUpload" mnemonicParsing="false" text="Odaberi sliku ...">
-                     <VBox.margin>
-                        <Insets left="70.0" top="20.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </VBox>
-         </children>
-      </GridPane>
-      <GridPane layoutX="519.0" layoutY="183.0" prefHeight="128.0" prefWidth="200.0" styleClass="adressInfo" AnchorPane.rightAnchor="64.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
-               <children>
-                  <Label text="Adresa">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldAdress">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Kanton">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="cbCanton" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
-               <children>
-                  <Label text="Općina">
-                     <VBox.margin>
-                        <Insets left="10.0" top="7.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldCounty">
-                     <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-      <GridPane layoutX="519.0" layoutY="372.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
-               <children>
-                  <Label text="Smjer">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldDegree">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label text="Broj indexa">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="fldIndex">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
-               <children>
-                  <Label text="Ciklus studija">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="cbCycle" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <Label text="Godina studija">
-                     <VBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="cbYear" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-      <Button fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createStudent" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #32a57f;" text="Confirm" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
-      <Button fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
-   </children>
+    <stylesheets>
+        <URL value="@/css/create.css" />
+        <URL value="@/css/validations.css" />
+        <URL value="@/css/labels.css" />
+        <URL value="@/css/buttons.css" />
+        <URL value="@/css/panes.css" />
+    </stylesheets>
+    <children>
+        <Pane prefHeight="90.0" prefWidth="963.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="45.0" layoutY="36.0" styleClass="topLabel" text="Create new student">
+                </Label>
+            </children>
+        </Pane>
+        <GridPane layoutX="97.0" layoutY="156.0" prefHeight="378.0" prefWidth="356.0" styleClass="personalInfo" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="510.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="191.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="Prezime">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldLastName">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Ime oca">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldFathersName">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label layoutX="20.0" layoutY="82.0" text="Ime">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldName" layoutX="20.0" layoutY="109.0">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Mjesto rođenja">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldBirthPlace">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Spol">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ButtonBar fx:id="rbtnGender" prefHeight="40.0" prefWidth="200.0">
+                            <buttons>
+                                <RadioButton fx:id="btnMale" mnemonicParsing="false" text="Muško" />
+                                <RadioButton fx:id="btnFemale" mnemonicParsing="false" text="Žensko" />
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="JMBG">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldJmbg">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Datum rođenja">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="pickerDate">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </DatePicker>
+                        <Label layoutX="20.0" layoutY="82.0" text="Mobitel">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldPhone" layoutX="20.0" layoutY="109.0">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Email">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldEmail">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Button fx:id="btnUpload" mnemonicParsing="false" text="Odaberi sliku ...">
+                            <VBox.margin>
+                                <Insets left="70.0" top="20.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </VBox>
+            </children>
+        </GridPane>
+        <GridPane layoutX="519.0" layoutY="156.0" prefHeight="128.0" prefWidth="200.0" styleClass="adressInfo" AnchorPane.rightAnchor="64.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="Adresa">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldAdress">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Kanton">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="cbCanton" prefWidth="150.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </ChoiceBox>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="Općina">
+                            <VBox.margin>
+                                <Insets left="10.0" top="7.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldCounty">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+        <GridPane layoutX="519.0" layoutY="315.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="Smjer">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldDegree">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Label text="Broj indexa">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="fldIndex">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                    <children>
+                        <Label text="Ciklus studija">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="cbCycle" prefWidth="150.0">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </ChoiceBox>
+                        <Label text="Godina studija">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="cbYear" prefWidth="150.0">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </ChoiceBox>
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+        <Button fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createStudent" prefHeight="25.0" prefWidth="97.0" styleClass="confirmBtn" text="Confirm" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
+        <Button fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="cancelBtn" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
+        <Label id="errorLabel" fx:id="errorLabel" layoutX="538.0" layoutY="501.0" prefHeight="18.0" prefWidth="298.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="127.0" />
+    </children>
 </AnchorPane>
