@@ -1,0 +1,17 @@
+.valid{
+    -fx-border-color:#32a57f;
+    -fx-border-width: 1;
+}
+
+.valid:selected{
+    -fx-border-color:#32a57f;
+}
+
+.invalid{
+    -fx-border-color:#a53258;
+    -fx-border-width: 1;
+}
+
+.invalid:selected{
+    -fx-border-color:#a53258;
+}

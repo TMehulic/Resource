@@ -5,6 +5,10 @@
     -fx-font-size: 42;
 }
 
+#errorLabel {
+    -fx-text-fill: #a53258;
+}
+
 #infoLabel {
     -fx-text-fill: #5b8198;
 }

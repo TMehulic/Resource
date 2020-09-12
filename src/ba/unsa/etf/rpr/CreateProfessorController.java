@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
@@ -15,9 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class CreateProfessorController {
+
+public class CreateProfessorController implements IValidateInputs {
 
     private FXMLLoader loader;
     private DAOClass dao;
@@ -43,8 +41,12 @@ public class CreateProfessorController {
     public TextField fldCounty;
 
     public TextField fldTitle;
+    public Label errorLabel;
+
+    private InputValidator validator;
 
     public CreateProfessorController() {
+        validator=new InputValidator();
     }
 
     @FXML
@@ -57,51 +59,177 @@ public class CreateProfessorController {
         tgGender.getToggles().addAll(btnMale,btnFemale);
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
+        setListeners();
 
     }
 
     public void createProfessor(ActionEvent actionEvent){
+        try{
+            checkInputs();
 
-        //Guess da je input good
-        String lastName = fldLastName.getText();
-        String fathersName = fldFathersName.getText();
-        String firstName = fldName.getText();
-        String birthPlace = fldBirthPlace.getText();
-        String jmbg = fldJmbg.getText();
-        LocalDate date = pickerDate.getValue();
-        String phone = fldPhone.getText();
-        String mail = fldEmail.getText();
-        Gender gender=Gender.MALE;
-        if(tgGender.getSelectedToggle()!=null){
-            RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
-            if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
-                gender=Gender.MALE;
-            }else{
-                gender=Gender.FEMALE;
+            String lastName = fldLastName.getText();
+            String fathersName = fldFathersName.getText();
+            String firstName = fldName.getText();
+            String birthPlace = fldBirthPlace.getText();
+            String jmbg = fldJmbg.getText();
+            LocalDate date = pickerDate.getValue();
+            String phone = fldPhone.getText();
+            String mail = fldEmail.getText();
+            Gender gender=Gender.MALE;
+            if(tgGender.getSelectedToggle()!=null){
+                RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
+                if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
+                    gender=Gender.MALE;
+                }else{
+                    gender=Gender.FEMALE;
+                }
             }
+
+            String adress = fldAdress.getText();
+            String county = fldCounty.getText();
+            Canton canton = cbCanton.getValue();
+            ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
+
+
+            String title = fldTitle.getText();
+            TitleInfo titleInfo = new TitleInfo(title);
+
+            saveImage(lastName,firstName);
+
+
+            Professor professor=new Professor(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,titleInfo);
+            dao.createProfessor(professor);
+
+            AdminController.returnToDashboard();
+        }catch (Exception e){
+            errorLabel.setText(e.getMessage());
         }
 
-
-        String adress = fldAdress.getText();
-        String county = fldCounty.getText();
-        Canton canton = cbCanton.getValue();
-
-        ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
+    }
 
 
-        String title = fldTitle.getText();
+    @Override
+    public void setListeners() {
+        fldName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldName.getStyleClass().removeAll("invalid");
+                fldName.getStyleClass().add("valid");
+            }else{
+                fldName.getStyleClass().removeAll("valid");
+                fldName.getStyleClass().add("invalid");
+            }
+        });
 
-        //todo : ako je proslo sve provjere
-        saveImage(lastName,firstName);
+        fldFathersName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldFathersName.getStyleClass().removeAll("invalid");
+                fldFathersName.getStyleClass().add("valid");
+            }else{
+                fldFathersName.getStyleClass().removeAll("valid");
+                fldFathersName.getStyleClass().add("invalid");
+            }
+        });
 
-        TitleInfo titleInfo = new TitleInfo(title);
+        fldLastName.textProperty().addListener((obs,oldName,newName)->{
+            if(validator.isCorrectName(newName)){
+                fldLastName.getStyleClass().removeAll("invalid");
+                fldLastName.getStyleClass().add("valid");
+            }else{
+                fldLastName.getStyleClass().removeAll("valid");
+                fldLastName.getStyleClass().add("invalid");
+            }
+        });
+
+        fldBirthPlace.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectBirthPlace(newValue)){
+                fldBirthPlace.getStyleClass().removeAll("invalid");
+                fldBirthPlace.getStyleClass().add("valid");
+            }else{
+                fldBirthPlace.getStyleClass().removeAll("valid");
+                fldBirthPlace.getStyleClass().add("invalid");
+            }
+        });
+
+        fldJmbg.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectJMBG(newValue)){
+                fldJmbg.getStyleClass().removeAll("invalid");
+                fldJmbg.getStyleClass().add("valid");
+            }else{
+                fldJmbg.getStyleClass().removeAll("valid");
+                fldJmbg.getStyleClass().add("invalid");
+            }
+        });
 
 
-        Professor professor=new Professor(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,titleInfo);
-        dao.createProfessor(professor);
+        fldPhone.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectPhone(newValue)){
+                fldPhone.getStyleClass().removeAll("invalid");
+                fldPhone.getStyleClass().add("valid");
+            }else{
+                fldPhone.getStyleClass().removeAll("valid");
+                fldPhone.getStyleClass().add("invalid");
+            }
+        });
 
-        AdminController.returnToDashboard();
+        fldEmail.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectEmail(newValue)){
+                fldEmail.getStyleClass().removeAll("invalid");
+                fldEmail.getStyleClass().add("valid");
+            }else{
+                fldEmail.getStyleClass().removeAll("valid");
+                fldEmail.getStyleClass().add("invalid");
+            }
+        });
 
+
+        fldAdress.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectAdress(newValue)){
+                fldAdress.getStyleClass().removeAll("invalid");
+                fldAdress.getStyleClass().add("valid");
+            }else{
+                fldAdress.getStyleClass().removeAll("valid");
+                fldAdress.getStyleClass().add("invalid");
+            }
+        });
+
+        fldCounty.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectCounty(newValue)){
+                fldCounty.getStyleClass().removeAll("invalid");
+                fldCounty.getStyleClass().add("valid");
+            }else{
+                fldCounty.getStyleClass().removeAll("valid");
+                fldCounty.getStyleClass().add("invalid");
+            }
+        });
+
+        fldTitle.textProperty().addListener((obs,oldValue,newValue)->{
+            if(validator.isCorrectTitle(newValue)){
+                fldTitle.getStyleClass().removeAll("invalid");
+                fldTitle.getStyleClass().add("valid");
+            }else{
+                fldTitle.getStyleClass().removeAll("valid");
+                fldTitle.getStyleClass().add("invalid");
+            }
+        });
+    }
+
+
+    @Override
+    public void checkInputs() throws InvalidInputException {
+        if(!validator.isCorrectName(fldName.getText())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fldLastName.getText())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fldFathersName.getText())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectAdress(fldAdress.getText())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
+        if(!validator.isCorrectCounty(fldCounty.getText())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
+        if(!validator.isCorrectBirthPlace(fldBirthPlace.getText())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
+        if(!validator.isCorrectEmail(fldEmail.getText())) throw new InvalidInputException("Molimo unesite validan email.");
+        if(!validator.isCorrectPhone(fldPhone.getText())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
+        if(!validator.isCorrectJMBG(fldJmbg.getText())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
+        if(!validator.isCorrectTitle(fldTitle.getText())) throw new InvalidInputException("Molimo unesite titulu");
+        if(pickerDate.getValue()==null) throw new InvalidInputException("Molimo unesite datum rođenja");
+        if(cbCanton.getSelectionModel().isEmpty()) throw new InvalidInputException("Molimo izaberite kanton.");
+        if(!tgGender.getSelectedToggle().isSelected()) throw new InvalidInputException("Molimo izaberite spol.");
+        if(image==null) throw new InvalidInputException("Molimo izaberite sliku.");
     }
 
     private EventHandler<ActionEvent> cancelAction = new EventHandler<ActionEvent>() {
@@ -150,5 +278,6 @@ public class CreateProfessorController {
         }
         return fileName.substring(lastIndexOf);
     }
+
 
 }
