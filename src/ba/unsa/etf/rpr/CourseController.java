@@ -21,6 +21,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -85,6 +86,7 @@ public class CourseController {
                 newsList.add(new CourseNews(e.getKey(),e.getValue().get(i)));
             }
         }
+        newsList = newsList.stream().sorted((s1,s2)->s2.getDate().compareTo(s1.getDate())).collect(Collectors.toList());
         listNews.setItems(FXCollections.observableArrayList(newsList));
         listNews.setCellFactory(courseNewsListView->new CourseNewsListCell());
     }
@@ -163,7 +165,7 @@ public class CourseController {
             if(result.isPresent()){
                 CourseNews news=new CourseNews(LocalDate.now(),result.get());
                 dao.addCourseNews(news,getCourseId());
-                listNews.getItems().add(news);
+                listNews.getItems().add(0,news);
             }
         }
     };
