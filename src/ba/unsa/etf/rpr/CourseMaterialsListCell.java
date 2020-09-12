@@ -63,8 +63,6 @@ public class CourseMaterialsListCell extends ListCell<CourseMaterial> {
 
     private void setIcon(CourseMaterial material){
         String ext = getExtension(material.getPath());
-        System.out.println(ext);
-        System.out.println(material.getPath());
         Image img = null;
         if(Arrays.asList(textExt).contains(ext)) {
             img = new Image("images/icons/txt.png");

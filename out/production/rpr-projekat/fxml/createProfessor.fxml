@@ -203,7 +203,7 @@
                 </VBox>
             </children>
         </GridPane>
-        <GridPane layoutX="519.0" layoutY="360.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
+        <GridPane layoutX="519.0" layoutY="355.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />

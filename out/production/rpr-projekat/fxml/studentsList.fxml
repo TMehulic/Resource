@@ -17,6 +17,7 @@
         <URL value="@/css/buttons.css" />
         <URL value="@/css/listView.css" />
         <URL value="@/css/labels.css" />
+        <URL value="@/css/tableView.css"/>
     </stylesheets>
     <children>
         <AnchorPane styleClass="rightPane" layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">

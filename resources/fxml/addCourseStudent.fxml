@@ -11,6 +11,7 @@
     <stylesheets>
         <URL value="@/css/buttons.css"/>
         <URL value="@/css/panes.css"/>
+        <URL value="@/css/tableView.css"/>
     </stylesheets>
     <children>
       <TableView fx:id="tableViewStudents" layoutX="44.0" layoutY="45.0" prefHeight="314.0" prefWidth="510.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="41.0">
