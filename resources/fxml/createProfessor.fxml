@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.DatePicker?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="935.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -28,7 +27,7 @@
     <children>
         <Pane styleClass="mainPane" prefHeight="90.0" prefWidth="935.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label styleClass="topLabel" layoutX="45.0" layoutY="36.0" text="Create new professor">
+                <Label styleClass="topLabel" layoutX="45.0" layoutY="36.0" text="%addNewProfessor">
                 </Label>
             </children>
         </Pane>
@@ -45,7 +44,7 @@
             <children>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowSpan="3">
                     <children>
-                        <Label text="Prezime">
+                        <Label text="%lastName">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -55,7 +54,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label text="Ime oca">
+                        <Label text="%fathersName">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -65,7 +64,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label layoutX="20.0" layoutY="82.0" text="Ime">
+                        <Label layoutX="20.0" layoutY="82.0" text="%firstName">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -75,7 +74,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label text="Mjesto rođenja">
+                        <Label text="%birthPlace">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -85,15 +84,15 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label text="Spol">
+                        <Label text="%gender">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
                         </Label>
                         <ButtonBar fx:id="rbtnGender" prefHeight="40.0" prefWidth="200.0">
                             <buttons>
-                                <RadioButton fx:id="btnMale" mnemonicParsing="false" text="Muško" />
-                                <RadioButton fx:id="btnFemale" mnemonicParsing="false" text="Žensko" />
+                                <RadioButton fx:id="btnMale" mnemonicParsing="false" text="%male" />
+                                <RadioButton fx:id="btnFemale" mnemonicParsing="false" text="%female" />
                             </buttons>
                         </ButtonBar>
                     </children>
@@ -110,7 +109,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label text="Datum rođenja">
+                        <Label text="%birthDate">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -120,7 +119,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </DatePicker>
-                        <Label layoutX="20.0" layoutY="82.0" text="Mobitel">
+                        <Label layoutX="20.0" layoutY="82.0" text="%phone">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -140,7 +139,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Button fx:id="btnUpload" mnemonicParsing="false" text="Odaberi sliku ...">
+                        <Button fx:id="btnUpload" mnemonicParsing="false" text="%choosePhoto">
                             <VBox.margin>
                                 <Insets left="70.0" top="20.0" />
                             </VBox.margin>
@@ -165,7 +164,7 @@
             <children>
                 <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
                     <children>
-                        <Label text="Adresa">
+                        <Label text="%address">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -175,7 +174,7 @@
                                 <Insets left="10.0" right="10.0" top="10.0" />
                             </VBox.margin>
                         </TextField>
-                        <Label text="Kanton">
+                        <Label text="%canton">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -189,7 +188,7 @@
                 </VBox>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
                     <children>
-                        <Label text="Općina">
+                        <Label text="%county">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -216,7 +215,7 @@
             <children>
                 <VBox prefHeight="128.0" prefWidth="117.0" GridPane.rowSpan="3">
                     <children>
-                        <Label text="Titula">
+                        <Label text="%title">
                             <VBox.margin>
                                 <Insets left="10.0" top="10.0" />
                             </VBox.margin>
@@ -231,7 +230,7 @@
             </children>
         </GridPane>
     </children>
-    <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0"  text="Confirm"  AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
-    <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
+    <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="783.0" layoutY="509.0" mnemonicParsing="false" onAction="#createProfessor" prefHeight="25.0" prefWidth="97.0"  text="%confirm"  AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="110.0" />
+    <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="634.0" layoutY="509.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="%cancel" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="232.0" />
     <Label id="errorLabel" fx:id="errorLabel" layoutX="538.0" layoutY="501.0" prefHeight="18.0" prefWidth="298.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="127.0" />
 </AnchorPane>

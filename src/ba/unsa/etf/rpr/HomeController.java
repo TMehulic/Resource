@@ -44,7 +44,7 @@ public class HomeController {
 
         if(fldEmail.textProperty().getValue().equals("admin") && fldPassword.textProperty().getValue().equals("admin")){
             AdminController ctrl = new AdminController();
-            loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"));
+            loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Admin");
             redirectToDashboard();
@@ -61,13 +61,13 @@ public class HomeController {
             userID=user.getId();
             if(user instanceof Student){
                 StudentController ctrl = new StudentController();
-                loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
+                loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Main.getGuiStage().setTitle("Student");
                 redirectToDashboard();
             }else if(user instanceof Professor){
                 ProfessorController ctrl = new ProfessorController();
-                loader=new FXMLLoader(getClass().getResource("/fxml/professor.fxml"));
+                loader=new FXMLLoader(getClass().getResource("/fxml/professor.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Main.getGuiStage().setTitle("Professor");
                 redirectToDashboard();

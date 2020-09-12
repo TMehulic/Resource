@@ -69,7 +69,7 @@ public class ListProfessorsController {
         @Override
         public void handle(ActionEvent actionEvent) {
             AdminController ctrl = new AdminController();
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/admin.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {

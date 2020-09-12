@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class Main extends Application {
 
     private static Stage guiStage;
+    public static ResourceBundle bundle;
 
     public static Stage getGuiStage() {
         return guiStage;
@@ -20,13 +23,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        bundle=ResourceBundle.getBundle("Translation");
         guiStage=primaryStage;
         returnHome();
     }
 
     public static void returnHome(){
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/login.fxml"), bundle);
         HomeController homeCtrl = new HomeController();
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/login.fxml"));
         loader.setController(homeCtrl);
         Parent root = null;
         try {

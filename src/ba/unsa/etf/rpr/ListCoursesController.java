@@ -75,7 +75,7 @@ public class ListCoursesController {
         @Override
         public void handle(ActionEvent actionEvent) {
             AdminController ctrl = new AdminController();
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/admin.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/admin.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {
@@ -95,7 +95,7 @@ public class ListCoursesController {
         public void handle(ActionEvent actionEvent) {
             if(!tableViewCourses.getSelectionModel().isEmpty()){
                 ListCourseProfessorsController ctrl = new ListCourseProfessorsController(tableViewCourses.getSelectionModel().getSelectedItem().getId());
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Parent root = null;
                 try {

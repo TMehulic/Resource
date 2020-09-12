@@ -15,7 +15,7 @@
       <URL value="@/css/panes.css" />
    </stylesheets>
    <children>
-      <Label layoutX="307.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="Admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="255.0">
+      <Label layoutX="307.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="%admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="255.0">
          <font>
             <Font name="System Bold Italic" size="62.0" />
          </font>
@@ -24,16 +24,16 @@
          <children>
             <VBox layoutX="73.0" layoutY="68.0" prefHeight="465.0" prefWidth="153.0" spacing="40.0">
                <children>
-                  <Button fx:id="btnAddStudent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="confirmBtn" text="Add new student">
+                  <Button fx:id="btnAddStudent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="confirmBtn" text="%addNewStudent">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnAddProfessor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Add new professor" />
-                  <Button fx:id="btnAddCourse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Add predmet" />
-                  <Button fx:id="btnStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Svi studenti" />
-                  <Button fx:id="btnProfessors" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="Svi profesori" />
-                  <Button fx:id="btnCourses" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="confirmBtn" text="Svi kursevi" />
+                  <Button fx:id="btnAddProfessor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="%addNewProfessor" />
+                  <Button fx:id="btnAddCourse" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="%addNewCourse" />
+                  <Button fx:id="btnStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="%allStudents" />
+                  <Button fx:id="btnProfessors" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="confirmBtn" text="%allProfessors" />
+                  <Button fx:id="btnCourses" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" styleClass="confirmBtn" text="%allCourses" />
                </children>
             </VBox>
          </children>

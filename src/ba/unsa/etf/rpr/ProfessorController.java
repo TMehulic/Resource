@@ -49,7 +49,7 @@ public class ProfessorController {
         listView.setOnMouseClicked(courseClicked);
         Image im = new Image("/images/test.png");
         circle.setFill(new ImagePattern(im));
-        labelName.setText("Welcome, "+ professor.getLastName()+" "+professor.getFirstName());
+        labelName.setText(labelName.getText()+" "+ professor.getLastName()+" "+professor.getFirstName());
 
         btnLogout.setOnAction(logoutAction);
 
@@ -59,7 +59,7 @@ public class ProfessorController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             CourseController ctrl = new CourseController(listView.getSelectionModel().getSelectedItem().getId());
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {

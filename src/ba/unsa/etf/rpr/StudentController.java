@@ -60,7 +60,7 @@ public class StudentController {
         labelDegree.setText(student.getEducationInfo().getDegree());
         labelYearOfStudy.setText(String.valueOf(student.getEducationInfo().getYear()));
         labelIndex.setText(String.valueOf(student.getEducationInfo().getIndex()));
-        labelWelcome.setText("Welcome, "+student.getLastName()+" "+student.getFirstName());
+        labelWelcome.setText(labelWelcome.getText()+" "+student.getLastName()+" "+student.getFirstName());
 
     }
 
@@ -68,7 +68,7 @@ public class StudentController {
         @Override
         public void handle(MouseEvent mouseEvent) {
             CourseController ctrl = new CourseController(listView.getSelectionModel().getSelectedItem().getId());
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {

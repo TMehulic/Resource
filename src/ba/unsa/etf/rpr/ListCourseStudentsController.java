@@ -53,7 +53,7 @@ public class ListCourseStudentsController {
         @Override
         public void handle(ActionEvent actionEvent) {
             AddCourseStudentController ctrl = new AddCourseStudentController(courseId);
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/addCourseStudent.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/addCourseStudent.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {
@@ -92,7 +92,7 @@ public class ListCourseStudentsController {
         @Override
         public void handle(ActionEvent actionEvent) {
             CourseController ctrl = new CourseController(courseId);
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/course.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {

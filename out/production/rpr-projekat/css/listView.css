@@ -11,7 +11,7 @@
 .listView .scroll-bar:vertical .increment-button ,
 .listView .scroll-bar:vertical .decrement-button ,
 .listView .scroll-bar:horizontal .decrement-button,
-.listView .scroll-bar:horizontal .increment-button{
+.listView .scroll-bar:horizontal .increment-button {
     -fx-background-color: #32a57f;
     -fx-background-radius: 0em;
     -fx-padding:0 0 0 0;
@@ -37,7 +37,6 @@
 .list-cell:empty {
     -fx-background-color: #2e3841;
 }
-
 
 .listView {
     -fx-border-radius: 50;

@@ -37,7 +37,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             CreateStudentController ctrl = new CreateStudentController();
-            loader=new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"));
+            loader=new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Create student");
             try {
@@ -55,7 +55,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             CreateProfessorController ctrl = new CreateProfessorController();
-            loader = new FXMLLoader(getClass().getResource("/fxml/createProfessor.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fxml/createProfessor.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Create professor");
             try {
@@ -73,7 +73,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             CreateCourseController ctrl = new CreateCourseController();
-            loader = new FXMLLoader(getClass().getResource("/fxml/createCourse.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fxml/createCourse.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Create course");
             try {
@@ -91,7 +91,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             ListStudentsController ctrl = new ListStudentsController();
-            loader = new FXMLLoader(getClass().getResource("/fxml/studentsList.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fxml/studentsList.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Students");
             try {
@@ -109,7 +109,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             ListProfessorsController ctrl = new ListProfessorsController();
-            loader = new FXMLLoader(getClass().getResource("/fxml/professorsList.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fxml/professorsList.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Professors");
             try {
@@ -127,7 +127,7 @@ public class AdminController {
         @Override
         public void handle(ActionEvent actionEvent) {
             ListCoursesController ctrl = new ListCoursesController();
-            loader = new FXMLLoader(getClass().getResource("/fxml/coursesList.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/fxml/coursesList.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Courses");
             try {
@@ -143,7 +143,7 @@ public class AdminController {
 
     public static void returnToDashboard(){
         AdminController ctrl = new AdminController();
-        loader=new FXMLLoader(AdminController.class.getResource("/fxml/admin.fxml"));
+        loader=new FXMLLoader(AdminController.class.getResource("/fxml/admin.fxml"),Main.bundle);
         loader.setController(ctrl);
         Main.getGuiStage().setTitle("Admin");
         try {

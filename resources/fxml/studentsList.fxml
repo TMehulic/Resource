@@ -22,29 +22,29 @@
     <children>
         <AnchorPane styleClass="rightPane" layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
             <children>
-                <Button styleClass="dashboardBtn" fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="Return to dashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" />
+                <Button styleClass="dashboardBtn" fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="%returnToDashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" />
             </children>
         </AnchorPane>
         <Pane styleClass="leftPane" prefHeight="161.0" prefWidth="960.0"  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label styleClass="topLabel" fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="All students" >
+                <Label styleClass="topLabel" fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="381.0" text="%allStudents" >
                 </Label>
             </children>
         </Pane>
         <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
         <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="329.0">
             <buttons>
-                <Button styleClass="cancelBtn" fx:id="btnRemoveStudent" mnemonicParsing="false" text="Obriši studenta" />
+                <Button styleClass="cancelBtn" fx:id="btnRemoveStudent" mnemonicParsing="false" text="%removeStudent" />
             </buttons>
         </ButtonBar>
         <TableView fx:id="tableViewStudents" layoutX="42.0" layoutY="245.0" prefHeight="282.0" prefWidth="625.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="293.0" AnchorPane.topAnchor="245.0">
             <columns>
-                <TableColumn fx:id="colIndex" prefWidth="81.0" text="Index" />
-                <TableColumn fx:id="colName" prefWidth="112.0" text="Ime" />
-                <TableColumn fx:id="colLastName" prefWidth="125.0" text="Prezime" />
-            <TableColumn fx:id="colDegree" prefWidth="92.0" text="Smjer" />
-            <TableColumn fx:id="colCycle" prefWidth="110.0" text="Ciklus studija" />
-            <TableColumn fx:id="colYear" prefWidth="104.0" text="Godina studija" />
+                <TableColumn fx:id="colIndex" prefWidth="81.0" text="%index" />
+                <TableColumn fx:id="colName" prefWidth="112.0" text="%firstName" />
+                <TableColumn fx:id="colLastName" prefWidth="125.0" text="%lastName" />
+            <TableColumn fx:id="colDegree" prefWidth="92.0" text="%degree" />
+            <TableColumn fx:id="colCycle" prefWidth="110.0" text="%cycle" />
+            <TableColumn fx:id="colYear" prefWidth="104.0" text="%studyYear" />
             </columns>
         </TableView>
     </children>

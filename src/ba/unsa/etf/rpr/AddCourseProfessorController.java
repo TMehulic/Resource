@@ -52,7 +52,7 @@ public class AddCourseProfessorController {
                 int profId = tableViewProfessors.getSelectionModel().getSelectedItem().getId();
                 dao.addProfessorToCourse(profId,courseId);
                 CourseController ctrl = new CourseController(courseId);
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Parent root = null;
                 try {
@@ -72,7 +72,7 @@ public class AddCourseProfessorController {
         @Override
         public void handle(ActionEvent actionEvent) {
             ListCourseProfessorsController ctrl = new ListCourseProfessorsController(courseId);
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/courseProfessorsList.fxml"),Main.bundle);
             loader.setController(ctrl);
             Parent root = null;
             try {

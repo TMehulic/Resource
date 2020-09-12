@@ -122,7 +122,9 @@ public class CourseController {
                     }
                     inputStream.close();
                     outputStream.close();
-                    dao.addCourseMaterial(new CourseMaterial(uploadedFile.getName(),"resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),getCourseId()));
+                    CourseMaterial newMaterial = new CourseMaterial(uploadedFile.getName(),"resources/courseMaterials/"+getCourseId()+"-"+uploadedFile.getName(),getCourseId());
+                    dao.addCourseMaterial(newMaterial);
+                    materials.getItems().add(newMaterial);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -171,13 +173,13 @@ public class CourseController {
         public void handle(ActionEvent actionEvent) {
             if(dao.isProfessor(HomeController.userID)){
                 ProfessorController ctrl = new ProfessorController();
-                loader=new FXMLLoader(getClass().getResource("/fxml/professor.fxml"));
+                loader=new FXMLLoader(getClass().getResource("/fxml/professor.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Main.getGuiStage().setTitle("Professor");
                 redirectToDashboard();
             }else if(dao.isStudent(HomeController.userID)){
                 StudentController ctrl = new StudentController();
-                loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"));
+                loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"),Main.bundle);
                 loader.setController(ctrl);
                 Main.getGuiStage().setTitle("Student");
                 redirectToDashboard();
@@ -189,7 +191,7 @@ public class CourseController {
         @Override
         public void handle(ActionEvent actionEvent) {
             ListCourseStudentsController ctrl = new ListCourseStudentsController(courseId);
-            loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"));
+            loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"),Main.bundle);
             loader.setController(ctrl);
             Main.getGuiStage().setTitle("Students");
             try {

@@ -16,22 +16,22 @@
         <URL value="@/css/create.css" />
         <URL value="@/css/validations.css" />
         <URL value="@/css/labels.css" />
-        <URL value="@/css/buttons.css"/>
-        <URL value="@/css/panes.css"/>
+        <URL value="@/css/buttons.css" />
+        <URL value="@/css/panes.css" />
     </stylesheets>
     <children>
-        <Pane styleClass="mainPane" prefHeight="90.0" prefWidth="963.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Pane prefHeight="90.0" prefWidth="963.0" styleClass="mainPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label styleClass="topLabel" layoutX="45.0" layoutY="36.0" text="Create new course">
+                <Label layoutX="45.0" layoutY="36.0" prefHeight="17.0" prefWidth="245.0" styleClass="topLabel" text="%addNewCourse">
                 </Label>
             </children>
         </Pane>
-        <Button styleClass="confirmBtn" fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Confirm"  AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
+        <Button fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="confirmBtn" text="%confirm" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
       <VBox layoutX="126.0" layoutY="152.0" minWidth="-Infinity" prefHeight="236.0" prefWidth="349.0" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="152.0">
          <children>
             <HBox prefHeight="25.0" prefWidth="317.0">
                <children>
-                  <Label text="Naziv kursa">
+                  <Label text="%courseName">
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="24.0" prefWidth="317.0">
                <children>
-                  <TextField fx:id="fldCourseName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="220.0">
+                  <TextField fx:id="fldCourseName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0">
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
@@ -57,7 +57,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Label text="Opis kursa">
+            <Label text="%courseDescription">
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
@@ -69,7 +69,7 @@
             </TextArea>
          </children>
       </VBox>
-      <Button styleClass="cancelBtn" fx:id="btnCancel" layoutX="272.0" layoutY="436.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Cancel" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="220.0" />
+      <Button fx:id="btnCancel" layoutX="272.0" layoutY="436.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="cancelBtn" text="%cancel" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="220.0" />
       <Label id="errorLabel" fx:id="errorLabel" layoutX="140.0" layoutY="388.0" prefHeight="17.0" prefWidth="322.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="140.0" />
     </children>
 </AnchorPane>

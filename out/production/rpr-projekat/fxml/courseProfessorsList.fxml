@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
@@ -22,7 +21,7 @@
     <children>
         <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="161.0">
             <children>
-                <Button fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="dashboardBtn" text="Return to dashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="387.0" />
+                <Button fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="dashboardBtn" text="%returnToDashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="387.0" />
             </children>
         </AnchorPane>
         <Pane prefHeight="161.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -30,13 +29,12 @@
                 <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="697.0" styleClass="topLabel" text="Ime predmeta" />
             </children>
         </Pane>
-        <Label id="labelDesc" layoutX="58.0" layoutY="203.0" text="Profesori na kursu"
-               AnchorPane.bottomAnchor="374.0" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="203.0"/>
+        <Label id="labelDesc" layoutX="58.0" layoutY="203.0" prefHeight="23.0" prefWidth="359.0" text="%courseProfessors" AnchorPane.bottomAnchor="374.0" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="203.0" />
         <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
         <ButtonBar layoutX="393.0" layoutY="540.0" prefHeight="40.0" prefWidth="238.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="393.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="540.0">
             <buttons>
-                <Button fx:id="btnRemoveProfessor" mnemonicParsing="false" styleClass="cancelBtn" text="Ukloni profesora" />
-                <Button fx:id="btnAddProfessor" mnemonicParsing="false" styleClass="confirmBtn" text="Dodaj profesora" />
+                <Button fx:id="btnRemoveProfessor" mnemonicParsing="false" styleClass="cancelBtn" text="%removeProfessor" />
+                <Button fx:id="btnAddProfessor" mnemonicParsing="false" styleClass="confirmBtn" text="%addProfessor" />
             </buttons>
         </ButtonBar>
       <ListView fx:id="listViewProfessors" layoutX="70.0" layoutY="281.0" prefHeight="200.0" prefWidth="550.0" styleClass="listView" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="281.0" />

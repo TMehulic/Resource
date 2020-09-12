@@ -20,7 +20,7 @@
       <GridPane alignment="CENTER" styleClass="loginMenu" vgap="5.0">
          <Label id="emailLabel" text="Email: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
           <TextField id="emailField" fx:id="fldEmail" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-          <Label id="passwordLabel" text="Password: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+          <Label id="passwordLabel" text="%password" GridPane.columnIndex="0" GridPane.rowIndex="2" />
           <PasswordField id="passwordField" fx:id="fldPassword" GridPane.columnIndex="0" GridPane.rowIndex="3" />
           <HBox alignment="BASELINE_RIGHT" prefHeight="25.0" prefWidth="190.0" GridPane.rowIndex="4">
             <Label fx:id="exceptionLabel" style="-fx-text-fill: red;">
@@ -28,7 +28,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-              <Button id="loginBtn" fx:id="btnLogin">Login</Button>
+              <Button id="loginBtn" fx:id="btnLogin" text="%login"/>
           </HBox>
          <columnConstraints>
             <ColumnConstraints />
