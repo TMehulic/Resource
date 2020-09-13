@@ -2,6 +2,8 @@ package ba.unsa.etf.rpr;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ba.unsa.etf.rpr.controllers.CreateCourseController;
+import ba.unsa.etf.rpr.utilities.InvalidInputException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

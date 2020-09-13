@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS "courseStudent" (
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id")
+	FOREIGN KEY("courseId") REFERENCES "course"("id"),
+	FOREIGN KEY("personId") REFERENCES "person"("id")
 );
 CREATE TABLE IF NOT EXISTS "person" (
 	"id"	INTEGER,
@@ -61,32 +61,32 @@ CREATE TABLE IF NOT EXISTS "residenceInfo" (
 	"canton"	TEXT,
 	"county"	TEXT,
 	"personId"	INTEGER,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	PRIMARY KEY("id")
 );
 CREATE TABLE IF NOT EXISTS "courseNews" (
 	"id"	INTEGER,
 	"news"	TEXT,
 	"date"	TEXT,
 	"courseId"	INTEGER,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id")
+	FOREIGN KEY("courseId") REFERENCES "course"("id"),
+	PRIMARY KEY("id")
 );
 CREATE TABLE IF NOT EXISTS "user" (
 	"id"	INTEGER,
 	"personId"	INTEGER,
 	"email"	TEXT UNIQUE,
 	"password"	TEXT,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	PRIMARY KEY("id")
 );
 CREATE TABLE IF NOT EXISTS "courseMaterials" (
 	"id"	INTEGER,
 	"title"	TEXT,
 	"path"	TEXT,
 	"courseId"	INTEGER,
-	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id")
+	FOREIGN KEY("courseId") REFERENCES "course"("id"),
+	PRIMARY KEY("id")
 );
 INSERT INTO "course" VALUES (1,'Numerički algoritmi','Cilj ovog kursa je upoznavanje sa problemima vezanim za implementaciju računanja sa realnim brojevima na računaru, te dizajn brzih, tačnih i pouzdanih algoritama za rješavanje tipičnih problema numeričke prirode (računanja sa matricama, rješavanje jednačina i sistema jednačina, interpolacija, aproksimacija, numeričko diferenciranje i integriranje, numeričko rješavanje diferencijalnih jednačina, brza Fourierova transformacija).',5);
 INSERT INTO "course" VALUES (2,'Algoritmi i strukture podataka','Cilj kursa je sticanja koherentnog znanja o tehnikama za implementiranje algoritama i strukturama podataka. U isto vrijeme kurs pruža studentima mogućnost da unaprijede svoje programersko znanje prilikom razvoja i primjene raznih algoritama u okviru konkretnih programskih rješenja.',5);
@@ -94,23 +94,16 @@ INSERT INTO "course" VALUES (3,'Diskretna matematika','Cilj kursa je da obezbije
 INSERT INTO "course" VALUES (4,'Logički dizajn
 ','Svrha ovog predmeta je uvođenje studenta u principe logičkog dizajna i projektovanja osnovnih komponenti digitalnog računara tradicionalnim i savremenim metodama. U hijerarhiji apstrakcija počinje od logičkih kola i završava sa jednostavnim ali funkcionalnim mikroprogramiranim procesorom (centralnom procesnom jedinicom) i njegovim mašinskim jezikom. Studenti treba da razumiju principe na kojima rade jednostavni računarski sistemi, kao i prednosti i nedostatke hardverskog i softverskog rješavanja problema. Preduslovi za razumjevanje gradiva ovog kursa su poznavanje osnova digitalne (prekidačke) elektronike kao i osnova računarstva. Ovaj kurs predstavlja preduslov za razumjevanje računarskih arhitektura.',5);
 INSERT INTO "course" VALUES (5,'Razvoj programskih rješenja','U okviru kursa obrađuju se osnovni i napredni koncepti objektno orijentisanog programiranja. Obrađuje se i način kreiranje i dizajniranja korisničkog interfejsa, višenitnost, rad sa datotekama, rad sa grafičkim elementima.Sa stečenim znanjem studenti mogu dizajnirati i implementirati složenija programskih rješenja.',5);
-INSERT INTO "course" VALUES (6,'Sistemsko programiranje','Cilj predmeta je da omoguć programeru uvid kako računarska mašina izvršava program, skladišti podatke i komunicira sa okolinom. Programeru se na praktičan načen, preko koncepta virtuelne ili pojednostavljene realne mašine prezentira programiranje na sistemskom nivou; od primitivnih mašinskih instrukcija do kompleksnih. Upoznaje se s odnosom viših programskih jezika i mašinskog jezika. Ovaj predmet je fundament za operativne sisteme, mreže, kompajlere i mnoge druge predmete koji se dotiču pitanja vezanih za sistemski nivo.',5);
-INSERT INTO "course" VALUES (7,'Vjerovatnoća i statistika','Cilj kursa je studente poučiti o procedurama i modernim statističkim pristupima koji se koriste prilikom izučavanja komponenata i složenih sistema. Posebna pozornost posvećena je modernim tehnikama za izučavanje i predviđanja pouzdanosti sistema kao i tehnikama za poboljšanje pouzdanosti. Kurs istodobno daje studentima opća znanja iz vjerovatnosti i statistike budući da je u pitanju osnovni alat za savladavanje ovog kursa.',5);
-INSERT INTO "titleInfo" VALUES (1,'R. prof. dr',3);
-INSERT INTO "courseProfessor" VALUES (1,1,3);
-INSERT INTO "courseStudent" VALUES (1,1,1);
-INSERT INTO "courseStudent" VALUES (2,2,1);
-INSERT INTO "courseStudent" VALUES (3,5,1);
-INSERT INTO "person" VALUES (1,'Mehulić','Tarik','Rifet','Travnik','1234667123','062707906','tmehulic1@etf.unsa.ba',NULL,'1999-07-02','MALE',1,NULL);
-INSERT INTO "person" VALUES (2,'Testić','Test','Testar','Sarajevo','4123123213','0620123044','test1@etf.unsa.ba',NULL,'2000-01-01','FEMALE',1,NULL);
-INSERT INTO "person" VALUES (3,'Profesor','Profa','Profi','Zenica','12355464','065111323','prof@etf.unsa.ba',NULL,'1988-01-05','MALE',NULL,1);
-INSERT INTO "educationInfo" VALUES (1,'Computer Science',1,3,18349,1);
-INSERT INTO "educationInfo" VALUES (2,'Automatics',2,1,11111,2);
-INSERT INTO "residenceInfo" VALUES (1,'Derviš ef. Korkuta 60/a','SBK','Travnik',1);
-INSERT INTO "residenceInfo" VALUES (2,'Bjelave','KS','Sarajevo',2);
-INSERT INTO "residenceInfo" VALUES (3,'Bosanska','ZDK','Zenica',3);
-INSERT INTO "courseNews" VALUES (1,'Neka testna vijest, please work','2020-09-05',1);
-INSERT INTO "user" VALUES (1,1,'tmehulic1@etf.unsa.ba','tarik123');
-INSERT INTO "user" VALUES (2,2,'test1@etf.unsa.ba','test123');
-INSERT INTO "user" VALUES (3,3,'prof@etf.unsa.ba','prof123');
+INSERT INTO "course" VALUES (6,'Osnove računarskih mreža','Upoznavanje studenta sa osnovnim elementima LAN i WAN mreža: vrste mreža, stuktura mreža, metode pristupa, vrste uređaja, osnovni protokoli, rutiranje.
+Po završetku kursa student bi trebao da zna osnovne elemente funkcionalnosti, dizajniranja, implementacije, administriranja i sigurnosti računarskih mreža.',5);
+INSERT INTO "course" VALUES (7,'Digitalno procesiranje signala','Cilj predmeta je upoznavanje i razumjevanje osnovnih karakteristika vremenski diskretnih signala i sistema i njihov matematički prikaz. Potrebno je razviti sposobnost izvođenja i primjene algoritama za transformaciju signala i analize signala, razumjevanje njihovih karakteristika i implementacije. Slijedeći cilj je razviti sposobnost za dizajn i primjenu sistema u digitalnog procesiranja signala te razumjevanje njihovih karakteristika i implementacije, i na kraju upoznavanje sa primjerima hardverskog dizajna i primjenom digitalne obrade signala.',5);
+INSERT INTO "course" VALUES (8,'CAD - CAM inženjering','Kurs će vam prenijeti bazna znanja i vještine iz metoda, tehnika i softverskih alata za računarski podržavano crtanje, dizajniranje, projektovanje i proizvodnju. Na kraju kursa student treba biti sposoban da iscrtava svoje ideje i provede grafički dizajn koristeći CAD sistem.',5);
+INSERT INTO "course" VALUES (9,'Linearna algebra i geometrija','Cilj kursa je dati osnovna znanja iz linearne algebre i analitičke geometrije. Student treba biti u stanju analizirati rješivost sistema linearnih jednadžbi, koristeći matrice i operacije s matricama kao instrumente za formalizaciju i analizu podataka, te poznavati osnove teorije vektorskih prostora. U oblasti analitičke geometrije, nakon osvrta na dvodimenzionalni prostor, uvodi se analitička geometrija u trodimenzionalnom prostoru .',5);
+INSERT INTO "course" VALUES (10,'Osnove elektrotehnike','Kurs ima za cilj studentima prezentirati osnovne koncepte iz elektromagnetizma i njihovo tretiranje pomoću matematičkih termina. Studenti trebaju postići znanja vezana za znanstvenu metodologiju i prirodne zakone na način da se s elektromagnetnim fenomenima i problemima koji su s njima u vezi susretnu kako s kvalitativnog, tako i s kvantitativnog aspekta.',5);
+INSERT INTO "course" VALUES (11,'Uvod u programiranje','Student koji uspješno završi predmet će imati sljedeće kompetencije:
+
+konceptualno razumijevanje strategija za rješavanje problema koristeći algoritamski pristup;
+razumijevanje osnovne terminologije koja se koristi u programiranju;
+dizajn jednostavnih programa u programskom jeziku C, što uključuje: naredbe za kontrolu toka programa, nizove, strukture, funkcije, pokazivače i ulazno-izlazne operacije,
+pisanje, kompajliranje i debagiranje jednostavnih programa u programskom jeziku C.',5);
 COMMIT;
