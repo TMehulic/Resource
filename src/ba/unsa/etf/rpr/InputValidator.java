@@ -53,6 +53,6 @@ public class InputValidator {
     }
 
     public boolean isCorrectIndex(String index){
-        return index.length()==5 && Pattern.compile("^\\d{13}$").matcher(index).find();
+        return index.length()==5 && Pattern.compile("^\\d{5}$").matcher(index).find();
     }
 }
