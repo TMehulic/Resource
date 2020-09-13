@@ -8,10 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -22,22 +21,18 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class StudentController {
 
-    @FXML
     public ListView<Course> listView;
-    @FXML
     public Label labelDegree;
-    @FXML
     public Label labelYearOfStudy;
-    @FXML
     public Label labelWelcome;
-    @FXML
-    public Button btnLogout;
 
     public Label labelIndex;
 
-    @FXML
     public Circle circle;
     private DAOClass dao;
+
+    public MenuButton btnMenu;
+
 
 
     public StudentController() {
@@ -56,11 +51,19 @@ public class StudentController {
         Image im = new Image("/images/test.png");
         circle.setFill(new ImagePattern(im));
 
-        btnLogout.setOnAction(logoutAction);
         labelDegree.setText(student.getEducationInfo().getDegree());
         labelYearOfStudy.setText(String.valueOf(student.getEducationInfo().getYear()));
         labelIndex.setText(String.valueOf(student.getEducationInfo().getIndex()));
         labelWelcome.setText(labelWelcome.getText()+" "+student.getLastName()+" "+student.getFirstName());
+
+
+
+//        btnMenu.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                contextMenu.show();
+//            }
+//        });
 
     }
 

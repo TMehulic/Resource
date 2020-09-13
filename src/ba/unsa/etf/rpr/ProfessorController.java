@@ -30,8 +30,6 @@ public class ProfessorController {
     public Circle circle;
     @FXML
     public Label labelName;
-    @FXML
-    public Button btnLogout;
     private DAOClass dao;
 
 
@@ -51,7 +49,7 @@ public class ProfessorController {
         circle.setFill(new ImagePattern(im));
         labelName.setText(labelName.getText()+" "+ professor.getLastName()+" "+professor.getFirstName());
 
-        btnLogout.setOnAction(logoutAction);
+
 
     }
 
@@ -74,5 +72,5 @@ public class ProfessorController {
         }
     };
 
-    private EventHandler<ActionEvent> logoutAction = actionEvent -> Main.returnHome();
+
 }
