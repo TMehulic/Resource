@@ -82,6 +82,7 @@ public class HomeController {
         }
     };
 
+
     public void redirectToDashboard(){
         try {
             root = loader.load();

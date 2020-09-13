@@ -30,7 +30,7 @@
             </Label>
             <MenuButton fx:id="btnMenu" layoutX="890.0" layoutY="24.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="44.0" prefWidth="39.0" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
               <items>
-                <MenuItem text="%about">
+                <MenuItem fx:id="itemAbout" text="%about">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -42,14 +42,14 @@
                      </accelerator></MenuItem>
                   <Menu text="%language">
                     <items>
-                      <MenuItem text="%bosnian">
+                      <MenuItem fx:id="itemBosnian" text="%bosnian">
                            <graphic>
                               <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/icons/bosnia.png" />
                                  </image></ImageView>
                            </graphic></MenuItem>
-                        <MenuItem text="%english">
+                        <MenuItem fx:id="itemEnglish" text="%english">
                            <graphic>
                               <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,13 +64,16 @@
                            </image></ImageView>
                      </graphic>
                   </Menu>
-                  <MenuItem text="%logout">
+                  <MenuItem fx:id="itemLogout" text="%logout">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/icons/logout.png" />
                            </image></ImageView>
-                     </graphic></MenuItem>
+                     </graphic>
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="O" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
               </items>
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

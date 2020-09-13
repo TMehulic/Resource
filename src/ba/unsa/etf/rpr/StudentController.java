@@ -31,11 +31,18 @@ public class StudentController {
     public Circle circle;
     private DAOClass dao;
 
-    public MenuButton btnMenu;
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
 
 
     public StudentController() {
+
+        menuClass=new MenuItemClass();
 
     }
 
@@ -56,15 +63,51 @@ public class StudentController {
         labelIndex.setText(String.valueOf(student.getEducationInfo().getIndex()));
         labelWelcome.setText(labelWelcome.getText()+" "+student.getLastName()+" "+student.getFirstName());
 
+        setMenuListeners();
 
 
-//        btnMenu.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                contextMenu.show();
-//            }
-//        });
+    }
 
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                menuClass.setBosnian();
+                restart();
+            }
+        });
+
+        itemEnglish.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                menuClass.setEnglish();
+                restart();
+            }
+        });
+
+        itemLogout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                menuClass.logOut();
+            }
+        });
+
+        itemAbout.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                menuClass.showAbout();
+            }
+        });
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/student.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private EventHandler<? super MouseEvent> courseClicked = new EventHandler<MouseEvent>() {
@@ -86,6 +129,6 @@ public class StudentController {
         }
     };
 
-    private EventHandler<ActionEvent> logoutAction = actionEvent -> Main.returnHome();
+
 
 }
