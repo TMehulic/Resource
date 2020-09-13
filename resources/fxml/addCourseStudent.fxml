@@ -6,11 +6,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.MenuButton?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/buttons.css" />
         <URL value="@/css/panes.css" />
         <URL value="@/css/tableView.css" />
+        <URL value="@/css/menuItem.css"/>
     </stylesheets>
     <children>
       <TableView fx:id="tableViewStudents" layoutX="44.0" layoutY="45.0" prefHeight="314.0" prefWidth="510.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="41.0">
@@ -23,5 +28,18 @@
       </TableView>
       <Button fx:id="btnAddStudent" layoutX="445.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="confirmBtn" text="%addStudent" />
        <Button fx:id="btnCancel" layoutX="306.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="cancelBtn" text="%cancel" />
-   </children>
+        <MenuButton fx:id="btnMenu" layoutX="549.0" layoutY="6.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="36.0" prefWidth="43.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="6.0">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+            </items>
+            <graphic>
+                <ImageView fitHeight="46.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/icons/menu.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </MenuButton>
+    </children>
 </AnchorPane>

@@ -4,10 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -17,6 +18,7 @@
         <URL value="@/css/buttons.css" />
         <URL value="@/css/listView.css" />
         <URL value="@/css/labels.css" />
+        <URL value="@/css/menuItem.css"/>
     </stylesheets>
     <children>
         <AnchorPane layoutX="705.0" layoutY="129.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="471.0" prefWidth="254.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="129.0">
@@ -44,23 +46,28 @@
             <Button fx:id="btnDashboard" layoutX="70.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" styleClass="dashboardBtn" text="%returnToDashboard" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="56.0" />
             </children>
         </AnchorPane>
-        <Pane prefHeight="131.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="131.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="635.0" styleClass="topLabel" text="Ime predmeta" />
-                <Button id="btnLogout" layoutX="865.0" layoutY="33.0" mnemonicParsing="false">
+                <MenuButton fx:id="btnMenu" layoutX="890.0" layoutY="24.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="44.0" prefWidth="39.0" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/icons/logout.png" />
+                                <Image url="@../images/icons/menu.png" />
                             </image>
                         </ImageView>
-                    </graphic></Button>
+                    </graphic>
+                </MenuButton>
             </children>
-        </Pane>
+        </AnchorPane>
         <ListView fx:id="materials" layoutX="36.0" layoutY="300.0" prefHeight="257.0" prefWidth="606.0" styleClass="listView" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="318.0" AnchorPane.topAnchor="300.0" />
         <Label id="labelDesc" fx:id="labelDesc" layoutX="59.0" layoutY="153.0" prefHeight="89.0" prefWidth="595.0" text="Opis predmeta" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="306.0">
         </Label>
-        <Line endX="588.0" layoutX="115.0" layoutY="131.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" AnchorPane.leftAnchor="-6.5" AnchorPane.rightAnchor="255.5" AnchorPane.topAnchor="129.5" />
+        <Line endX="588.0" layoutX="116.0" layoutY="145.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" AnchorPane.leftAnchor="-5.5" AnchorPane.rightAnchor="254.5" AnchorPane.topAnchor="143.5" />
       <Label id="labelMaterials" layoutX="87.0" layoutY="264.0" text="%materials" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="306.0" />
       <Button fx:id="btnUpload" layoutX="519.0" layoutY="561.0" mnemonicParsing="false" styleClass="uploadBtn" text="%addMaterial" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="344.0">
          <graphic>

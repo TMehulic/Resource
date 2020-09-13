@@ -11,6 +11,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.MenuButton?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="539.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/create.css" />
@@ -18,14 +22,28 @@
         <URL value="@/css/labels.css" />
         <URL value="@/css/buttons.css" />
         <URL value="@/css/panes.css" />
+        <URL value="@/css/menuItem.css"/>
     </stylesheets>
     <children>
-        <Pane prefHeight="90.0" prefWidth="963.0" styleClass="mainPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="90.0" prefWidth="963.0" styleClass="mainPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label layoutX="45.0" layoutY="36.0" prefHeight="17.0" prefWidth="245.0" styleClass="topLabel" text="%addNewCourse">
                 </Label>
+                <MenuButton fx:id="btnMenu" layoutX="890.0" layoutY="24.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="44.0" prefWidth="39.0" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                    <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/icons/menu.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </MenuButton>
             </children>
-        </Pane>
+        </AnchorPane>
         <Button fx:id="btnConfirm" layoutX="393.0" layoutY="471.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="confirmBtn" text="%confirm" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="110.0" />
       <VBox layoutX="126.0" layoutY="152.0" minWidth="-Infinity" prefHeight="236.0" prefWidth="349.0" AnchorPane.bottomAnchor="151.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="152.0">
          <children>

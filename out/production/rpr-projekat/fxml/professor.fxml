@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane styleClass="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/student.css" />
         <URL value="@/css/panes.css" />
         <URL value="@/css/buttons.css" />
         <URL value="@/css/listView.css" />
         <URL value="@/css/labels.css" />
+        <URL value="@/css/menuItem.css"/>
     </stylesheets>
     <children>
-        <Pane styleClass="leftPane" prefHeight="161.0" prefWidth="960.0"  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane prefHeight="161.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label styleClass="topLabel" fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0"
-                       prefWidth="381.0" text="%welcome,"/>
-            </children>
-        </Pane>
-        <ListView fx:id="listView" layoutX="37.0" layoutY="261.0" prefHeight="334.0" prefWidth="606.0" styleClass="listView" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="317.0" AnchorPane.topAnchor="261.0" />
-        <Label id="labelDesc" layoutX="58.0" layoutY="203.0" prefHeight="23.0" prefWidth="490.0" text="%yourCourses"  AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="203.0">
-        </Label>
-        <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
-        <AnchorPane styleClass="rightPane" layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0"  AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
-            <children>
-                <Button id="btnLogout" fx:id="btnLogout" layoutX="110.0" layoutY="324.0" mnemonicParsing="false">
+                <Label fx:id="labelName" layoutX="69.0" layoutY="58.0" prefHeight="45.0" prefWidth="631.0" styleClass="topLabel" text="%welcome," />
+                <MenuButton fx:id="btnMenu" layoutX="890.0" layoutY="24.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="44.0" prefWidth="39.0" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="46.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/icons/logout.png" />
+                                <Image url="@../images/icons/menu.png" />
                             </image>
                         </ImageView>
-                    </graphic></Button>
+                    </graphic>
+                </MenuButton>
+            </children>
+        </AnchorPane>
+        <ListView fx:id="listView" layoutX="37.0" layoutY="261.0" prefHeight="334.0" prefWidth="606.0" styleClass="listView" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="317.0" AnchorPane.topAnchor="261.0" />
+        <Label id="labelDesc" layoutX="58.0" layoutY="203.0" prefHeight="23.0" prefWidth="490.0" text="%yourCourses" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="203.0">
+        </Label>
+        <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
+        <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
+            <children>
                 <Label alignment="CENTER" layoutX="110.0" layoutY="373.0" text="LOGOUT" textAlignment="CENTER" textFill="#782440" />
                 <Circle fx:id="circle" fill="#32a57f" layoutX="134.0" radius="100.0" stroke="#32a57f" strokeType="INSIDE" />
             </children>
