@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class ListStudentsController {
     public Label labelName;
     public Button btnRemoveStudent;
     public Button btnDashboard;
+    public Button btnPrint;
 
     public MenuItemClass menuClass;
     public MenuItem itemAbout;
@@ -55,6 +57,7 @@ public class ListStudentsController {
 
         btnRemoveStudent.setOnAction(removeStudent);
         btnDashboard.setOnAction(returnToDashboard);
+        btnPrint.setOnAction(printStudents);
 
         setMenuListeners();
     }
@@ -84,6 +87,18 @@ public class ListStudentsController {
             e.printStackTrace();
         }
     }
+
+    private EventHandler<ActionEvent> printStudents = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            try {
+                new PrintReport().showReport(dao.getConn());
+            } catch (JRException e1) {
+                e1.printStackTrace();
+            }
+        }
+    };
+
 
 
     private EventHandler<ActionEvent> removeStudent = new EventHandler<ActionEvent>() {

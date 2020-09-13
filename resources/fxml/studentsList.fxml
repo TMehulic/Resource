@@ -29,6 +29,7 @@
         <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
             <children>
                 <Button fx:id="btnDashboard" layoutX="51.0" layoutY="387.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="dashboardBtn" text="%returnToDashboard" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="50.0" />
+            <Button styleClass="listBtn" fx:id="btnPrint" layoutX="74.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="%print" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="74.0" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="161.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
