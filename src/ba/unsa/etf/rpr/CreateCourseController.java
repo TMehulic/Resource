@@ -121,8 +121,6 @@ public class CreateCourseController implements IValidateInputs {
             try{
                 checkInputs();
                 int courseEcts = Integer.parseInt(ects.get());
-                System.out.println(courseName.get());
-                System.out.println(desc.get());
                 Course course = new Course(courseName.get(),desc.get(),courseEcts);
                 DAOClass.getInstance().createCourse(course);
                 AdminController.returnToDashboard();
