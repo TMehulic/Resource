@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -318,17 +319,33 @@ public class CreateStudentController implements IValidateInputs {
             int cycle = cbCycle.getValue();
             int year = cbYear.getValue();
 
-            saveImage(lastName.get(),firstName.get());
 
             EducationInfo eduInfo = new EducationInfo(degree,cycle,year,index);
 
-            Student student=new Student(-1,lastName.get(),firstName.get(),fathersName.get(),birthPlace.get(),jmbg.get(),phone.get(),email.get(),imagePath,date,gender,resInfo,eduInfo);
-            dao.createStudent(student);
-            AdminController.returnToDashboard();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Korisnički podaci");
+            alert.setHeaderText(null);
+            alert.setContentText("Email : "+email.get()+'\n'+"Password: "+getPassword(email.get()));
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if(result.get() == ButtonType.OK){
+                saveImage(lastName.get(),firstName.get());
+                Student student=new Student(-1,lastName.get(),firstName.get(),fathersName.get(),birthPlace.get(),jmbg.get(),phone.get(),email.get(),imagePath,date,gender,resInfo,eduInfo);
+                dao.createStudent(student);
+                AdminController.returnToDashboard();
+            }
         }catch (Exception e){
             errorLabel.setText(e.getMessage());
         }
 
+    }
+
+    private String getPassword(String email){
+        String pass = "";
+        int lastIndex = email.lastIndexOf('@');
+        pass = email.substring(0,lastIndex)+"123";
+        return pass;
     }
 
     private EventHandler<ActionEvent> uploadImage = new EventHandler<ActionEvent>() {
