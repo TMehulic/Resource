@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -47,6 +48,17 @@ public class CreateStudentController implements IValidateInputs {
     public ChoiceBox<Integer> cbCycle;
     public ChoiceBox<Integer> cbYear;
 
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+    private SimpleStringProperty fathersName;
+    private SimpleStringProperty birthPlace;
+    private SimpleStringProperty jmbg;
+    private SimpleStringProperty phone;
+    private SimpleStringProperty email;
+    private SimpleStringProperty address;
+    private SimpleStringProperty county;
+    private SimpleStringProperty title;
+
     public Button btnConfirm;
     public Button btnCancel;
 
@@ -63,6 +75,16 @@ public class CreateStudentController implements IValidateInputs {
 
 
     public CreateStudentController() {
+        firstName = new SimpleStringProperty("");
+        lastName = new SimpleStringProperty("");
+        fathersName = new SimpleStringProperty("");
+        birthPlace = new SimpleStringProperty("");
+        jmbg = new SimpleStringProperty("");
+        phone = new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
+        address = new SimpleStringProperty("");
+        county = new SimpleStringProperty("");
+        title = new SimpleStringProperty("");
         validator=new InputValidator();
         menuClass=new MenuItemClass();
     }
@@ -80,9 +102,23 @@ public class CreateStudentController implements IValidateInputs {
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
 
+        bindProperties();
         setMenuListeners();
         setListeners();
 
+
+    }
+
+    private void bindProperties(){
+        fldName.textProperty().bindBidirectional(firstName);
+        fldLastName.textProperty().bindBidirectional(lastName);
+        fldFathersName.textProperty().bindBidirectional(fathersName);
+        fldBirthPlace.textProperty().bindBidirectional(birthPlace);
+        fldJmbg.textProperty().bindBidirectional(jmbg);
+        fldPhone.textProperty().bindBidirectional(phone);
+        fldEmail.textProperty().bindBidirectional(email);
+        fldAdress.textProperty().bindBidirectional(address);
+        fldCounty.textProperty().bindBidirectional(county);
     }
 
     public void setMenuListeners(){
@@ -229,15 +265,15 @@ public class CreateStudentController implements IValidateInputs {
 
     @Override
     public void checkInputs() throws InvalidInputException {
-        if(!validator.isCorrectName(fldName.getText())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectName(fldLastName.getText())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectName(fldFathersName.getText())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectAdress(fldAdress.getText())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
-        if(!validator.isCorrectCounty(fldCounty.getText())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
-        if(!validator.isCorrectBirthPlace(fldBirthPlace.getText())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
-        if(!validator.isCorrectEmail(fldEmail.getText())) throw new InvalidInputException("Molimo unesite validan email.");
-        if(!validator.isCorrectPhone(fldPhone.getText())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
-        if(!validator.isCorrectJMBG(fldJmbg.getText())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
+        if(!validator.isCorrectName(firstName.get())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(lastName.get())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fathersName.get())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectAdress(address.get())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
+        if(!validator.isCorrectCounty(county.get())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
+        if(!validator.isCorrectBirthPlace(birthPlace.get())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
+        if(!validator.isCorrectEmail(email.get())) throw new InvalidInputException("Molimo unesite validan email.");
+        if(!validator.isCorrectPhone(phone.get())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
+        if(!validator.isCorrectJMBG(jmbg.get())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
         if(!validator.isCorrectIndex(fldIndex.getText())) throw new InvalidInputException("Molimo unesite ispravan index.");
         if(!validator.isCorrectDegree(fldDegree.getText())) throw new InvalidInputException("Molimo unesite smjer.");
         if(pickerDate.getValue()==null) throw new InvalidInputException("Molimo unesite datum rođenja");
@@ -260,18 +296,11 @@ public class CreateStudentController implements IValidateInputs {
         try{
             checkInputs();
 
-            String lastName = fldLastName.getText();
-            String fathersName = fldFathersName.getText();
-            String firstName = fldName.getText();
-            String birthPlace = fldBirthPlace.getText();
-            String jmbg = fldJmbg.getText();
             LocalDate date = pickerDate.getValue();
-            String phone = fldPhone.getText();
-            String mail = fldEmail.getText();
+
             Gender gender=Gender.MALE;
             if(tgGender.getSelectedToggle()!=null){
-                RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
-                if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
+                if(tgGender.getSelectedToggle().equals(tgGender.getToggles().get(0))){
                     gender=Gender.MALE;
                 }else{
                     gender=Gender.FEMALE;
@@ -279,11 +308,9 @@ public class CreateStudentController implements IValidateInputs {
             }
 
 
-            String adress = fldAdress.getText();
-            String county = fldCounty.getText();
             Canton canton = cbCanton.getValue();
 
-            ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
+            ResidenceInfo resInfo = new ResidenceInfo(address.get(),canton,county.get());
 
 
             String degree = fldDegree.getText();
@@ -291,11 +318,11 @@ public class CreateStudentController implements IValidateInputs {
             int cycle = cbCycle.getValue();
             int year = cbYear.getValue();
 
-            saveImage(lastName,firstName);
+            saveImage(lastName.get(),firstName.get());
 
             EducationInfo eduInfo = new EducationInfo(degree,cycle,year,index);
 
-            Student student=new Student(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,eduInfo);
+            Student student=new Student(-1,lastName.get(),firstName.get(),fathersName.get(),birthPlace.get(),jmbg.get(),phone.get(),email.get(),imagePath,date,gender,resInfo,eduInfo);
             dao.createStudent(student);
             AdminController.returnToDashboard();
         }catch (Exception e){

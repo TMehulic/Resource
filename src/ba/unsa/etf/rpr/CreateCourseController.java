@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,6 +16,10 @@ public class CreateCourseController implements IValidateInputs {
     public TextField fldCourseName;
     public TextField fldEcts;
     public TextArea fldDesc;
+
+    private SimpleStringProperty courseName;
+    private SimpleStringProperty ects;
+    private SimpleStringProperty desc;
 
     public Button btnConfirm;
     public Button btnCancel;
@@ -31,12 +36,19 @@ public class CreateCourseController implements IValidateInputs {
 
 
     public CreateCourseController() {
+        courseName=new SimpleStringProperty("");
+        ects=new SimpleStringProperty("");
+        desc=new SimpleStringProperty("");
         validator=new InputValidator();
         menuClass=new MenuItemClass();
     }
 
     @FXML
     public void initialize(){
+        fldCourseName.textProperty().bindBidirectional(courseName);
+        fldDesc.textProperty().bindBidirectional(desc);
+        fldEcts.textProperty().bindBidirectional(ects);
+
         btnConfirm.setOnAction(addCourse);
         btnCancel.setOnAction(cancelAction);
         fldDesc.setWrapText(true);
@@ -108,10 +120,10 @@ public class CreateCourseController implements IValidateInputs {
         public void handle(ActionEvent actionEvent) {
             try{
                 checkInputs();
-                String name = fldCourseName.getText();
-                String desc = fldDesc.getText();
-                int ects = Integer.parseInt(fldEcts.getText());
-                Course course = new Course(name,desc,ects);
+                int courseEcts = Integer.parseInt(ects.get());
+                System.out.println(courseName.get());
+                System.out.println(desc.get());
+                Course course = new Course(courseName.get(),desc.get(),courseEcts);
                 DAOClass.getInstance().createCourse(course);
                 AdminController.returnToDashboard();
             }catch (Exception e){
@@ -121,8 +133,8 @@ public class CreateCourseController implements IValidateInputs {
     };
 
     public void checkInputs() throws InvalidInputException{
-        if(!validator.isCorrectName(fldCourseName.getText())) throw new InvalidInputException("Naziv kursa mora imati barem 3 znaka.");
-        if(!validator.isCorrectEcts(fldEcts.getText())) throw new InvalidInputException("ECTS mora biti pozitivan broj.");
+        if(!validator.isCorrectName(courseName.get())) throw new InvalidInputException("Naziv kursa mora imati barem 3 znaka.");
+        if(!validator.isCorrectEcts(ects.get())) throw new InvalidInputException("ECTS mora biti pozitivan broj.");
     }
 
     private EventHandler<ActionEvent> cancelAction = new EventHandler<ActionEvent>() {

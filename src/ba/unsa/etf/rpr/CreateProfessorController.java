@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -37,12 +38,24 @@ public class CreateProfessorController implements IValidateInputs {
     public Button btnUpload;
     public Button btnCancel;
 
+
     public TextField fldAdress;
     public ChoiceBox<Canton> cbCanton;
     public TextField fldCounty;
 
     public TextField fldTitle;
     public Label errorLabel;
+
+    private SimpleStringProperty firstName;
+    private SimpleStringProperty lastName;
+    private SimpleStringProperty fathersName;
+    private SimpleStringProperty birthPlace;
+    private SimpleStringProperty jmbg;
+    private SimpleStringProperty phone;
+    private SimpleStringProperty email;
+    private SimpleStringProperty address;
+    private SimpleStringProperty county;
+    private SimpleStringProperty title;
 
     private InputValidator validator;
 
@@ -53,6 +66,16 @@ public class CreateProfessorController implements IValidateInputs {
     public MenuItem itemLogout;
 
     public CreateProfessorController() {
+        firstName = new SimpleStringProperty("");
+        lastName = new SimpleStringProperty("");
+        fathersName = new SimpleStringProperty("");
+        birthPlace = new SimpleStringProperty("");
+        jmbg = new SimpleStringProperty("");
+        phone = new SimpleStringProperty("");
+        email = new SimpleStringProperty("");
+        address = new SimpleStringProperty("");
+        county = new SimpleStringProperty("");
+        title = new SimpleStringProperty("");
         validator=new InputValidator();
         menuClass=new MenuItemClass();
     }
@@ -67,9 +90,23 @@ public class CreateProfessorController implements IValidateInputs {
         tgGender.getToggles().addAll(btnMale,btnFemale);
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
+        bindProperties();
         setMenuListeners();
         setListeners();
 
+    }
+
+    private void bindProperties(){
+        fldName.textProperty().bindBidirectional(firstName);
+        fldLastName.textProperty().bindBidirectional(lastName);
+        fldFathersName.textProperty().bindBidirectional(fathersName);
+        fldBirthPlace.textProperty().bindBidirectional(birthPlace);
+        fldJmbg.textProperty().bindBidirectional(jmbg);
+        fldPhone.textProperty().bindBidirectional(phone);
+        fldEmail.textProperty().bindBidirectional(email);
+        fldAdress.textProperty().bindBidirectional(address);
+        fldCounty.textProperty().bindBidirectional(county);
+        fldTitle.textProperty().bindBidirectional(title);
     }
 
     public void setMenuListeners(){
@@ -102,37 +139,27 @@ public class CreateProfessorController implements IValidateInputs {
         try{
             checkInputs();
 
-            String lastName = fldLastName.getText();
-            String fathersName = fldFathersName.getText();
-            String firstName = fldName.getText();
-            String birthPlace = fldBirthPlace.getText();
-            String jmbg = fldJmbg.getText();
             LocalDate date = pickerDate.getValue();
-            String phone = fldPhone.getText();
-            String mail = fldEmail.getText();
             Gender gender=Gender.MALE;
             if(tgGender.getSelectedToggle()!=null){
-                RadioButton selected = (RadioButton) tgGender.getSelectedToggle();
-                if(((RadioButton) tgGender.getSelectedToggle()).getText().equals("Muško")){
+                if(tgGender.getSelectedToggle().equals(tgGender.getToggles().get(0))){
                     gender=Gender.MALE;
                 }else{
                     gender=Gender.FEMALE;
                 }
             }
 
-            String adress = fldAdress.getText();
-            String county = fldCounty.getText();
             Canton canton = cbCanton.getValue();
-            ResidenceInfo resInfo = new ResidenceInfo(adress,canton,county);
+            ResidenceInfo resInfo = new ResidenceInfo(address.get(),canton,county.get());
 
 
             String title = fldTitle.getText();
             TitleInfo titleInfo = new TitleInfo(title);
 
-            saveImage(lastName,firstName);
+            saveImage(lastName.get(),firstName.get());
 
 
-            Professor professor=new Professor(-1,lastName,firstName,fathersName,birthPlace,jmbg,phone,mail,imagePath,date,gender,resInfo,titleInfo);
+            Professor professor=new Professor(-1,lastName.get(),firstName.get(),fathersName.get(),birthPlace.get(),jmbg.get(),phone.get(),email.get(),imagePath,date,gender,resInfo,titleInfo);
             dao.createProfessor(professor);
 
             AdminController.returnToDashboard();
@@ -251,16 +278,16 @@ public class CreateProfessorController implements IValidateInputs {
 
     @Override
     public void checkInputs() throws InvalidInputException {
-        if(!validator.isCorrectName(fldName.getText())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectName(fldLastName.getText())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectName(fldFathersName.getText())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
-        if(!validator.isCorrectAdress(fldAdress.getText())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
-        if(!validator.isCorrectCounty(fldCounty.getText())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
-        if(!validator.isCorrectBirthPlace(fldBirthPlace.getText())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
-        if(!validator.isCorrectEmail(fldEmail.getText())) throw new InvalidInputException("Molimo unesite validan email.");
-        if(!validator.isCorrectPhone(fldPhone.getText())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
-        if(!validator.isCorrectJMBG(fldJmbg.getText())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
-        if(!validator.isCorrectTitle(fldTitle.getText())) throw new InvalidInputException("Molimo unesite titulu");
+        if(!validator.isCorrectName(firstName.get())) throw new InvalidInputException("Ime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(lastName.get())) throw new InvalidInputException("Prezime mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectName(fathersName.get())) throw new InvalidInputException("Ime oca mora sadržavati barem 3 slova.");
+        if(!validator.isCorrectAdress(address.get())) throw new InvalidInputException("Molimo unesite ispravnu adresu.");
+        if(!validator.isCorrectCounty(county.get())) throw new InvalidInputException("Molimo unesite ispravnu općinu.");
+        if(!validator.isCorrectBirthPlace(birthPlace.get())) throw new InvalidInputException("Molimo unesite mjesto rođenja.");
+        if(!validator.isCorrectEmail(email.get())) throw new InvalidInputException("Molimo unesite validan email.");
+        if(!validator.isCorrectPhone(phone.get())) throw new InvalidInputException("Molimo unesite ispravan broj mobitela.");
+        if(!validator.isCorrectJMBG(jmbg.get())) throw new InvalidInputException("JMBG mora sadržavati 13 cifara.");
+        if(!validator.isCorrectTitle(title.get())) throw new InvalidInputException("Molimo unesite titulu");
         if(pickerDate.getValue()==null) throw new InvalidInputException("Molimo unesite datum rođenja");
         if(cbCanton.getSelectionModel().isEmpty()) throw new InvalidInputException("Molimo izaberite kanton.");
         if(!tgGender.getSelectedToggle().isSelected()) throw new InvalidInputException("Molimo izaberite spol.");

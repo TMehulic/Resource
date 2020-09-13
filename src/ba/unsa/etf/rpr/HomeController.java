@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ public class HomeController {
 
     public TextField fldEmail;
     public PasswordField fldPassword;
+    private SimpleStringProperty password;
+    private SimpleStringProperty email;
     public Button btnLogin;
     public Label exceptionLabel;
 
@@ -34,11 +37,15 @@ public class HomeController {
     public HomeController() {
         userID=-1;
         menuClass=new MenuItemClass();
+        password=new SimpleStringProperty("");
+        email=new SimpleStringProperty("");
     }
 
     @FXML
     public void initialize(){
 
+        fldPassword.textProperty().bindBidirectional(password);
+        fldEmail.textProperty().bindBidirectional(email);
         exceptionLabel.setText("");
         btnLogin.setOnAction(loginAction);
 //        setMenuListeners();
@@ -73,7 +80,7 @@ public class HomeController {
 
     public EventHandler<ActionEvent> loginAction = actionEvent -> {
 
-        if(fldEmail.textProperty().getValue().equals("admin") && fldPassword.textProperty().getValue().equals("admin")){
+        if(email.get().equals("admin") && password.get().equals("admin")){
             AdminController ctrl = new AdminController();
             loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"),Main.bundle);
             loader.setController(ctrl);
@@ -81,7 +88,7 @@ public class HomeController {
             redirectToDashboard();
         }
 
-        Person user = DAOClass.getInstance().getUser(fldEmail.textProperty().getValue(),fldPassword.textProperty().getValue());
+        Person user = DAOClass.getInstance().getUser(email.get(),password.get());
         if(user==null){
             try {
                 throw new InvalidLoginException("Pogrešni pristupni podaci.");
