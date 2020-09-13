@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -17,9 +16,9 @@ import org.testfx.framework.junit5.Start;
 import java.util.ResourceBundle;
 
 @ExtendWith(ApplicationExtension.class)
-class CreateCourseControllerTest {
+class CreateProfessorControllerTest {
 
-    CreateCourseController ctrl;
+    CreateProfessorController ctrl;
 
     public static boolean sadrziStil(TextField polje, String stil) {
         for (String s : polje.getStyleClass())
@@ -30,8 +29,8 @@ class CreateCourseControllerTest {
     @Start
     public void start (Stage stage) throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createCourse.fxml"),resourceBundle);
-        ctrl = new CreateCourseController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createProfessor.fxml"),resourceBundle);
+        ctrl = new CreateProfessorController();
         loader.setController(ctrl);
         Parent mainNode = loader.load();
         stage.setScene(new Scene(mainNode));
@@ -40,31 +39,28 @@ class CreateCourseControllerTest {
     }
 
     @Test
-    public void testInputs(FxRobot robot){
-        Label errorLabel = robot.lookup("#errorLabel").queryAs(Label.class);
-        assertThrows(InvalidInputException.class,()->{
-            ctrl.checkInputs();
-        });
-        robot.clickOn("#btnConfirm");
-        assertEquals("Naziv kursa mora imati barem 3 znaka.",errorLabel.getText());
-        robot.clickOn("#fldCourseName");
-        robot.write("Test");
-        robot.clickOn("#btnConfirm");
-        assertEquals("ECTS mora biti pozitivan broj.",errorLabel.getText());
+    public void checkInputs(FxRobot robot){
+        assertThrows(InvalidInputException.class, ()->ctrl.checkInputs());
+        robot.clickOn("#fldLastName");
+        robot.write("Prezime");
+        robot.clickOn("#fldFathersName");
+        robot.write("Otac");
+        robot.clickOn("#fldName");
+        robot.write("Ime");
+        robot.clickOn("#fldBirthPlace");
+        robot.write("Travnik");
+        assertThrows(InvalidInputException.class, ()->ctrl.checkInputs());
     }
 
     @Test
     void validacija(FxRobot robot) {
 
-        TextField polje = robot.lookup("#fldCourseName").queryAs(TextField.class);
-        TextField polje2= robot.lookup("#fldEcts").queryAs(TextField.class);
-        robot.clickOn("#fldCourseName").write("a");
+        TextField polje = robot.lookup("#fldLastName").queryAs(TextField.class);
+        robot.clickOn("#fldLastName").write("a");
         assertTrue(sadrziStil(polje, "invalid"));
-        robot.clickOn("#fldCourseName");
-        robot.clickOn("#fldCourseName").write("aaaa");
+        robot.clickOn("#fldLastName");
+        robot.clickOn("#fldLastName").write("aaaa");
         assertTrue(sadrziStil(polje, "valid"));
-        robot.clickOn("#fldEcts").write("a");
-        assertTrue(sadrziStil(polje2, "invalid"));
 
     }
 
