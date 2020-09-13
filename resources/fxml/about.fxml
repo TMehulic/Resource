@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="leftPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/buttons.css" />
+        <URL value="@/css/panes.css" />
+        <URL value="@/css/labels.css" />
+    </stylesheets>
+    <children>
+      <AnchorPane prefHeight="132.0" prefWidth="600.0" styleClass="mainPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" layoutX="121.0" layoutY="58.0" prefHeight="17.0" prefWidth="358.0" styleClass="topLabel" text="Resource" textAlignment="CENTER" AnchorPane.leftAnchor="121.0" AnchorPane.topAnchor="58.0" />
+         </children>
+      </AnchorPane>
+      <GridPane layoutX="126.0" layoutY="155.0" prefHeight="90.0" prefWidth="349.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="181.0" spacing="10.0" GridPane.rowSpan="3">
+               <children>
+                  <Label styleClass="aboutLabel" text="Done by : " />
+                  <Label styleClass="aboutLabel" text="Email :" />
+                  <Label styleClass="aboutLabel" text="Github : " />
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+               <children>
+                  <Label styleClass="aboutLabel" text="Mehulić Tarik" />
+                  <Label styleClass="aboutLabel" text="tmehulic1@etf.unsa.ba" />
+                  <Label styleClass="aboutLabel" text="https://github.com/TMehulic" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <Label alignment="CENTER" layoutX="273.0" layoutY="252.0" prefHeight="17.0" prefWidth="54.0" styleClass="aboutLabel" text="2020" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="273.0" AnchorPane.rightAnchor="273.0" />
+      <Button fx:id="btnClose" layoutX="233.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="134.0" styleClass="cancelBtn" text="%back" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="233.0" AnchorPane.rightAnchor="233.0" />
+   </children>
+</AnchorPane>
