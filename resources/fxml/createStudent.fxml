@@ -7,29 +7,28 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.control.Menu?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="935.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1180.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/create.css" />
         <URL value="@/css/validations.css" />
         <URL value="@/css/labels.css" />
         <URL value="@/css/buttons.css" />
         <URL value="@/css/panes.css" />
-        <URL value="@/css/menuItem.css"/>
+        <URL value="@/css/menuItem.css" />
     </stylesheets>
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="963.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -93,7 +92,7 @@
                 </MenuButton>
             </children>
         </AnchorPane>
-        <GridPane layoutX="97.0" layoutY="156.0" prefHeight="378.0" prefWidth="356.0" styleClass="personalInfo" AnchorPane.leftAnchor="97.0" AnchorPane.rightAnchor="510.0">
+        <GridPane layoutX="97.0" layoutY="156.0" prefHeight="378.0" prefWidth="404.0" styleClass="personalInfo" AnchorPane.leftAnchor="197.0" AnchorPane.topAnchor="256.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="191.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="191.0" />
@@ -159,7 +158,7 @@
                         </ButtonBar>
                     </children>
                 </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
+                <VBox prefHeight="200.0" prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowSpan="3">
                     <children>
                         <Label text="JMBG">
                             <VBox.margin>
@@ -213,7 +212,7 @@
                 </VBox>
             </children>
         </GridPane>
-        <GridPane layoutX="519.0" layoutY="156.0" prefHeight="128.0" prefWidth="200.0" styleClass="adressInfo" AnchorPane.rightAnchor="64.0">
+        <GridPane layoutX="519.0" layoutY="156.0" prefHeight="128.0" prefWidth="200.0" styleClass="adressInfo" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="256.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />
@@ -264,7 +263,7 @@
                 </VBox>
             </children>
         </GridPane>
-        <GridPane layoutX="519.0" layoutY="315.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0">
+        <GridPane layoutX="519.0" layoutY="315.0" prefHeight="128.0" prefWidth="200.0" styleClass="facultyInfo" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="456.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="190.0" prefWidth="191.0" />

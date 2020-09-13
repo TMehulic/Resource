@@ -4,31 +4,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.control.Menu?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1180.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@/css/buttons.css" />
       <URL value="@/css/panes.css" />
-      <URL value="@/css/menuItem.css"/>
+      <URL value="@/css/menuItem.css" />
    </stylesheets>
    <children>
-      <Label layoutX="307.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="%admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="390.0" AnchorPane.topAnchor="255.0">
+      <Label layoutX="197.0" layoutY="255.0" prefHeight="47.0" prefWidth="320.0" text="%admin" textAlignment="CENTER" textFill="#33a37e" AnchorPane.bottomAnchor="255.0" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="393.0" AnchorPane.topAnchor="255.0">
          <font>
             <Font name="System Bold Italic" size="62.0" />
          </font>
       </Label>
       <AnchorPane layoutX="695.0" layoutY="1.0" prefHeight="600.0" prefWidth="299.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="73.0" layoutY="68.0" prefHeight="465.0" prefWidth="153.0" spacing="40.0">
+            <VBox layoutX="73.0" layoutY="118.0" prefHeight="465.0" prefWidth="153.0" spacing="40.0">
                <children>
                   <Button fx:id="btnAddStudent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" styleClass="confirmBtn" text="%addNewStudent">
                      <VBox.margin>
@@ -54,7 +54,7 @@
                      <accelerator>
                         <KeyCodeCombination alt="DOWN" code="A" control="UP" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-                  <Menu  text="%language">
+                  <Menu text="%language">
                      <items>
                         <MenuItem fx:id="itemBosnian" text="%bosnian">
                            <graphic>

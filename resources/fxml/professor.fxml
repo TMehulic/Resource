@@ -3,24 +3,24 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.control.Menu?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/student.css" />
         <URL value="@/css/panes.css" />
         <URL value="@/css/buttons.css" />
         <URL value="@/css/listView.css" />
         <URL value="@/css/labels.css" />
-        <URL value="@/css/menuItem.css"/>
+        <URL value="@/css/menuItem.css" />
     </stylesheets>
     <children>
         <AnchorPane prefHeight="161.0" prefWidth="960.0" styleClass="leftPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -89,7 +89,6 @@
         <Line endX="588.0" layoutX="115.0" layoutY="161.0" startX="-120.0" stroke="#33a37e" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
         <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
             <children>
-                <Label alignment="CENTER" layoutX="110.0" layoutY="373.0" text="LOGOUT" textAlignment="CENTER" textFill="#782440" />
                 <Circle fx:id="circle" fill="#32a57f" layoutX="134.0" radius="100.0" stroke="#32a57f" strokeType="INSIDE" />
             </children>
         </AnchorPane>

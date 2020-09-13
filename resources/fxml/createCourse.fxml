@@ -4,32 +4,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.control.Menu?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="539.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/create.css" />
         <URL value="@/css/validations.css" />
         <URL value="@/css/labels.css" />
         <URL value="@/css/buttons.css" />
         <URL value="@/css/panes.css" />
-        <URL value="@/css/menuItem.css"/>
+        <URL value="@/css/menuItem.css" />
     </stylesheets>
     <children>
         <AnchorPane prefHeight="90.0" prefWidth="963.0" styleClass="mainPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="45.0" layoutY="36.0" prefHeight="17.0" prefWidth="245.0" styleClass="topLabel" text="%addNewCourse">
+                <Label layoutX="45.0" layoutY="36.0" prefHeight="17.0" prefWidth="685.0" styleClass="topLabel" text="%addNewCourse">
                 </Label>
                 <MenuButton fx:id="btnMenu" layoutX="890.0" layoutY="24.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="44.0" prefWidth="39.0" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
                     <items>
@@ -93,21 +92,21 @@
          <children>
             <HBox prefHeight="25.0" prefWidth="317.0">
                <children>
-                  <Label text="%courseName">
+                  <Label prefHeight="17.0" prefWidth="342.0" text="%courseName">
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="ECTS">
                      <HBox.margin>
-                        <Insets left="200.0" top="10.0" />
+                        <Insets left="90.0" top="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
             </HBox>
             <HBox prefHeight="24.0" prefWidth="317.0">
                <children>
-                  <TextField fx:id="fldCourseName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="235.0">
+                  <TextField fx:id="fldCourseName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="389.0">
                      <HBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </HBox.margin>

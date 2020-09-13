@@ -69,35 +69,19 @@ public class StudentController {
     }
 
     public void setMenuListeners(){
-        itemBosnian.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                menuClass.setBosnian();
-                restart();
-            }
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
         });
 
-        itemEnglish.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                menuClass.setEnglish();
-                restart();
-            }
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
         });
 
-        itemLogout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                menuClass.logOut();
-            }
-        });
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
 
-        itemAbout.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                menuClass.showAbout();
-            }
-        });
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
     }
 
     public void restart(){
@@ -124,11 +108,11 @@ public class StudentController {
             }
             Main.getGuiStage().setTitle("Course");
             Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().centerOnScreen();
             Main.getGuiStage().show();
             Main.getGuiStage().setResizable(true);
         }
     };
-
 
 
 }

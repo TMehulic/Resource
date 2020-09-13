@@ -100,6 +100,7 @@ public class ProfessorController {
             }
             Main.getGuiStage().setTitle("Course");
             Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().centerOnScreen();
             Main.getGuiStage().show();
             Main.getGuiStage().setResizable(true);
         }

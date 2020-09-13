@@ -82,6 +82,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -100,6 +101,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -118,6 +120,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -136,6 +139,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -154,6 +158,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -172,6 +177,7 @@ public class AdminController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
@@ -188,6 +194,7 @@ public class AdminController {
         try {
             Parent root = loader.load();
             Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().centerOnScreen();
             Main.getGuiStage().show();
             Main.getGuiStage().setResizable(false);
         } catch (IOException e) {

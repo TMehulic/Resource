@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -95,10 +97,12 @@ public class ListCourseProfessorsController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
             Main.getGuiStage().setTitle("Add professor");
             Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            Main.getGuiStage().centerOnScreen();
             Main.getGuiStage().show();
-            Main.getGuiStage().setResizable(true);
+            Main.getGuiStage().setResizable(false);
         }
     };
 
@@ -124,6 +128,7 @@ public class ListCourseProfessorsController {
             try {
                 Parent root = loader.load();
                 Main.getGuiStage().setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                Main.getGuiStage().centerOnScreen();
                 Main.getGuiStage().show();
                 Main.getGuiStage().setResizable(true);
             } catch (IOException e) {
