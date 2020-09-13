@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ public class StudentController {
     public Label labelWelcome;
 
     public Label labelIndex;
+    public Label labelTrivia;
 
     public Circle circle;
     private DAOClass dao;
@@ -38,16 +40,18 @@ public class StudentController {
     public MenuItem itemLogout;
 
 
-
+    private TriviaAPI triviaAPI;
 
     public StudentController() {
-
         menuClass=new MenuItemClass();
-
     }
 
     @FXML
     public void initialize(){
+
+        labelTrivia.setWrapText(true);
+        triviaAPI=new TriviaAPI(labelTrivia);
+
 
         dao = DAOClass.getInstance();
         Student student = dao.getStudent(HomeController.userID);
@@ -64,8 +68,12 @@ public class StudentController {
         labelWelcome.setText(labelWelcome.getText()+" "+student.getLastName()+" "+student.getFirstName());
 
         setMenuListeners();
+        setTrivia();
 
+    }
 
+    public void setTrivia(){
+        triviaAPI.start();
     }
 
     public void setMenuListeners(){

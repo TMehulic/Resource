@@ -39,6 +39,8 @@ public class ProfessorController {
     public MenuItem itemEnglish;
     public MenuItem itemLogout;
 
+    public Label labelTrivia;
+    private TriviaAPI triviaAPI;
 
     public ProfessorController() {
         menuClass=new MenuItemClass();
@@ -46,6 +48,10 @@ public class ProfessorController {
 
     @FXML
     public void initialize(){
+
+        labelTrivia.setWrapText(true);
+        triviaAPI=new TriviaAPI(labelTrivia);
+
         dao = DAOClass.getInstance();
         Professor professor = dao.getProfessor(HomeController.userID);
 
@@ -57,7 +63,12 @@ public class ProfessorController {
         labelName.setText(labelName.getText()+" "+ professor.getLastName()+" "+professor.getFirstName());
 
         setMenuListeners();
+        setTrivia();
 
+    }
+
+    public void setTrivia(){
+        triviaAPI.start();
     }
 
     public void setMenuListeners(){

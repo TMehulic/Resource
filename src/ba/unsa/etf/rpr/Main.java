@@ -7,8 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 

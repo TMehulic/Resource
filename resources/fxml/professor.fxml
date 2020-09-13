@@ -13,6 +13,8 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/student.css" />
@@ -90,6 +92,20 @@
         <AnchorPane layoutX="705.0" layoutY="161.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="439.0" prefWidth="256.0" styleClass="rightPane" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="161.0">
             <children>
                 <Circle fx:id="circle" fill="#32a57f" layoutX="134.0" radius="100.0" stroke="#32a57f" strokeType="INSIDE" />
+                <VBox styleClass="triviaBox" layoutX="28.0" layoutY="361.0" prefHeight="153.0" prefWidth="200.0">
+                    <children>
+                        <Label id="triviaTitle" text="%didYouKnow">
+                            <VBox.margin>
+                                <Insets left="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <Label id="triviaLabel" fx:id="labelTrivia">
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                    </children>
+                </VBox>
             </children>
         </AnchorPane>
     </children>
