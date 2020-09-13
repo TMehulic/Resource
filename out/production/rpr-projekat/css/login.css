@@ -1,11 +1,11 @@
-#border {
-    fx-background-color:yellow;
-}
 
 #topLabel {
     -fx-label-padding: 50px, 0, 0, 0;
-    -fx-font-size: 28px;
-    -fx-text-fill: white;
+    -fx-text-fill: #32a57f;
+    -fx-font-style: italic;
+    -fx-font-size: 42;
+    -fx-font-family: "Times New Roman";
+    -fx-graphic-text-gap: 2;
 }
 
 .loginMenu {
@@ -20,21 +20,29 @@
     -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.8),10,0,0,0);
     -fx-padding:10;
     -fx-vgap: 5;
-    -fx-background-color: white;
+    -fx-background-color: #294f5f;
 }
 
 
 #passwordField {
     -fx-pref-width: 280px;
+    -fx-text-fill: #32a57f;
 }
 
-#usernameField {
+#emailField {
     -fx-pref-width: 280px;
+    -fx-text-fill: #32a57f;
 }
+
+#emailLabel, #passwordLabel {
+    -fx-text-fill: #32a57f;
+}
+
+
 
 
 #loginBtn {
-    -fx-background-color: #6262ff;
+    -fx-background-color: #32a57f;
     -fx-min-width: 80px;
     -fx-pref-width: 80px;
     -fx-text-fill: white;

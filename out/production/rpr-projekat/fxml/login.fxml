@@ -12,9 +12,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #40404b" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane styleClass="leftPane" id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@/css/login.css" />
+        <URL value="@/css/panes.css" />
     </stylesheets>
    <center>
       <GridPane alignment="CENTER" styleClass="loginMenu" vgap="5.0">
@@ -43,6 +44,6 @@
       </GridPane>
    </center>
    <top>
-       <Label id="topLabel" text="Teaching resources and materials" BorderPane.alignment="CENTER" />
+       <Label id="topLabel" text="Resource" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>
