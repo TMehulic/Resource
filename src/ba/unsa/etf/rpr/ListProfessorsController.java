@@ -10,6 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -89,10 +92,18 @@ public class ListProfessorsController {
                 alert.setContentText("Molimo potvrdite vaš izbor.");
                 Optional<ButtonType> result=alert.showAndWait();
                 if(result.get()==ButtonType.OK){
-                    Professor removed=tableViewProfessors.getSelectionModel().getSelectedItem();
-                    dao.removeProfessor(removed);
-                    tableViewProfessors.getItems().remove(removed);
-                    tableViewProfessors.getSelectionModel().selectFirst();
+                    try{
+                        Professor removed=tableViewProfessors.getSelectionModel().getSelectedItem();
+
+                        String path = "resources/"+removed.getImage();
+                        Path fileToDeletePath = Paths.get(path);
+                        Files.delete(fileToDeletePath);
+                        dao.removeProfessor(removed);
+                        tableViewProfessors.getItems().remove(removed);
+                        tableViewProfessors.getSelectionModel().selectFirst();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 alert.close();
             }

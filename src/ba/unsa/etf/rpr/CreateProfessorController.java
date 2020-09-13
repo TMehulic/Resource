@@ -326,7 +326,7 @@ public class CreateProfessorController implements IValidateInputs {
                 }
                 inputStream.close();
                 outputStream.close();
-                imagePath = "resources/images/users/"+lastName+firstName;
+                imagePath = "images/users/"+lastName+firstName+getExtension(image.getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }

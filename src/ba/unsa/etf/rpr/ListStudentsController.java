@@ -11,6 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -112,9 +115,16 @@ public class ListStudentsController {
                 Optional<ButtonType> result=alert.showAndWait();
                 if(result.get()==ButtonType.OK){
                     Student removed=tableViewStudents.getSelectionModel().getSelectedItem();
-                    dao.removeStudent(removed);
-                    tableViewStudents.getItems().remove(removed);
-                    tableViewStudents.getSelectionModel().selectFirst();
+                    try{
+                        String path = "resources/"+removed.getImage();
+                        Path fileToDeletePath = Paths.get(path);
+                        Files.delete(fileToDeletePath);
+                        dao.removeStudent(removed);
+                        tableViewStudents.getItems().remove(removed);
+                        tableViewStudents.getSelectionModel().selectFirst();
+                    }catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 alert.close();
             }

@@ -59,7 +59,7 @@ public class StudentController {
         listView.setItems(FXCollections.observableArrayList(dao.getCoursesFromStudent(student.getId())));
         listView.setCellFactory(courseListView -> new CourseListCell());
         listView.setOnMouseClicked(courseClicked);
-        Image im = new Image("/images/test.png");
+        Image im = new Image(student.getImage());
         circle.setFill(new ImagePattern(im));
 
         labelDegree.setText(student.getEducationInfo().getDegree());
