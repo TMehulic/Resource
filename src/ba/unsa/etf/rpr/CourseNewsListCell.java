@@ -42,7 +42,7 @@ public class CourseNewsListCell extends ListCell<CourseNews> {
             }
 
             courseNewsData.setWrapText(true);
-            courseNewsData.setText(courseNews.getDate()+" - " +courseNews.getNews());
+            courseNewsData.setText(String.valueOf(courseNews));
 
             setText(null);
             setGraphic(hbox);

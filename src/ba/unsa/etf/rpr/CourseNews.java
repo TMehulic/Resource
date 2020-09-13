@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class CourseNews {
 
@@ -26,5 +28,13 @@ public class CourseNews {
 
     public void setNews(String news) {
         this.news = news;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        String d = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+        s+=d+" - "+news;
+        return s;
     }
 }

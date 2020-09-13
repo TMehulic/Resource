@@ -22,3 +22,11 @@
 #labelMaterials {
     -fx-text-fill: white;
 }
+
+#triviaTitle {
+    -fx-text-fill: #32a57f;
+}
+
+#triviaLabel {
+    -fx-text-fill: #5b8198;
+}
