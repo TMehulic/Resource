@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 import java.io.IOException;
 
@@ -23,6 +24,16 @@ public class AdminController {
     public Button btnProfessors;
     public Button btnCourses;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
+    public AdminController(){
+        menuClass=new MenuItemClass();
+    }
+
     @FXML
     public void initialize(){
         btnAddStudent.setOnAction(addStudent);
@@ -31,6 +42,34 @@ public class AdminController {
         btnStudents.setOnAction(viewStudents);
         btnProfessors.setOnAction(viewProfessors);
         btnCourses.setOnAction(viewCourses);
+
+        setMenuListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/admin.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private EventHandler<ActionEvent> addStudent = new EventHandler<ActionEvent>() {

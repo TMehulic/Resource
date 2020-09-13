@@ -29,10 +29,17 @@ public class ListCourseStudentsController {
     public Button btnRemoveStudent;
     public Button btnDashboard;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
 
     public ListCourseStudentsController(int courseId) {
         this.courseId=courseId;
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -47,6 +54,34 @@ public class ListCourseStudentsController {
         btnAddStudent.setOnAction(addStudent);
         btnRemoveStudent.setOnAction(removeStudent);
         btnDashboard.setOnAction(returnToCourse);
+
+        setMenuListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/courseStudentsList.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private EventHandler<ActionEvent> addStudent = new EventHandler<ActionEvent>() {

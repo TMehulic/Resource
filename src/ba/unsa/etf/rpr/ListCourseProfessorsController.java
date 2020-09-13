@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 
 import java.io.IOException;
 
@@ -28,8 +29,15 @@ public class ListCourseProfessorsController {
 
     public Label labelName;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
     public ListCourseProfessorsController(int courseId) {
         this.courseId = courseId;
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -46,6 +54,33 @@ public class ListCourseProfessorsController {
 
         listViewProfessors.setItems(FXCollections.observableArrayList(dao.getProfessorsOnCourse(courseId)));
         listViewProfessors.setCellFactory(courseProfessorsListView -> new CourseProfessorListCell());
+        setMenuListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/courseProfessorsList.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private EventHandler<ActionEvent> addProfessor = new EventHandler<ActionEvent>() {

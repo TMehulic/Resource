@@ -31,7 +31,7 @@
       <Button fx:id="btnCancel" layoutX="306.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" styleClass="cancelBtn" text="%cancel" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="197.0" />
         <MenuButton fx:id="btnMenu" layoutX="549.0" layoutY="6.0" mnemonicParsing="false" popupSide="LEFT" prefHeight="36.0" prefWidth="43.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="6.0">
             <items>
-                <MenuItem text="%about">
+                <MenuItem fx:id="itemAbout" text="%about">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -43,14 +43,14 @@
                     </accelerator></MenuItem>
                 <Menu text="%language">
                     <items>
-                        <MenuItem text="%bosnian">
+                        <MenuItem fx:id="itemBosnian" text="%bosnian">
                             <graphic>
                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/icons/bosnia.png" />
                                     </image></ImageView>
                             </graphic></MenuItem>
-                        <MenuItem text="%english">
+                        <MenuItem fx:id="itemEnglish" text="%english">
                             <graphic>
                                 <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -65,7 +65,7 @@
                             </image></ImageView>
                     </graphic>
                 </Menu>
-                <MenuItem text="%logout">
+                <MenuItem fx:id="itemLogout" text="%logout">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>

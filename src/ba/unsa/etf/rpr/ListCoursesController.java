@@ -32,8 +32,15 @@ public class ListCoursesController {
     public Button btnCourseProfessors;
     public Button btnDashboard;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
     public ListCoursesController() {
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -48,6 +55,33 @@ public class ListCoursesController {
         btnRemoveCourse.setOnAction(removeCourse);
         btnCourseProfessors.setOnAction(viewCourseProfessors);
         btnDashboard.setOnAction(returnToDashboard);
+        setMenuListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/coursesList.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

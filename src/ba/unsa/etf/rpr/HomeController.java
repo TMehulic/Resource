@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -27,9 +24,16 @@ public class HomeController {
     public Button btnLogin;
     public Label exceptionLabel;
 
+    public MenuItemClass menuClass;
+//    public MenuItem itemAbout;
+//    public MenuItem itemBosnian;
+//    public MenuItem itemEnglish;
+//    public MenuItem itemLogout;
+
 
     public HomeController() {
         userID=-1;
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -37,8 +41,35 @@ public class HomeController {
 
         exceptionLabel.setText("");
         btnLogin.setOnAction(loginAction);
+//        setMenuListeners();
 
     }
+
+//    public void setMenuListeners(){
+//        itemBosnian.setOnAction(actionEvent -> {
+//            menuClass.setBosnian();
+//            restart();
+//        });
+//
+//        itemEnglish.setOnAction(actionEvent -> {
+//            menuClass.setEnglish();
+//            restart();
+//        });
+//
+//        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+//
+//        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+//    }
+//
+//    public void restart(){
+//        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/login.fxml"),Main.bundle);
+//        loader.setController(this);
+//        try {
+//            Main.getGuiStage().setScene(new Scene(loader.load()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public EventHandler<ActionEvent> loginAction = actionEvent -> {
 

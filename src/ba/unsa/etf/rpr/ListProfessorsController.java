@@ -26,9 +26,16 @@ public class ListProfessorsController {
     public Button btnRemoveProfessor;
     public Button btnDashboard;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
 
     public ListProfessorsController() {
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -42,6 +49,33 @@ public class ListProfessorsController {
 
         btnRemoveProfessor.setOnAction(removeProfessor);
         btnDashboard.setOnAction(returnToDashboard);
+        setMenuListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/professorsList.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

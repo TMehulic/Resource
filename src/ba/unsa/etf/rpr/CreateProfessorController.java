@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 
@@ -45,8 +46,15 @@ public class CreateProfessorController implements IValidateInputs {
 
     private InputValidator validator;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
     public CreateProfessorController() {
         validator=new InputValidator();
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -59,8 +67,35 @@ public class CreateProfessorController implements IValidateInputs {
         tgGender.getToggles().addAll(btnMale,btnFemale);
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
+        setMenuListeners();
         setListeners();
 
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/createProfessor.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void createProfessor(ActionEvent actionEvent){

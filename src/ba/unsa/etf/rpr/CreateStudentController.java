@@ -54,10 +54,17 @@ public class CreateStudentController implements IValidateInputs {
 
     private InputValidator validator;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
 
     public CreateStudentController() {
         validator=new InputValidator();
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -73,8 +80,35 @@ public class CreateStudentController implements IValidateInputs {
         btnUpload.setOnAction(uploadImage);
         btnCancel.setOnAction(cancelAction);
 
+        setMenuListeners();
         setListeners();
 
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/createStudent.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

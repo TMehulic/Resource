@@ -4,10 +4,11 @@ package ba.unsa.etf.rpr;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+
+import java.io.IOException;
 
 public class CreateCourseController implements IValidateInputs {
 
@@ -22,9 +23,16 @@ public class CreateCourseController implements IValidateInputs {
 
     private InputValidator validator;
 
+    public MenuItemClass menuClass;
+    public MenuItem itemAbout;
+    public MenuItem itemBosnian;
+    public MenuItem itemEnglish;
+    public MenuItem itemLogout;
+
 
     public CreateCourseController() {
         validator=new InputValidator();
+        menuClass=new MenuItemClass();
     }
 
     @FXML
@@ -32,7 +40,34 @@ public class CreateCourseController implements IValidateInputs {
         btnConfirm.setOnAction(addCourse);
         btnCancel.setOnAction(cancelAction);
         fldDesc.setWrapText(true);
+        setMenuListeners();
         setListeners();
+    }
+
+    public void setMenuListeners(){
+        itemBosnian.setOnAction(actionEvent -> {
+            menuClass.setBosnian();
+            restart();
+        });
+
+        itemEnglish.setOnAction(actionEvent -> {
+            menuClass.setEnglish();
+            restart();
+        });
+
+        itemLogout.setOnAction(actionEvent -> menuClass.logOut());
+
+        itemAbout.setOnAction(actionEvent -> menuClass.showAbout());
+    }
+
+    public void restart(){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/createCourse.fxml"),Main.bundle);
+        loader.setController(this);
+        try {
+            Main.getGuiStage().setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setListeners(){
