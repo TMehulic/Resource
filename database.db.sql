@@ -18,16 +18,16 @@ CREATE TABLE IF NOT EXISTS "courseProfessor" (
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "courseStudent" (
 	"id"	INTEGER,
 	"courseId"	INTEGER,
 	"personId"	INTEGER,
 	PRIMARY KEY("id"),
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	FOREIGN KEY("personId") REFERENCES "person"("id")
+	FOREIGN KEY("personId") REFERENCES "person"("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "person" (
 	"id"	INTEGER,
@@ -61,32 +61,32 @@ CREATE TABLE IF NOT EXISTS "residenceInfo" (
 	"canton"	TEXT,
 	"county"	TEXT,
 	"personId"	INTEGER,
-	FOREIGN KEY("personId") REFERENCES "person"("id"),
-	PRIMARY KEY("id")
+	PRIMARY KEY("id"),
+	FOREIGN KEY("personId") REFERENCES "person"("id")
 );
 CREATE TABLE IF NOT EXISTS "courseNews" (
 	"id"	INTEGER,
 	"news"	TEXT,
 	"date"	TEXT,
 	"courseId"	INTEGER,
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	PRIMARY KEY("id")
+	PRIMARY KEY("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 CREATE TABLE IF NOT EXISTS "user" (
 	"id"	INTEGER,
 	"personId"	INTEGER,
 	"email"	TEXT UNIQUE,
 	"password"	TEXT,
-	FOREIGN KEY("personId") REFERENCES "person"("id"),
-	PRIMARY KEY("id")
+	PRIMARY KEY("id"),
+	FOREIGN KEY("personId") REFERENCES "person"("id")
 );
 CREATE TABLE IF NOT EXISTS "courseMaterials" (
 	"id"	INTEGER,
 	"title"	TEXT,
 	"path"	TEXT,
 	"courseId"	INTEGER,
-	FOREIGN KEY("courseId") REFERENCES "course"("id"),
-	PRIMARY KEY("id")
+	PRIMARY KEY("id"),
+	FOREIGN KEY("courseId") REFERENCES "course"("id")
 );
 INSERT INTO "course" VALUES (1,'Numerički algoritmi','Cilj ovog kursa je upoznavanje sa problemima vezanim za implementaciju računanja sa realnim brojevima na računaru, te dizajn brzih, tačnih i pouzdanih algoritama za rješavanje tipičnih problema numeričke prirode (računanja sa matricama, rješavanje jednačina i sistema jednačina, interpolacija, aproksimacija, numeričko diferenciranje i integriranje, numeričko rješavanje diferencijalnih jednačina, brza Fourierova transformacija).',5);
 INSERT INTO "course" VALUES (2,'Algoritmi i strukture podataka','Cilj kursa je sticanja koherentnog znanja o tehnikama za implementiranje algoritama i strukturama podataka. U isto vrijeme kurs pruža studentima mogućnost da unaprijede svoje programersko znanje prilikom razvoja i primjene raznih algoritama u okviru konkretnih programskih rješenja.',5);
@@ -106,4 +106,22 @@ konceptualno razumijevanje strategija za rješavanje problema koristeći algorit
 razumijevanje osnovne terminologije koja se koristi u programiranju;
 dizajn jednostavnih programa u programskom jeziku C, što uključuje: naredbe za kontrolu toka programa, nizove, strukture, funkcije, pokazivače i ulazno-izlazne operacije,
 pisanje, kompajliranje i debagiranje jednostavnih programa u programskom jeziku C.',5);
+INSERT INTO "titleInfo" VALUES (0,'Dr. prof.',2);
+INSERT INTO "courseProfessor" VALUES (0,1,2);
+INSERT INTO "courseProfessor" VALUES (1,2,2);
+INSERT INTO "courseProfessor" VALUES (2,4,2);
+INSERT INTO "courseStudent" VALUES (0,1,0);
+INSERT INTO "courseStudent" VALUES (1,1,1);
+INSERT INTO "person" VALUES (0,'Stud','Student','Studen','Studeni','1234567890123','+123456','stud@mail.com','images/users/StudStudent.jpg','2020-09-01','MALE',1,NULL);
+INSERT INTO "person" VALUES (1,'Stud','Studi','Student','Studentgrad','1234665544444','+123','studi@mail.com','images/users/StudStudi.jpg','2020-09-02','MALE',1,NULL);
+INSERT INTO "person" VALUES (2,'Prof','Profa','Profesor','Profengrad','1234555555555','225883','prof@mail.com','images/users/ProfProfa.jpg','2020-08-31','FEMALE',NULL,1);
+INSERT INTO "educationInfo" VALUES (0,'RI',1,3,12345,0);
+INSERT INTO "educationInfo" VALUES (1,'AiE',1,3,54321,1);
+INSERT INTO "residenceInfo" VALUES (0,'Studeni','SBK','Studentor',0);
+INSERT INTO "residenceInfo" VALUES (1,'Studentgrad','ZDK','Studentgrovo',1);
+INSERT INTO "residenceInfo" VALUES (2,'Profengrad','K10','Profovo',2);
+INSERT INTO "courseNews" VALUES (0,'Novost','2020-09-14',1);
+INSERT INTO "user" VALUES (0,0,'stud@mail.com','stud123');
+INSERT INTO "user" VALUES (1,1,'studi@mail.com','studi123');
+INSERT INTO "user" VALUES (2,2,'prof@mail.com','prof123');
 COMMIT;
